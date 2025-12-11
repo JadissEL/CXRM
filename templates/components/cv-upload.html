@@ -1,0 +1,54 @@
+<!-- CV Upload & Analysis Section -->
+<section class="card cv-upload-card">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <div class="badge-pill">
+            <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+            <span>AI-POWERED ANALYSIS</span>
+        </div>
+
+        <h2 class="section-title-large">Smart CV Analysis</h2>
+        <p class="section-subtitle">
+            Upload a CV and let AI generate personalized interview questions in seconds
+        </p>
+
+        <!-- Upload Zone -->
+        <div id="dropZone" class="upload-zone">
+            <input type="file" id="cvUpload"
+                accept=".pdf,.docx,.doc,.txt,.rtf,.odt,.jpg,.jpeg,.png,.bmp,.gif,.htm,.html" class="file-input-hidden">
+
+            <div class="upload-icon-wrapper">
+                <i data-lucide="upload-cloud" class="upload-icon-svg"></i>
+            </div>
+
+            <h3 class="upload-title">
+                Drop CV Here or Click to Upload
+            </h3>
+            <p class="upload-hint">
+                Supports PDF, DOCX, TXT, RTF, ODT, Images & more
+            </p>
+
+            <div class="upload-actions">
+                <button id="analyzeBtn" class="action-btn btn-secondary">
+                    <i data-lucide="zap" style="width: 18px; height: 18px;"></i>
+                    Analyze with AI
+                </button>
+                <span id="fileName" class="file-name-display">No file selected</span>
+            </div>
+        </div>
+
+        <!-- Progress Indicator (Correctly Hidden by Default/Styled) -->
+        <div id="analysisProgress" class="analysis-progress hidden">
+            <div class="progress-header">
+                <div class="progress-status">
+                    <i data-lucide="brain" style="width: 20px; height: 20px;"></i>
+                    <span id="analysisStatus">Processing...</span>
+                </div>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <div id="agentSteps" class="agent-steps"></div>
+        </div>
+    </div>
+</section>

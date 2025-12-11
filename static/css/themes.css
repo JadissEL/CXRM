@@ -1,0 +1,114 @@
+/* ============================================
+   THEME STYLES (SaaS Warm Minimalist)
+   ============================================ */
+
+/* Background Texture (Subtle Noise for Paper Feel) */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var(--color-surface-50);
+    opacity: 1;
+    pointer-events: none;
+}
+
+/* Add subtle grain */
+.animated-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+/* Radio Cards (Selection Logic) */
+.radio-card {
+    cursor: pointer;
+    position: relative;
+    display: block;
+}
+
+.radio-card input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Default State */
+.radio-card .content {
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    transition: all 0.2s ease;
+    color: var(--text-muted);
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover State */
+.radio-card:hover .content {
+    border-color: var(--text-muted);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-float);
+}
+
+/* Selected State */
+.radio-card input:checked+.content {
+    background: var(--color-primary);
+    color: var(--color-primary-text);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-float);
+}
+
+/* Buttons */
+.btn-secondary {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-main);
+    background: var(--color-surface-50);
+}
+
+/* Keyboard Hints */
+.kbd-hint {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--bg-card);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-float);
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    z-index: 50;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.kbd-hint:hover {
+    opacity: 1;
+}
+
+.kbd {
+    background: var(--color-surface-100);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+    font-family: monospace;
+    font-weight: 600;
+    color: var(--text-main);
+}

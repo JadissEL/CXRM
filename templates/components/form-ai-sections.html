@@ -1,0 +1,55 @@
+<!-- AI-Powered Sections -->
+
+<!-- Candidate Introduction -->
+<div class="card">
+    <div class="section-header">
+        <div class="section-number">02</div>
+        <h3 class="section-title">Candidate Introduction</h3>
+        <span class="badge badge-info">⏱ 5-10 min</span>
+    </div>
+    <div class="form-group">
+        <label>Key Points & Notes</label>
+        <textarea id="candidateIntro" rows="4" class="form-textarea"
+            placeholder="Note down their self-introduction..."></textarea>
+    </div>
+</div>
+
+<!-- Dive into CV -->
+<div class="card card-ai">
+    <div class="section-header">
+        <div class="section-number">03</div>
+        <h3 class="section-title">Dive into the CV</h3>
+        <div class="badge badge-ai">
+            <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+            <span>AI SUGGESTIONS</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Deep Dive Notes (AI-Generated Questions)</label>
+        <textarea id="cvNotes" rows="8" class="form-textarea"
+            placeholder="AI will generate 6 personalized questions here..."></textarea>
+    </div>
+</div>
+
+<!-- Profile Strengths (AI-Detected) -->
+<div class="card card-success">
+    <div class="section-header">
+        <div class="section-number">
+            <i data-lucide="activity" style="width: 20px; height: 20px;"></i>
+        </div>
+        <h3 class="section-title">Candidate Profile Strengths</h3>
+        <div class="badge badge-success">
+            <i data-lucide="brain" style="width: 14px; height: 14px;"></i>
+            <span>AI DETECTED</span>
+        </div>
+    </div>
+    <div id="profileStrengthsContainer" class="upload-zone">
+        <div style="text-align: center; color: var(--text-muted);">
+            <i data-lucide="upload-cloud" style="width: 48px; height: 48px; margin: 0 auto 1rem; opacity: 0.5;"></i>
+            <p style="font-weight: 600; margin: 0;">Upload and analyze a CV to detect strengths</p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem; opacity: 0.7;">
+                Areas: Hospitality, Customer Care, Technical Support, Sales, B2B, IT, Languages
+            </p>
+        </div>
+    </div>
+</div>

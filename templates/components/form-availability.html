@@ -1,0 +1,71 @@
+<!-- Availability & Work Details -->
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+
+    <!-- General Availability -->
+    <div class="card">
+        <div class="section-header">
+            <div class="section-number">04</div>
+            <div>
+                <h3 class="section-title">Availability</h3>
+                <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">General</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>When?</label>
+            <input type="text" id="availGeneral" class="form-input" placeholder="e.g. ASAP">
+        </div>
+        <div class="form-group">
+            <label>Comment</label>
+            <input type="text" id="availGeneralComment" class="form-input" placeholder="Details">
+        </div>
+    </div>
+
+    <!-- Shifts -->
+    <div class="card">
+        <div class="section-header">
+            <div class="section-number">05</div>
+            <div>
+                <h3 class="section-title">Shifts</h3>
+                <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">Rotating</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Available?</label>
+            <select id="shiftAvail" class="form-select">
+                <option value="">Select...</option>
+                <option value="Yes, fully available">Yes, fully</option>
+                <option value="Yes, with restrictions">With restrictions</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Notes</label>
+            <textarea id="shiftAvailComment" rows="2" class="form-textarea"></textarea>
+        </div>
+    </div>
+
+</div>
+
+<!-- On-site -->
+<div class="card">
+    <div class="section-header">
+        <div class="section-number">06</div>
+        <h3 class="section-title">Willing to work On-site</h3>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+        <label class="radio-card">
+            <input type="radio" name="onSite" value="Yes">
+            <div class="content">✅ Yes</div>
+        </label>
+        <label class="radio-card">
+            <input type="radio" name="onSite" value="No">
+            <div class="content">❌ No</div>
+        </label>
+        <label class="radio-card">
+            <input type="radio" name="onSite" value="Flexible">
+            <div class="content">🔄 Flexible</div>
+        </label>
+    </div>
+    <input type="text" id="onSiteComment" class="form-input" placeholder="Additional context...">
+</div>

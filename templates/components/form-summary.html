@@ -1,0 +1,95 @@
+<!-- Final Summary & Decision -->
+
+<div class="card">
+    <div class="section-header">
+        <div class="section-number">
+            <i data-lucide="clipboard-check" style="width: 16px; height: 16px; color: white;"></i>
+        </div>
+        <h3 class="section-title">
+            Recruiter Summary & Decision
+        </h3>
+    </div>
+
+    <!-- Strengths -->
+    <div class="form-group">
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="star" style="width: 16px; height: 16px; color: #10b981;"></i>
+            Candidate Strengths
+        </label>
+        <textarea id="strengths" rows="3" class="form-textarea" placeholder="Key strengths observed..."></textarea>
+    </div>
+
+    <!-- Red Flags -->
+    <div class="form-group">
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="alert-triangle" style="width: 16px; height: 16px; color: #ef4444;"></i>
+            Red Flags / Concerns
+        </label>
+        <textarea id="redFlags" rows="3" class="form-textarea" placeholder="Concerns or risks identified..."></textarea>
+    </div>
+
+    <!-- Motivations -->
+    <div class="form-group">
+        <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="target" style="width: 16px; height: 16px; color: var(--brand-indigo);"></i>
+            Motivations
+        </label>
+        <textarea id="motivations" rows="3" class="form-textarea" placeholder="What drives this candidate?"></textarea>
+    </div>
+
+    <!-- Rating -->
+    <div class="form-group">
+        <label>Overall Rating</label>
+        <div style="display: flex; gap: 0.5rem;">
+            <label class="radio-card">
+                <input type="radio" name="rating" value="1">
+                <div class="content">⭐</div>
+            </label>
+            <label class="radio-card">
+                <input type="radio" name="rating" value="2">
+                <div class="content">⭐⭐</div>
+            </label>
+            <label class="radio-card">
+                <input type="radio" name="rating" value="3">
+                <div class="content">⭐⭐⭐</div>
+            </label>
+            <label class="radio-card">
+                <input type="radio" name="rating" value="4">
+                <div class="content">⭐⭐⭐⭐</div>
+            </label>
+            <label class="radio-card">
+                <input type="radio" name="rating" value="5">
+                <div class="content">⭐⭐⭐⭐⭐</div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Score Visualizations -->
+    {% include 'components/score-charts.html' %}
+
+    <!-- Final Decision -->
+    <div class="form-group">
+        <label style="font-size: 1.125rem; font-weight: 700;">Final Decision</label>
+        <div class="radio-card-group">
+            <label class="radio-decision success-type">
+                <input type="radio" name="decision" value="Proceed">
+                <div class="content">✅ Proceed to Next Stage</div>
+            </label>
+            <label class="radio-decision error-type">
+                <input type="radio" name="decision" value="Reject">
+                <div class="content">❌ Reject</div>
+            </label>
+            <label class="radio-decision warning-type">
+                <input type="radio" name="decision" value="Waitlist">
+                <div class="content">⏳ Waitlist</div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Final Notes -->
+    <div class="form-group">
+        <label>Final Notes & Next Steps</label>
+        <textarea id="finalNotes" rows="4" class="form-textarea"
+            placeholder="Follow-up actions, additional requirements..."></textarea>
+    </div>
+</div>

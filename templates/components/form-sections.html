@@ -1,0 +1,58 @@
+<!-- Interview Form -->
+<form id="interviewForm">
+
+    <!-- Metadata -->
+    <div class="card">
+        <div class="section-header">
+            <div class="section-number" style="background: #64748b;">00</div>
+            <h3 class="section-title">Interview Metadata</h3>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+            <div class="form-group">
+                <label>Recruiter Name</label>
+                <input type="text" id="recruiterName" class="form-input" placeholder="Your full name">
+            </div>
+            <div class="form-group">
+                <label>Candidate Name</label>
+                <input type="text" id="candidateName" class="form-input" placeholder="Candidate's full name">
+            </div>
+            <div class="form-group">
+                <label>Interview Date</label>
+                <input type="date" id="interviewDate" class="form-input">
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="time" id="interviewTime" class="form-input">
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label>Position / Role</label>
+                <input type="text" id="positionRole" class="form-input" placeholder="e.g. Customer Support Specialist">
+            </div>
+        </div>
+    </div>
+
+    <!-- Introduction Script (Read-only) -->
+    <div class="card"
+        style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%); border-left: 4px solid var(--brand-indigo);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="font-size: 1.125rem; font-weight: 700;">1. Introduction Script</h3>
+            <span
+                style="padding: 0.25rem 0.75rem; background: var(--bg-secondary); border-radius: 6px; font-size: 0.75rem; font-weight: 600;">READ
+                ONLY</span>
+        </div>
+        <div style="color: var(--text-secondary); line-height: 1.8;">
+            <p>"Thank you for speaking with me today. My name is <strong id="recruiterNameDisplay"
+                    style="color: var(--brand-indigo); text-decoration: underline;">________</strong>,
+                and I am the Recruiter at Quadriga Best Life. We collaborate with the largest companies in Europe in
+                Customer Service and Call Centres,
+                as well as leading 5-star hotels. I look forward to learning about your background."</p>
+        </div>
+    </div>
+
+    <!-- Include other form sections -->
+    {% include 'components/form-ai-sections.html' %}
+    {% include 'components/form-availability.html' %}
+    {% include 'components/form-details.html' %}
+    {% include 'components/form-summary.html' %}
+
+</form>

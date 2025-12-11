@@ -1,0 +1,81 @@
+<!-- Candidate Personal Details -->
+
+<!-- Nationality & Permits -->
+<div class="card">
+    <div class="section-header">
+        <div class="section-number">07</div>
+        <h3 class="section-title">Nationality & Work Permits</h3>
+    </div>
+    <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+        <div class="form-group">
+            <label>Nationality</label>
+            <input type="text" id="nationality" class="form-input">
+        </div>
+        <div class="form-group">
+            <label>Permit Status</label>
+            <select id="permitStatus" class="form-select">
+                <option value="">Select...</option>
+                <option value="Valid">✅ Valid</option>
+                <option value="In Process">⏳ In Process</option>
+                <option value="Not Available">❌ Not Available</option>
+            </select>
+        </div>
+    </div>
+    <textarea id="permitComment" rows="2" class="form-textarea"
+        placeholder="Visa details, expiration dates..."></textarea>
+</div>
+
+<!-- Birth Date -->
+<div class="card">
+    <div class="section-header">
+        <div class="section-number">08</div>
+        <h3 class="section-title">Birth Date</h3>
+    </div>
+    <input type="date" id="birthDate" class="form-input" style="max-width: 300px;">
+</div>
+
+<!-- BPO Check -->
+<div class="card">
+    <div class="section-header">
+        <div class="section-number">09</div>
+        <h3 class="section-title">BPO Background Check</h3>
+    </div>
+    <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">
+        Has the candidate worked for TP, Concentrix, or Foundever?
+    </p>
+    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+        <label class="radio-card">
+            <input type="radio" name="bpoCheck" value="Yes" onchange="toggleBpoDetails(true)">
+            <div class="content">Yes</div>
+        </label>
+        <label class="radio-card">
+            <input type="radio" name="bpoCheck" value="No" onchange="toggleBpoDetails(false)">
+            <div class="content">No</div>
+        </label>
+    </div>
+    <div id="bpoDetails" class="hidden"
+        style="padding: 1.5rem; background: var(--bg-primary); border-radius: 8px; border-left: 3px solid var(--brand-indigo);">
+        <div style="display: grid; gap: 1rem;">
+            <div class="form-group">
+                <label>Which Company?</label>
+                <input type="text" id="bpoWhich" class="form-input">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label>Stop Date</label>
+                    <input type="text" id="bpoStopDate" class="form-input" placeholder="MM/YYYY">
+                </div>
+                <div class="form-group">
+                    <label>Last Applied</label>
+                    <input type="date" id="bpoLastApply" class="form-input">
+                </div>
+            </div>
+        </div>
+    </div>
+    <textarea id="bpoNotes" rows="2" class="form-textarea" placeholder="Duplicate check notes..."
+        style="margin-top: 1rem;"></textarea>
+</div>
+
+<!-- Include additional details -->
+{% include 'components/form-details-compact.html' %}

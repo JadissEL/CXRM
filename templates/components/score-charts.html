@@ -1,0 +1,67 @@
+<!-- Score Charts Component -->
+<div class="card" style="background: var(--bg-primary); border-left: 4px solid var(--color-primary);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.125rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+            <i data-lucide="bar-chart-3" style="width: 20px; height: 20px; color: var(--color-primary);"></i>
+            Interview Scores
+        </h3>
+        <button id="refreshScores" class="action-btn" style="height: 36px; padding: 0 1.25rem; font-size: 0.875rem;">
+            <i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i>
+            Calculate
+        </button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+
+        <!-- Strengths Score -->
+        <div style="text-align: center; padding: 1.5rem; background: var(--bg-primary); border-radius: 12px;">
+            <h4
+                style="font-size: 0.875rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">
+                Profile Strengths
+            </h4>
+            <div style="position: relative; width: 180px; height: 180px; margin: 0 auto;">
+                <canvas id="strengthChart"></canvas>
+                <div id="strengthScore"
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--color-primary);">--</div>
+                    <div id="strengthStatusText"
+                        style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;">Not calculated
+                    </div>
+                </div>
+            </div>
+            <p id="strengthLabel"
+                style="margin-top: 1rem; font-size: 0.875rem; font-weight: 600; color: var(--text-secondary);">
+                Upload CV and analyze to calculate
+            </p>
+        </div>
+
+        <!-- Matching Score -->
+        <div style="text-align: center; padding: 1.5rem; background: var(--bg-primary); border-radius: 12px;">
+            <h4
+                style="font-size: 0.875rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">
+                Interview Matching
+            </h4>
+            <div style="position: relative; width: 180px; height: 180px; margin: 0 auto;">
+                <canvas id="matchingChart"></canvas>
+                <div id="matchingScore"
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--brand-grey);">--</div>
+                    <div id="matchingStatusText"
+                        style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;">Not calculated
+                    </div>
+                </div>
+            </div>
+            <p id="matchingLabel"
+                style="margin-top: 1rem; font-size: 0.875rem; font-weight: 600; color: var(--text-secondary);">
+                Complete form to calculate
+            </p>
+        </div>
+
+    </div>
+
+    <div id="scoreBreakdown" class="hidden"
+        style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-primary); border-radius: 8px; font-size: 0.875rem;">
+        <div style="font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">Score Breakdown:</div>
+        <div id="scoreDetails" style="color: var(--text-secondary); line-height: 1.6;"></div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+<!-- Compact Form Details -->
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+
+    <!-- Salary -->
+    <div class="card">
+        <div class="section-header">
+            <div class="section-number">10</div>
+            <h3 class="section-title">Salary Expectations</h3>
+        </div>
+        <input type="text" id="salary" class="form-input" placeholder="e.g. 1200 Net">
+    </div>
+
+    <!-- Phone Availability -->
+    <div class="card">
+        <div class="section-header">
+            <div class="section-number">11</div>
+            <h3 class="section-title">Phone Availability</h3>
+        </div>
+        <select id="phoneAvail" class="form-select">
+            <option value="">Select...</option>
+            <option value="Always">📱 Always</option>
+            <option value="Work hours only">🕐 Work hours</option>
+            <option value="Limited">⚠️ Limited</option>
+        </select>
+    </div>
+
+    <!-- Notice Period -->
+    <div class="card">
+        <div class="section-header">
+            <div class="section-number">12</div>
+            <h3 class="section-title">Notice Period</h3>
+        </div>
+        <input type="text" id="noticePeriod" class="form-input" placeholder="e.g. 2 weeks">
+    </div>
+
+    <!-- Mobility -->
+    <div class="card">
+        <div class="section-header">
+            <div class="section-number">13</div>
+            <h3 class="section-title">Mobility</h3>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label class="checkbox-card">
+                <input type="checkbox" name="mobility" value="Car">
+                <div class="content">🚗 Has Car</div>
+            </label>
+            <label class="checkbox-card">
+                <input type="checkbox" name="mobility" value="License">
+                <div class="content">📜 Valid License</div>
+            </label>
+        </div>
+        <input type="text" id="mobilityComment" class="form-input" placeholder="Notes..." style="margin-top: 0.75rem;">
+    </div>
+
+    <!-- Location -->
+    <div class="card" style="grid-column: span 2;">
+        <div class="section-header">
+            <div class="section-number">14</div>
+            <h3 class="section-title">Location Constraints</h3>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+                <label>Distance Willing to Travel </label>
+                <input type="text" id="locDistance" class="form-input" placeholder="e.g. 30 km">
+            </div>
+            <div class="form-group">
+                <label>Current City</label>
+                <input type="text" id="currentCity" class="form-input">
+            </div>
+        </div>
+        <textarea id="locConstraints" rows="2" class="form-textarea"
+            placeholder="Relocation preferences, accessibility needs..."></textarea>
+    </div>
+
+</div>
