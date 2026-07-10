@@ -1,0 +1,220 @@
+import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { sovereign } from '@/api/apiClient';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { toast } from 'sonner';
+import { CheckCircle2, XCircle, DollarSign } from 'lucide-react';
+import {
+  normalizeDisputeStatus,
+  isDisputeResolvable,
+} from '@/utils/disputeStatus';
+
+const RESOLUTION_TYPES = {
+  'Approve Claim': {
+    icon: CheckCircle2,
+    color: 'bg-success/10 text-success hover:bg-success/15',
+    action: 'approved',
+    showRefund: true
+  },
+  'Reject Claim': {
+    icon: XCircle,
+    color: 'bg-destructive/10 text-destructive hover:bg-destructive/15',
+    action: 'rejected',
+    showRefund: false
+  },
+  'Request More Info': {
+    icon: null,
+    color: 'bg-primary/10 text-muted-foreground hover:bg-primary/15',
+    action: 'info_requested',
+    showRefund: false
+  }
+};
+
+export default function ResolutionActions({ dispute, onResolved }) {
+  const queryClient = useQueryClient();
+  const [selectedAction, setSelectedAction] = useState(null);
+  const [resolution, setResolution] = useState('');
+  const [refundAmount, setRefundAmount] = useState(dispute?.amount ?? dispute?.booking_amount ?? '0');
+
+  const disputeStatus = normalizeDisputeStatus(dispute?.status);
+  const bookingAmount = dispute?.amount ?? dispute?.booking_amount ?? 0;
+
+  const updateMutation = useMutation({
+    mutationFn: (payload) => {
+      if (payload?.action) {
+        return sovereign.providerStats.resolveDispute(dispute.id, payload);
+      }
+      return sovereign.entities.Dispute.update(dispute.id, payload);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['dispute', dispute.id] });
+      queryClient.invalidateQueries({ queryKey: ['all-disputes'] });
+      toast.success('Dispute resolved');
+      setSelectedAction(null);
+      setResolution('');
+      if (onResolved) onResolved();
+    },
+    onError: () => {
+      toast.error('Failed to resolve dispute');
+    }
+  });
+
+  const handleResolve = () => {
+    if (!resolution.trim()) {
+      toast.error('Please provide a resolution explanation');
+      return;
+    }
+
+    updateMutation.mutate({
+      action: selectedAction === 'Approve Claim' ? 'approve_claim' : selectedAction === 'Reject Claim' ? 'reject_claim' : 'request_info',
+      resolution_notes: resolution,
+      refund_amount: RESOLUTION_TYPES[selectedAction].showRefund ? Number(refundAmount) : undefined,
+    });
+  };
+
+  const handleMarkInReview = () => {
+    updateMutation.mutate({
+      action: 'mark_in_review',
+      resolution_notes: 'Marked in review by admin',
+    });
+  };
+
+  return (
+    <div className="space-y-4">
+      {/* Status Actions */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Quick Actions</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          {disputeStatus === 'open' && (
+            <Button
+              onClick={handleMarkInReview}
+              disabled={updateMutation.isPending}
+              variant="outline"
+              className="w-full"
+            >
+              Mark as In Review
+            </Button>
+          )}
+
+          {isDisputeResolvable(dispute?.status) && (
+            <div className="space-y-2">
+              <p className="text-sm font-semibold text-foreground">Resolve Dispute</p>
+              <div className="space-y-1">
+                {Object.entries(RESOLUTION_TYPES).map(([action, config]) => (
+                  <button
+                    key={action}
+                    onClick={() => setSelectedAction(action)}
+                    className={`w-full p-3 rounded-lg text-sm font-semibold transition-all ${
+                      selectedAction === action
+                        ? 'bg-primary text-white'
+                        : `${config.color}`
+                    }`}
+                  >
+                    {action}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Resolution Details */}
+      {selectedAction && (
+        <Card className="border-primary/30 bg-primary/5">
+          <CardHeader>
+            <CardTitle className="text-base">Resolution Details</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Refund Option */}
+            {RESOLUTION_TYPES[selectedAction].showRefund && (
+              <div>
+                <label className="text-sm font-semibold text-foreground mb-2 block">
+                  Refund Amount
+                </label>
+                <div className="relative">
+                  <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <input
+                    type="number"
+                    value={refundAmount}
+                    onChange={(e) => setRefundAmount(e.target.value)}
+                    className="w-full pl-8 pr-4 py-2 rounded-lg border border-border bg-background text-foreground"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Claimed: ${bookingAmount}
+                </p>
+              </div>
+            )}
+
+            {/* Resolution Notes */}
+            <div>
+              <label className="text-sm font-semibold text-foreground mb-2 block">
+                Resolution Explanation (required)
+              </label>
+              <Textarea
+                placeholder={`Explain why you are ${selectedAction.toLowerCase()}...`}
+                value={resolution}
+                onChange={(e) => setResolution(e.target.value)}
+                className="min-h-24 text-sm"
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                This will be visible to both parties in a formal resolution letter.
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-2 pt-4 border-t">
+              <Button
+                onClick={() => {
+                  setSelectedAction(null);
+                  setResolution('');
+                  setRefundAmount(bookingAmount || '0');
+                }}
+                variant="outline"
+                className="flex-1"
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleResolve}
+                disabled={updateMutation.isPending || !resolution.trim()}
+                className="flex-1 bg-primary hover:bg-primary/90"
+              >
+                {updateMutation.isPending ? 'Resolving...' : 'Resolve Dispute'}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Resolved Status */}
+      {disputeStatus === 'resolved' && (
+        <Card className="border-success/20 bg-success/10">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="w-5 h-5 text-success" />
+              <div>
+                <p className="font-semibold text-green-900">Case Closed</p>
+                <p className="text-xs text-success">{dispute.resolution_notes}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Info Box */}
+      <Card className="bg-muted/30 border-muted">
+        <CardContent className="p-4">
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            <span className="font-semibold">Note:</span> Both parties will be notified of the resolution via email. Approved refunds are processed within 2-3 business days.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

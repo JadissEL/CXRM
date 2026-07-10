@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopTheBarber — Diagramme de Cas d’Utilisation (Interactif)</title>
+  <style>
+    :root{
+      --bg: #0f1220;          /* fond sombre élégant */
+      --panel: #14182b;
+      --panel-2:#101427;
+      --muted:#8a90a6;
+      --text:#e8ecf8;
+      --grid:#1a1f37;
+      --primary:#6ea8fe;
+      --ok:#33d69f;
+      --warn:#ffb74d;
+      --danger:#ff6b6b;
+      --accent:#a387ff;
+      --stroke:#2a3156;
+      --link:#8ec5ff;
+
+      --client:#5ab3ff;    /* Bleu */
+      --barber:#58e0a6;    /* Vert */
+      --seller:#ffb85c;    /* Orange */
+      --admin:#ff6f91;     /* Rose/Rouge */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:radial-gradient(1200px 600px at 20% -10%,#1b2140 0%,#0f1220 60%), var(--bg);
+      color:var(--text); font: 14px/1.45 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      letter-spacing:.2px;
+    }
+    .app{display:grid; grid-template-rows:auto auto 1fr; height:100%;}
+    header{display:flex; align-items:center; gap:14px; padding:16px 20px; border-bottom:1px solid var(--stroke); backdrop-filter:saturate(120%) blur(6px);}
+    header .logo{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg, var(--primary), var(--accent)); display:grid; place-items:center; font-weight:800; color:#0b1024;}
+    header h1{font-size:18px; margin:0; letter-spacing:.4px}
+    header .subtitle{color:var(--muted); font-size:12px}
+
+    .toolbar{display:flex; flex-wrap:wrap; gap:12px; padding:10px 16px; border-bottom:1px solid var(--stroke); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0));}
+    .tool{display:flex; align-items:center; gap:8px; background:var(--panel); padding:8px 10px; border:1px solid var(--stroke); border-radius:12px;}
+    .tool input[type="search"]{background:transparent; border:none; outline:none; color:var(--text); width:220px}
+    .btn{cursor:pointer; border:none; padding:8px 10px; border-radius:10px; color:var(--text); background:var(--panel); border:1px solid var(--stroke);} 
+    .btn:hover{filter:brightness(1.08)}
+    .chip{padding:6px 10px; border-radius:999px; font-weight:600; border:1px solid var(--stroke); cursor:pointer;}
+    .chip[data-active="true"]{box-shadow:0 0 0 2px currentColor inset}
+    .chip.client{color:var(--client)}
+    .chip.barber{color:var(--barber)}
+    .chip.seller{color:var(--seller)}
+    .chip.admin{color:var(--admin)}
+
+    .main{display:grid; grid-template-columns: 2fr minmax(320px, 520px); gap:0; height:100%;}
+    .canvas-wrap{position:relative; overflow:auto; background:repeating-linear-gradient(0deg, var(--grid), var(--grid) 24px, transparent 24px, transparent 48px), repeating-linear-gradient(90deg, var(--grid), var(--grid) 24px, transparent 24px, transparent 48px);} 
+    svg{display:block; width:2000px; height:1200px;}
+    .panel{border-left:1px solid var(--stroke); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0));}
+    .panel header{border:0; padding:14px 16px;}
+    .panel .content{padding:4px 16px 16px 16px; overflow:auto; height:calc(100% - 52px);} 
+
+    .legend{display:flex; gap:8px; align-items:center}
+    .swatch{width:10px; height:10px; border-radius:50%; display:inline-block; margin-right:6px}
+
+    /* SVG styles */
+    .actor{fill:transparent; stroke:#a8b3e6; stroke-width:2}
+    .actor-label{font-size:13px; fill:#dfe5ff}
+    .system{fill:rgba(255,255,255,0.02); stroke:#6b75a8; stroke-dasharray:6 6}
+    .usecase{fill:#121735; stroke:var(--stroke); stroke-width:1.5; filter: drop-shadow(0 6px 12px rgba(0,0,0,.35));}
+    .usecase text{fill:#eef2ff; font-weight:600;}
+    .usecase circle, .usecase rect{pointer-events:all;}
+    .edge{stroke:#415093; stroke-width:1.5; marker-end:url(#arrow)}
+    .edge[data-dimmed="true"], .usecase[data-dimmed="true"]{opacity:.25}
+    .usecase[data-active="true"]{stroke:#fff; stroke-width:2.2}
+    .actor-node{cursor:pointer}
+
+    /* Detail styles */
+    .kpi{display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin:10px 0}
+    .kpi .card{background:var(--panel); border:1px solid var(--stroke); border-radius:14px; padding:10px}
+    .acc{border:1px solid var(--stroke); border-radius:14px; overflow:hidden; margin:10px 0; background:var(--panel)}
+    .acc summary{cursor:pointer; list-style:none; padding:10px 12px; background:var(--panel-2); border-bottom:1px solid var(--stroke); font-weight:700}
+    .acc summary::-webkit-details-marker{display:none}
+    .acc .acc-body{padding:10px 12px; color:#d7dcf5}
+    .list{padding-left:18px}
+    .tag{display:inline-block; padding:.2rem .5rem; border:1px solid var(--stroke); border-radius:999px; margin-right:6px; font-size:12px; color:#cbd5ff}
+
+    .footer{padding:8px 16px; color:var(--muted); font-size:12px}
+
+    @media (max-width: 1100px){
+      .main{grid-template-columns: 1fr;}
+      svg{width:1600px; height:1200px}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo">SB</div>
+      <div>
+        <h1>ShopTheBarber — Diagramme de Cas d’Utilisation (Interactif)</h1>
+        <div class="subtitle">Cliquez un acteur ou un cas → détails à droite. Filtrez par rôle, recherchez, ou survolez pour des info-bulles.</div>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="tool">
+        🔎 <input id="q" type="search" placeholder="Rechercher un cas d’utilisation (ex: paiement, avis, KYC)…" />
+      </div>
+      <button class="btn" id="btnReset">Réinitialiser vue</button>
+      <div class="tool legend">
+        <span class="chip client" data-role="client">● Clients</span>
+        <span class="chip barber" data-role="barber">● Barbers</span>
+        <span class="chip seller" data-role="seller">● Sellers</span>
+        <span class="chip admin" data-role="admin">● Admin</span>
+      </div>
+      <div class="tool">
+        <label><input type="checkbox" id="toggleEdges" checked /> Afficher relations</label>
+      </div>
+      <button class="btn" id="btnExport">Exporter PNG</button>
+    </div>
+
+    <div class="main">
+      <div class="canvas-wrap" id="canvasWrap">
+        <svg id="ucSvg" viewBox="0 0 2000 1200" role="img" aria-label="Diagramme de cas ShopTheBarber">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#5f6aa5"></path>
+            </marker>
+            <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#fff" flood-opacity="0.3"/></filter>
+          </defs>
+
+          <!-- Système boundary -->
+          <rect x="360" y="120" width="1280" height="920" rx="18" class="system"/>
+          <text x="370" y="150" fill="#c7cffb" font-weight="700">Système : ShopTheBarber</text>
+
+          <!-- Acteurs (stick-men stylisés) -->
+          <g class="actor-node" data-actor="client" transform="translate(80,260)">
+            <circle r="28" cx="60" cy="0" fill="var(--client)"/>
+            <line x1="60" y1="28" x2="60" y2="120" stroke="var(--client)" stroke-width="6"/>
+            <line x1="20" y1="60" x2="100" y2="60" stroke="var(--client)" stroke-width="6"/>
+            <line x1="60" y1="120" x2="30" y2="170" stroke="var(--client)" stroke-width="6"/>
+            <line x1="60" y1="120" x2="90" y2="170" stroke="var(--client)" stroke-width="6"/>
+            <text class="actor-label" x="0" y="210">Client</text>
+          </g>
+
+          <g class="actor-node" data-actor="barber" transform="translate(80,600)">
+            <circle r="28" cx="60" cy="0" fill="var(--barber)"/>
+            <line x1="60" y1="28" x2="60" y2="120" stroke="var(--barber)" stroke-width="6"/>
+            <line x1="20" y1="60" x2="100" y2="60" stroke="var(--barber)" stroke-width="6"/>
+            <line x1="60" y1="120" x2="30" y2="170" stroke="var(--barber)" stroke-width="6"/>
+            <line x1="60" y1="120" x2="90" y2="170" stroke="var(--barber)" stroke-width="6"/>
+            <text class="actor-label" x="0" y="210">Barber</text>
+          </g>
+
+          <g class="actor-node" data-actor="seller" transform="translate(1690,300)">
+            <circle r="28" cx="60" cy="0" fill="var(--seller)"/>
+            <line x1="60" y1="28" x2="60" y2="120" stroke="var(--seller)" stroke-width="6"/>
+            <line x1="20" y1="60" x2="100" y2="60" stroke="var(--seller)" stroke-width="6"/>
+            <line x1="60" y1="120" x2="30" y2="170" stroke="var(--seller)" stroke-width="6"/>
+            <line x1="60" y1="120" x2="90" y2="170" stroke="var(--seller)" stroke-width="6"/>
+            <text class="actor-label" x="20" y="210">Seller</text>
+          </g>
+
+          <g class="actor-node" data-actor="admin" transform="translate(1690,640)">
+            <circle r="28" cx="60" cy="0" fill="var(--admin)"/>
+            <line x1="60" y1="28" x2="60" y2="120" stroke="var(--admin)" stroke-width="6"/>
+            <line x1="20" y1="60" x2="100" y2="60" stroke="var(--admin)" stroke-width="6"/>
+            <line x1="60" y1="120" x2="30" y2="170" stroke="var(--admin)" stroke-width="6"/>
+            <line x1="60" y1="120" x2="90" y2="170" stroke="var(--admin)" stroke-width="6"/>
+            <text class="actor-label" x="20" y="210">Admin</text>
+          </g>
+
+          <!-- Use cases (rounded rects) -->
+          <g class="usecase" data-id="discover" data-role="client" transform="translate(520,200)">
+            <rect rx="18" width="260" height="64" fill="#0f1534" stroke="var(--client)"/>
+            <text x="130" y="40" text-anchor="middle">Découvrir barbiers</text>
+          </g>
+          <g class="usecase" data-id="book" data-role="client" transform="translate(520,300)">
+            <rect rx="18" width="260" height="64" fill="#0f1534" stroke="var(--client)"/>
+            <text x="130" y="40" text-anchor="middle">Réserver créneau</text>
+          </g>
+          <g class="usecase" data-id="pay" data-role="client" transform="translate(520,400)">
+            <rect rx="18" width="260" height="64" fill="#0f1534" stroke="var(--client)"/>
+            <text x="130" y="40" text-anchor="middle">Payer (CB / local)</text>
+          </g>
+          <g class="usecase" data-id="review" data-role="client" transform="translate(520,500)">
+            <rect rx="18" width="260" height="64" fill="#0f1534" stroke="var(--client)"/>
+            <text x="130" y="40" text-anchor="middle">Laisser avis & notes</text>
+          </g>
+          <g class="usecase" data-id="loyalty" data-role="client" transform="translate(520,600)">
+            <rect rx="18" width="260" height="64" fill="#0f1534" stroke="var(--client)"/>
+            <text x="130" y="40" text-anchor="middle">Fidélité & coupons</text>
+          </g>
+          <g class="usecase" data-id="buy" data-role="client" transform="translate(520,700)">
+            <rect rx="18" width="260" height="64" fill="#0f1534" stroke="var(--client)"/>
+            <text x="130" y="40" text-anchor="middle">Acheter produits</text>
+          </g>
+
+          <g class="usecase" data-id="calendar" data-role="barber" transform="translate(860,240)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--barber)"/>
+            <text x="140" y="40" text-anchor="middle">Agenda & disponibilités</text>
+          </g>
+          <g class="usecase" data-id="services" data-role="barber" transform="translate(860,340)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--barber)"/>
+            <text x="140" y="40" text-anchor="middle">Catalogue services</text>
+          </g>
+          <g class="usecase" data-id="portfolio" data-role="barber" transform="translate(860,440)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--barber)"/>
+            <text x="140" y="40" text-anchor="middle">Portfolio & profil</text>
+          </g>
+          <g class="usecase" data-id="apptFlow" data-role="barber" transform="translate(860,540)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--barber)"/>
+            <text x="140" y="40" text-anchor="middle">Workflow rdv</text>
+          </g>
+          <g class="usecase" data-id="revenue" data-role="barber" transform="translate(860,640)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--barber)"/>
+            <text x="140" y="40" text-anchor="middle">Revenus & analytics</text>
+          </g>
+
+          <g class="usecase" data-id="catalog" data-role="seller" transform="translate(1220,220)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--seller)"/>
+            <text x="140" y="40" text-anchor="middle">Catalogue produits</text>
+          </g>
+          <g class="usecase" data-id="promos" data-role="seller" transform="translate(1220,320)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--seller)"/>
+            <text x="140" y="40" text-anchor="middle">Promotions & coupons</text>
+          </g>
+          <g class="usecase" data-id="orders" data-role="seller" transform="translate(1220,420)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--seller)"/>
+            <text x="140" y="40" text-anchor="middle">Commandes (cycle)</text>
+          </g>
+          <g class="usecase" data-id="inventory" data-role="seller" transform="translate(1220,520)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--seller)"/>
+            <text x="140" y="40" text-anchor="middle">Stock & alertes</text>
+          </g>
+          <g class="usecase" data-id="salesAnalytics" data-role="seller" transform="translate(1220,620)">
+            <rect rx="18" width="280" height="64" fill="#0f1534" stroke="var(--seller)"/>
+            <text x="140" y="40" text-anchor="middle">Analytics ventes</text>
+          </g>
+
+          <g class="usecase" data-id="payments" data-role="admin" transform="translate(860,760)">
+            <rect rx="18" width="640" height="64" fill="#0f1534" stroke="var(--admin)"/>
+            <text x="320" y="40" text-anchor="middle">Paiements & virements (split, remboursements, litiges)</text>
+          </g>
+          <g class="usecase" data-id="blog" data-role="all" transform="translate(860,860)">
+            <rect rx="18" width="640" height="64" fill="#0f1534" stroke="#9aa6ff"/>
+            <text x="320" y="40" text-anchor="middle">Blog & Contenu (rédaction, SEO, commentaires)</text>
+          </g>
+          <g class="usecase" data-id="adminConsole" data-role="admin" transform="translate(860,960)">
+            <rect rx="18" width="640" height="64" fill="#0f1534" stroke="var(--admin)"/>
+            <text x="320" y="40" text-anchor="middle">Console Admin (KYC, rôles, promos, monitoring, analytics)</text>
+          </g>
+
+          <!-- Edges (relations) -->
+          <g id="edges" stroke-linecap="round">
+            <!-- Client relations -->
+            <line class="edge" data-from="client" data-to="discover" x1="200" y1="260" x2="520" y2="232"/>
+            <line class="edge" data-from="client" data-to="book" x1="200" y1="260" x2="520" y2="332"/>
+            <line class="edge" data-from="client" data-to="pay" x1="200" y1="260" x2="520" y2="432"/>
+            <line class="edge" data-from="client" data-to="review" x1="200" y1="260" x2="520" y2="532"/>
+            <line class="edge" data-from="client" data-to="loyalty" x1="200" y1="260" x2="520" y2="632"/>
+            <line class="edge" data-from="client" data-to="buy" x1="200" y1="260" x2="520" y2="732"/>
+
+            <!-- Barber relations -->
+            <line class="edge" data-from="barber" data-to="calendar" x1="200" y1="770" x2="860" y2="272"/>
+            <line class="edge" data-from="barber" data-to="services" x1="200" y1="770" x2="860" y2="372"/>
+            <line class="edge" data-from="barber" data-to="portfolio" x1="200" y1="770" x2="860" y2="472"/>
+            <line class="edge" data-from="barber" data-to="apptFlow" x1="200" y1="770" x2="860" y2="572"/>
+            <line class="edge" data-from="barber" data-to="revenue" x1="200" y1="770" x2="860" y2="672"/>
+
+            <!-- Seller relations -->
+            <line class="edge" data-from="seller" data-to="catalog" x1="1750" y1="300" x2="1500" y2="252"/>
+            <line class="edge" data-from="seller" data-to="promos" x1="1750" y1="300" x2="1500" y2="352"/>
+            <line class="edge" data-from="seller" data-to="orders" x1="1750" y1="300" x2="1500" y2="452"/>
+            <line class="edge" data-from="seller" data-to="inventory" x1="1750" y1="300" x2="1500" y2="552"/>
+            <line class="edge" data-from="seller" data-to="salesAnalytics" x1="1750" y1="300" x2="1500" y2="652"/>
+
+            <!-- Admin relations -->
+            <line class="edge" data-from="admin" data-to="payments" x1="1750" y1="640" x2="1500" y2="792"/>
+            <line class="edge" data-from="admin" data-to="adminConsole" x1="1750" y1="640" x2="1500" y2="992"/>
+
+            <!-- Shared blog/content -->
+            <line class="edge" data-from="client" x1="200" y1="260" x2="860" y2="892"/>
+            <line class="edge" data-from="barber" x1="200" y1="770" x2="860" y2="892"/>
+            <line class="edge" data-from="seller" x1="1750" y1="300" x2="1500" y2="892"/>
+            <line class="edge" data-from="admin" x1="1750" y1="640" x2="1500" y2="892"/>
+          </g>
+        </svg>
+      </div>
+
+      <aside class="panel" id="detailPanel">
+        <header>
+          <div>
+            <div style="font-weight:800">Détails</div>
+            <div class="subtitle">Cliquez un élément ou utilisez la recherche.</div>
+          </div>
+        </header>
+        <div class="content" id="detailContent">
+          <p>Sélectionnez un <b>acteur</b> ou un <b>cas d’utilisation</b> pour voir les informations : sous-fonctionnalités, flux heureux, sécurité, KPI, etc.</p>
+          <div class="kpi">
+            <div class="card"><div style="color:#9bb3ff; font-weight:700">KPI Clés</div><div>MAU, Bookings, GMV, Take rate</div></div>
+            <div class="card"><div style="color:#9bb3ff; font-weight:700">Sécurité</div><div>KYC, RBAC, Audit trail</div></div>
+          </div>
+          <details class="acc" open>
+            <summary>Raccourcis</summary>
+            <div class="acc-body"><span class="tag">Double‑clic</span> centrer & surligner • <span class="tag">/</span> focus recherche • <span class="tag">Esc</span> réinitialiser</div>
+          </details>
+          <details class="acc">
+            <summary>Légende</summary>
+            <div class="acc-body">
+              <div><span class="swatch" style="background:var(--client)"></span> Clients</div>
+              <div><span class="swatch" style="background:var(--barber)"></span> Barbers</div>
+              <div><span class="swatch" style="background:var(--seller)"></span> Sellers</div>
+              <div><span class="swatch" style="background:var(--admin)"></span> Admin</div>
+            </div>
+          </details>
+        </div>
+        <div class="footer">© ShopTheBarber — Diagramme interactif (HTML/CSS/JS pur)</div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    // --- Modèle de données enrichi ---
+    const DATA = {
+      actors: {
+        client: {
+          color: getComputedStyle(document.documentElement).getPropertyValue('--client').trim(),
+          title: 'Client',
+          flows: ['Parcourt → Choisit service/barbier → Réserve créneau → Paie → Reçoit rappel → Visite → Laisse avis → Crédit fidélité'],
+          usecases: ['discover','book','pay','review','loyalty','buy'],
+          details: {
+            features: [
+              'Découverte par localisation, style, note, prix',
+              'Disponibilités live (time‑slots), replanification/annulation',
+              'Bundles & add‑ons, notes + photos de référence',
+              'Notifications SMS/email, portefeuille fidélité, coupons',
+              'Avis & notes avec signalement abus'
+            ]
+          }
+        },
+        barber: {
+          color: getComputedStyle(document.documentElement).getPropertyValue('--barber').trim(),
+          title: 'Barber',
+          flows: ['Configure services & dispos → Reçoit demande → Accepte → Effectue → Marque terminé → Consulte revenus'],
+          usecases: ['calendar','services','portfolio','apptFlow','revenue'],
+          details: {
+            features: [
+              'Calendrier (vacances, pauses) & gestion cohortes',
+              'Catalogue (prix, durée), upsells, bundles',
+              'Portfolio (avant/après, reels), SEO profil',
+              'Workflow rendez‑vous : accepter/décliner/terminer, notes privées',
+              'Dashboard revenus (réservations, pourboires, no‑show)'
+            ]
+          }
+        },
+        seller: {
+          color: getComputedStyle(document.documentElement).getPropertyValue('--seller').trim(),
+          title: 'Seller',
+          flows: ['Crée produits → Reçoit commande → Expédie/MAJ statut → Encaisse → Analyse ventes'],
+          usecases: ['catalog','promos','orders','inventory','salesAnalytics'],
+          details: {
+            features: [
+              'Catalogue produits (variantes, stock, images, rich content)',
+              'Pricing, campagnes promo, coupons, mises en avant',
+              'Cycle commande : pending → accepted → shipped → delivered → returned',
+              'Inventaire, alertes low‑stock, statistiques',
+              'Analytics ventes & cohorte produits'
+            ]
+          }
+        },
+        admin: {
+          color: getComputedStyle(document.documentElement).getPropertyValue('--admin').trim(),
+          title: 'Admin',
+          flows: ['Supervise événements → Approuve auteurs/vendeurs → Configure commissions → Payouts → Résout litiges'],
+          usecases: ['payments','adminConsole','blog'],
+          details: {
+            features: [
+              'Vérif KYC/roles, modération contenu, bannière/promo',
+              'Commission/fees/taxes, calendrier de virements',
+              'Monitoring & alertes (fraude/échec paiement/pics de prix)',
+              'Analytics growth, rétention, conversion, GMV',
+              'Audit trail immuable & politiques de rétention'
+            ]
+          }
+        }
+      },
+      usecases: {
+        discover: {
+          title: 'Découvrir barbiers', role: 'client',
+          bullets: ['Recherche par localisation/style/note/prix','Cartes & filtres dynamiques','Pages profil SEO','Recommandations personnalisées'],
+          kpis: ['CTR listing→profil','Conversion découverte→réservation','Temps de recherche'],
+        },
+        book: {
+          title: 'Réserver créneau', role: 'client',
+          bullets: ['Disponibilités en temps réel','Reschedule/annuler','Bundles & add‑ons','Notes + photos de référence'],
+          kpis: ['Taux de no‑show','Taux de conversion checkout','Délai moyen de réservation']
+        },
+        pay: {
+          title: 'Payer', role: 'client',
+          bullets: ['Stripe/Adyen + passerelles locales (MENA)','Split fees (plateforme + barber/seller)','Reçus & remboursements'],
+          kpis: ['Taux d'échec paiement','Délai règlement','Disputes par 1k']
+        },
+        review: {
+          title: 'Avis & notes', role: 'client',
+          bullets: ['Notation + commentaire','Signalement abus, masquage PII','Réponses du barber'],
+          kpis: ['Distribution des notes','% avis avec texte','Signalements résolus']
+        },
+        loyalty: {
+          title: 'Fidélité & coupons', role: 'client',
+          bullets: ['Portefeuille points','Coupons ciblés','Parrainage'],
+          kpis: ['Repeat bookings','ARPU','Utilisation coupons']
+        },
+        buy: {
+          title: 'Acheter produits', role: 'client',
+          bullets: ['Panier produits grooming','Livraison & retours','Produits recommandés post‑service'],
+          kpis: ['GMV produits','Taux retour','Attach rate servic→produit']
+        },
+        calendar: {
+          title: 'Agenda & disponibilités', role: 'barber',
+          bullets: ['Vacances, pauses, capacités','Synchro calendrier','Règles de deadlines & buffers'],
+          kpis: ['Taux remplissage','No‑show','Temps moyen réponse']
+        },
+        services: {
+          title: 'Catalogue services', role: 'barber',
+          bullets: ['Prix/durée','Upsells','Bundles'],
+          kpis: ['Panier moyen service','Conversion upsell']
+        },
+        portfolio: {
+          title: 'Portfolio & profil', role: 'barber',
+          bullets: ['Avant/Après, reels','SEO profil','Avis mis en avant'],
+          kpis: ['Vues profil','CTR profil→booking']
+        },
+        apptFlow: {
+          title: 'Workflow rendez‑vous', role: 'barber',
+          bullets: ['Accepter/Décliner/Terminer','Notes privées','Rappels auto'],
+          kpis: ['Durée cycle rdv','Annulations','Satisfaction']
+        },
+        revenue: {
+          title: 'Revenus & analytics', role: 'barber',
+          bullets: ['Bookings, tips, no‑shows','Cohortes clients','Tendances revenus'],
+          kpis: ['Revenu/sem','Tips/booking']
+        },
+        catalog: {
+          title: 'Catalogue produits', role: 'seller',
+          bullets: ['Variants, stock, images','Descriptions enrichies','Catégories & tags'],
+          kpis: ['Taux approbation','Temps mise en ligne']
+        },
+        promos: {
+          title: 'Promotions & coupons', role: 'seller',
+          bullets: ['Campagnes ciblées','Featured placement','Coupons'],
+          kpis: ['Uplift conversion','ROI promo']
+        },
+        orders: {
+          title: 'Commandes (cycle)', role: 'seller',
+          bullets: ['Pending→Accepted→Shipped→Delivered→Returned','Tracking & notifications','SAV'],
+          kpis: ['Délai expédition','Taux retour','NPS']
+        },
+        inventory: {
+          title: 'Stock & alertes', role: 'seller',
+          bullets: ['Low‑stock alerts','Réassort','Prévisions'],
+          kpis: ['Ruptures','Âge stock']
+        },
+        salesAnalytics: {
+          title: 'Analytics ventes', role: 'seller',
+          bullets: ['Cohortes, ABC','Ventes par catégorie','Elasticité prix'],
+          kpis: ['GMV produits','Taux promo→vente']
+        },
+        payments: {
+          title: 'Paiements & virements', role: 'admin',
+          bullets: ['Checkout carte/local','Split paiements & commissions','Remboursements & litiges','Calendrier de virements'],
+          kpis: ['Frais paiement','Disputes','Délai virement']
+        },
+        blog: {
+          title: 'Blog & Contenu', role: 'all',
+          bullets: ['Auteurs: barbers/sellers/admin','Workflow: brouillon→review→publier','SEO (OG, sitemap, RSS)','Commentaires (optionnels)'],
+          kpis: ['Vues article','CTR','Leaderboard auteurs']
+        },
+        adminConsole: {
+          title: 'Console Admin', role: 'admin',
+          bullets: ['Vérif KYC, rôles, trusted authors','CMS promos/bannières/features','Audit trail, alertes (login abuse, payment failures, price spikes), blocage IP, suspension','Analytics: growth, rétention, bookings, conversion, GMV'],
+          kpis: ['Temps résolution incident','SLA modération','Taux fraude']
+        }
+      },
+      meta: {
+        monetization: ['Commission par réservation', 'Commission ventes produits', 'Emplacements sponsorisés', 'SaaS premium (analytics avancés, no‑show guard, portfolio premium, priorité)'],
+        tech: ['Frontend: Next.js (SSR/ISR), i18n FR/AR, RTL', 'Backend: Node/TS (REST/GraphQL), job queue', 'DB: Postgres (Prisma), partitions audit', 'Stockage/CDN: images/vidéo (URL signées)', 'Paiements: Stripe/Adyen + locaux (MENA)', 'Observabilité: logs structurés, métriques, erreurs'],
+        trust: ['RBAC + checks serveur', 'KYC barbers/sellers', 'Audit logs immuables', 'Minimisation données, masquage PII, rétention', 'Modération (commentaires, avis, posts)'],
+        kpis: ['MAU', 'Bookings', 'Conversion', 'GMV (services+produits)', 'Take rate', 'Refund rate', 'No‑show', 'Repeat bookings', 'Distribution des notes', 'Content reach/CTR', 'Security: failed logins, fraude, disputes'],
+        rollout: ['MVP: auth, search barber, booking, paiements basiques, avis, admin basique', 'Marketplace: produits, commandes, payouts', 'Blog: auteur, SEO, widgets', 'Monitoring+Alerts: audit complet, règles/alertes', 'Growth: fidélité, referrals, featured, analytics']
+      }
+    };
+
+    // --- Utilitaires DOM ---
+    const $ = (sel, el=document) => el.querySelector(sel);
+    const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+
+    const detailContent = $('#detailContent');
+
+    function renderActorPanel(key){
+      const a = DATA.actors[key];
+      if(!a) return;
+      detailContent.innerHTML = `
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="swatch" style="width:14px;height:14px;border-radius:4px;background:${a.color}"></div>
+          <h2 style="margin:8px 0;">${a.title}</h2>
+        </div>
+        <div class="kpi">
+          <div class="card"><div style="color:#9bb3ff; font-weight:700">Flux Heureux</div><div>${a.flows[0]}</div></div>
+          <div class="card"><div style="color:#9bb3ff; font-weight:700">Cas associés</div><div>${a.usecases.map(id=>DATA.usecases[id].title).join(' • ')}</div></div>
+        </div>
+        <details class="acc" open>
+          <summary>Fonctionnalités clés</summary>
+          <div class="acc-body"><ul class="list">${a.details.features.map(f=>`<li>${f}</li>`).join('')}</ul></div>
+        </details>
+        ${renderGlobalSections()}
+      `;
+      highlightByRole(key);
+    }
+
+    function renderUseCasePanel(id){
+      const uc = DATA.usecases[id];
+      if(!uc) return;
+      const color = uc.role==='client'? 'var(--client)': uc.role==='barber'? 'var(--barber)': uc.role==='seller'? 'var(--seller)': uc.role==='admin'? 'var(--admin)': '#9aa6ff';
+      detailContent.innerHTML = `
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="swatch" style="width:14px;height:14px;border-radius:4px;background:${color}"></div>
+          <h2 style="margin:8px 0;">${uc.title}</h2>
+        </div>
+        <div class="kpi">
+          <div class="card"><div style="color:#9bb3ff; font-weight:700">Rôle</div><div>${uc.role}</div></div>
+          <div class="card"><div style="color:#9bb3ff; font-weight:700">KPIs</div><div>${uc.kpis.join(' • ')}</div></div>
+        </div>
+        <details class="acc" open>
+          <summary>Sous‑fonctionnalités</summary>
+          <div class="acc-body"><ul class="list">${uc.bullets.map(f=>`<li>${f}</li>`).join('')}</ul></div>
+        </details>
+        ${renderGlobalSections()}
+      `;
+      highlightByUseCase(id);
+    }
+
+    function renderGlobalSections(){
+      const m = DATA.meta;
+      return `
+      <details class="acc">
+        <summary>Monétisation</summary>
+        <div class="acc-body"><ul class="list">${m.monetization.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      </details>
+      <details class="acc">
+        <summary>Confiance & Conformité</summary>
+        <div class="acc-body"><ul class="list">${m.trust.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      </details>
+      <details class="acc">
+        <summary>Technologie (suggestion)</summary>
+        <div class="acc-body"><ul class="list">${m.tech.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      </details>
+      <details class="acc">
+        <summary>KPIs Globaux</summary>
+        <div class="acc-body"><div class="tag">${m.kpis.join('</div> <div class="tag">')}</div></div>
+      </details>
+      <details class="acc">
+        <summary>Roadmap (Lean)</summary>
+        <div class="acc-body"><ol class="list">${m.rollout.map(x=>`<li>${x}</li>`).join('')}</ol></div>
+      </details>`;
+    }
+
+    // --- Interactions ---
+    // Click acteurs
+    $$('.actor-node').forEach(node=>{
+      node.addEventListener('click', ()=>{
+        renderActorPanel(node.dataset.actor);
+      });
+      node.addEventListener('dblclick', ()=> centerOn(node));
+    });
+
+    // Click use cases
+    $$('.usecase').forEach(node=>{
+      node.style.cursor='pointer';
+      node.addEventListener('click', ()=>{
+        renderUseCasePanel(node.dataset.id);
+      });
+      node.addEventListener('dblclick', ()=> centerOn(node));
+      node.setAttribute('tabindex','0');
+      node.addEventListener('keydown', (e)=>{ if(e.key==='Enter') node.click(); });
+    });
+
+    // Toggle edges
+    $('#toggleEdges').addEventListener('change', (e)=>{
+      $('#edges').style.display = e.target.checked ? 'block' : 'none';
+    });
+
+    // Search
+    $('#q').addEventListener('input', (e)=>{
+      const term = e.target.value.trim().toLowerCase();
+      filterBySearch(term);
+    });
+
+    // Chips (role filters)
+    $$('.chip').forEach(ch=>{
+      ch.addEventListener('click', ()=>{
+        const role = ch.dataset.role;
+        const isActive = ch.getAttribute('data-active')==='true';
+        // toggle state
+        ch.setAttribute('data-active', !isActive);
+        applyRoleFilters();
+      })
+    });
+
+    // Reset
+    $('#btnReset').addEventListener('click', resetView);
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape') resetView();
+      if(e.key==='/'){ e.preventDefault(); $('#q').focus(); }
+    });
+
+    // Export PNG (sans dépendances)
+    $('#btnExport').addEventListener('click', exportPng);
+
+    function resetView(){
+      $('#q').value='';
+      $$('.chip').forEach(c=>c.setAttribute('data-active','false'));
+      $$('.edge').forEach(e=>e.removeAttribute('data-dimmed'));
+      $$('.usecase').forEach(uc=>uc.removeAttribute('data-dimmed'));
+      $$('.usecase').forEach(uc=>uc.removeAttribute('data-active'));
+      $('#edges').style.display='block';
+      detailContent.innerHTML = `<p>Sélectionnez un <b>acteur</b> ou un <b>cas d’utilisation</b> pour voir les informations : sous-fonctionnalités, flux heureux, sécurité, KPI, etc.</p>` + `${renderGlobalSections()}`;
+    }
+
+    function highlightByRole(role){
+      $$('.usecase').forEach(uc=>{
+        const match = (uc.dataset.role===role) || (role==='client' && uc.dataset.role==='all');
+        uc.setAttribute('data-dimmed', match? 'false':'true');
+        if(match) uc.removeAttribute('data-dimmed');
+      });
+      $$('.edge').forEach(e=>{
+        const from = e.dataset.from;
+        const dim = from && from!==role && role!=='all';
+        if(dim) e.setAttribute('data-dimmed','true'); else e.removeAttribute('data-dimmed');
+      });
+    }
+
+    function highlightByUseCase(id){
+      $$('.usecase').forEach(uc=>{
+        uc.toggleAttribute('data-active', uc.dataset.id===id);
+        uc.setAttribute('data-dimmed', uc.dataset.id===id? 'false':'true');
+        if(uc.dataset.id===id) uc.removeAttribute('data-dimmed');
+      });
+      $$('.edge').forEach(e=>{
+        const to = e.dataset.to;
+        const dim = to && to!==id;
+        if(dim) e.setAttribute('data-dimmed','true'); else e.removeAttribute('data-dimmed');
+      });
+    }
+
+    function filterBySearch(term){
+      const empty = term.length===0;
+      $$('.usecase').forEach(uc=>{
+        const label = $('text', uc).textContent.toLowerCase();
+        const id = uc.dataset.id.toLowerCase();
+        const match = empty || label.includes(term) || id.includes(term) || (DATA.usecases[id]?.bullets.join(' ').toLowerCase().includes(term));
+        if(!match){ uc.setAttribute('data-dimmed','true'); } else { uc.removeAttribute('data-dimmed'); }
+      });
+    }
+
+    function applyRoleFilters(){
+      const active = $$('.chip').filter(c=>c.getAttribute('data-active')==='true').map(c=>c.dataset.role);
+      if(active.length===0){
+        $$('.usecase').forEach(uc=>uc.removeAttribute('data-dimmed')); return;
+      }
+      $$('.usecase').forEach(uc=>{
+        const r = uc.dataset.role;
+        const match = active.includes(r) || (r==='all' && active.length>0);
+        if(!match) uc.setAttribute('data-dimmed','true'); else uc.removeAttribute('data-dimmed');
+      });
+    }
+
+    function centerOn(node){
+      // Scroll le canvas pour centrer sur l'élément
+      const wrap = $('#canvasWrap');
+      const bbox = node.getBoundingClientRect();
+      const wrapBox = wrap.getBoundingClientRect();
+      const deltaX = (bbox.left + bbox.width/2) - (wrapBox.left + wrapBox.width/2);
+      const deltaY = (bbox.top + bbox.height/2) - (wrapBox.top + wrapBox.height/2);
+      wrap.scrollBy({left: deltaX, top: deltaY, behavior:'smooth'});
+      node.style.filter='url(#glow)';
+      setTimeout(()=> node.style.filter='none', 700);
+    }
+
+    // Export SVG → PNG (approximation simple)
+    function exportPng(){
+      const svg = document.getElementById('ucSvg');
+      const xml = new XMLSerializer().serializeToString(svg);
+      const svg64 = 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(xml);
+      const img = new Image();
+      img.onload = function(){
+        const canvas = document.createElement('canvas');
+        canvas.width = svg.viewBox.baseVal.width; canvas.height = svg.viewBox.baseVal.height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg');
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(img, 0, 0);
+        const url = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = url; a.download = 'shopthebarber-usecases.png'; a.click();
+      }
+      img.src = svg64;
+    }
+
+    // Sélection par défaut
+    renderActorPanel('client');
+  </script>
+</body>
+</html>

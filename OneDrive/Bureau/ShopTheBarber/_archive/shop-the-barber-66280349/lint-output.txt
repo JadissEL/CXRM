@@ -1,0 +1,87 @@
+﻿
+> base44-app@0.0.0 lint
+> eslint .
+
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\Layout.jsx
+  42:9   warning  'location' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+  52:16  warning  'error' is defined but never used                                                    unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\barber\BarberAnalytics.jsx
+  30:7  warning  'COLORS' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\barber\BookingCalendar.jsx
+   34:43  warning  'barberId' is defined but never used. Allowed unused args must match /^_/u   unused-imports/no-unused-vars
+  190:39  warning  'timeIndex' is defined but never used. Allowed unused args must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\barber\InventoryManager.jsx
+  45:33  warning  'isLoading' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\barber\ReminderSettings.jsx
+  10:44  warning  'barberId' is defined but never used. Allowed unused args must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\barber\StaffPerformance.jsx
+  25:17  warning  'reviews' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\barbers\BarberMap.jsx
+  73:46  warning  'onBarberSelect' is defined but never used. Allowed unused args must match /^_/u  unused-imports/no-unused-vars
+  98:33  warning  'index' is defined but never used. Allowed unused args must match /^_/u           unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\checkout\PromoCodeInput.jsx
+  90:9  warning  'getDiscountIcon' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\checkout\StripePaymentForm.jsx
+  15:10  warning  'paymentMethod' is assigned a value but never used. Allowed unused vars must match /^_/u     unused-imports/no-unused-vars
+  15:25  warning  'setPaymentMethod' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+  72:24  warning  'paymentData' is defined but never used. Allowed unused args must match /^_/u                unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\messaging\MessagingContext.jsx
+  16:16  warning  'error' is defined but never used  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\notifications\NotificationsContext.jsx
+  16:16  warning  'error' is defined but never used  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\order\OrderTimeline.jsx
+  139:19  warning  'isLast' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\order\ReturnRequestForm.jsx
+   67:14  warning  'err' is defined but never used                                        unused-imports/no-unused-vars
+  120:15  warning  'err' is defined but never used. Allowed unused args must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\reviews\ReviewForm.jsx
+  38:15  warning  'error' is defined but never used. Allowed unused args must match /^_/u  unused-imports/no-unused-vars
+  60:14  warning  'error' is defined but never used                                        unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\wishlist\ShareWishlistDialog.jsx
+  68:14  warning  'error' is defined but never used  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\components\wishlist\WishlistContext.jsx
+  16:16  warning  'error' is defined but never used  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\pages\AdminAuditLogs.jsx
+  31:73  warning  'idx' is defined but never used. Allowed unused args must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\pages\BarberProfile.jsx
+  82:38  error  Parsing error: Unexpected token url
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\pages\BarberServiceManagement.jsx
+   9:22  warning  'setServices' is assigned a value but never used. Allowed unused vars must match /^_/u    unused-imports/no-unused-vars
+  15:11  warning  'categoryIcons' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\pages\BookingForm.jsx
+  219:37  error  Parsing error: Unexpected token w
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\pages\Loyalty.jsx
+  10:19  warning  'user' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\pages\OrderTracking.jsx
+  24:17  warning  'user' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\pages\PaymentSuccess.jsx
+  22:9  warning  'navigate' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+C:\Users\Jadiss\Downloads\PROJO\shop-the-barber-66280349\src\pages\ProductDetail.jsx
+  38:22  warning  'isInCart' is assigned a value but never used. Allowed unused vars must match /^_/u  unused-imports/no-unused-vars
+
+Ô£û 32 problems (2 errors, 30 warnings)
+

@@ -1,0 +1,593 @@
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useSearchParams } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { sovereign } from '@/api/apiClient';
+import { toast } from 'sonner';
+import { MetaTags } from '@/components/seo/MetaTags';
+import { canAccessProviderTools } from '@/lib/userRole';
+import { Plus, AlertCircle, CheckCircle, Trash2, Edit3 } from 'lucide-react';
+import ShopHoursEditor from '@/components/scheduling/ShopHoursEditor';
+import AvailabilityManager from '@/components/provider-settings/AvailabilityManager';
+import SellerShippingProfile from '@/components/shipping/SellerShippingProfile';
+import ProviderPricingPanel from '@/components/provider/ProviderPricingPanel';
+import ProviderFeeWalletPanel from '@/components/provider/ProviderFeeWalletPanel';
+import ProviderPaymentProtectionPanel from '@/components/provider/ProviderPaymentProtectionPanel';
+import ProviderAutoRechargePanel from '@/components/provider/ProviderAutoRechargePanel';
+import ProviderAdCreditsPanel from '@/components/provider/ProviderAdCreditsPanel';
+import { ProviderLanguagesPanel } from '@/components/languages/SpokenLanguagesEditor';
+import { ProviderChildrenFriendlyPanel } from '@/components/childrenFriendly/ChildrenFriendlyEditor';
+import { ProviderAttestationPanel } from '@/components/providerAttestation/ProviderAttestationPanel';
+import { ProviderServiceLocationPanel } from '@/components/serviceLocation/ProviderServiceLocationPanel';
+import { ProviderAtHomeServicePanel } from '@/components/atHomeService/ProviderAtHomeServicePanel';
+import { ProviderGroupBookingPanel } from '@/components/groupBooking/GroupBookingEditor';
+import ProviderSeoLocationPanel from '@/components/provider/ProviderSeoLocationPanel';
+import ProviderShowcaseEditor from '@/components/providerShowcase/ProviderShowcaseEditor';
+import ShopChairsPanel from '@/components/provider/ShopChairsPanel';
+import AddressAutocomplete from '@/components/maps/AddressAutocomplete';
+import { ReplaySetupGuideLink } from '@/components/onboarding/ReplaySetupGuideLink';
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { UserAvatar } from '@/components/ui/user-avatar';
+import PageHeader from '@/components/layout/PageHeader';
+import PageContent from '@/components/layout/PageContent';
+import { stb } from '@/lib/stbUi';
+import { cn } from '@/lib/utils';
+import { shopDetailsSchema, serviceSchema, clientProfileSchema } from '@/lib/validations';
+
+export default function ProviderSettings() {
+    const queryClient = useQueryClient();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const tabFromUrl = searchParams.get('tab') || 'general';
+    const [activeTab, setActiveTab] = useState(tabFromUrl);
+
+    useEffect(() => {
+        const t = searchParams.get('tab');
+        if (t) setActiveTab(t);
+    }, [searchParams]);
+
+    const handleTabChange = (value) => {
+        setActiveTab(value);
+        setSearchParams({ tab: value }, { replace: true });
+    };
+
+    const { data: user } = useQuery({ queryKey: ['currentUser'], queryFn: () => sovereign.auth.me() });
+
+    // 1. Resolve Barber & Shop Context
+    const { data: barber } = useQuery({
+        queryKey: ['my-barber-profile', user?.email],
+        queryFn: async () => {
+            if (!user) return null;
+            const barbers = await sovereign.entities.Barber.filter({ created_by: user.email });
+            if (barbers.length > 0) return barbers[0];
+            if (user.id) {
+                const byUserId = await sovereign.entities.Barber.filter({ user_id: user.id });
+                if (byUserId.length > 0) return byUserId[0];
+            }
+            return null;
+        },
+        enabled: !!user
+    });
+
+    const { data: myShopMembership } = useQuery({
+        queryKey: ['my-shop-membership-settings', barber?.id],
+        queryFn: async () => {
+            if (!barber) return null;
+            const members = await sovereign.entities.ShopMember.filter({ barber_id: barber.id });
+            return members.find(m => ['owner', 'manager'].includes(m.role));
+        },
+        enabled: !!barber
+    });
+
+    const shopId = myShopMembership?.shop_id;
+    const { data: myShop } = useQuery({
+        queryKey: ['my-shop', shopId],
+        queryFn: () => shopId ? sovereign.entities.Shop.get(shopId) : null,
+        enabled: !!shopId
+    });
+
+    const { data: services = [] } = useQuery({
+        queryKey: ['my-shop-services', shopId],
+        queryFn: () => shopId ? sovereign.entities.Service.filter({ shop_id: shopId }) : [],
+        enabled: !!shopId
+    });
+
+    const { data: _promotions = [] } = useQuery({
+        queryKey: ['my-shop-promotions', shopId],
+        queryFn: () => shopId ? sovereign.entities.PromoCode.filter({ shop_id: shopId, is_active: true }) : [],
+        enabled: !!shopId
+    });
+
+    const { data: providerLanguages } = useQuery({
+        queryKey: ['provider-languages'],
+        queryFn: () => sovereign.languages.getMyLanguages(),
+        enabled: !!user && ['barber', 'shop_owner', 'provider'].includes(user?.role),
+    });
+
+    const { data: childrenFriendlySettings } = useQuery({
+        queryKey: ['provider-children-friendly'],
+        queryFn: () => sovereign.childrenFriendly.getMySettings(),
+        enabled: !!user && ['barber', 'shop_owner', 'provider'].includes(user?.role),
+    });
+
+    const { data: attestationSettings } = useQuery({
+        queryKey: ['provider-attestation'],
+        queryFn: () => sovereign.providerAttestation.getMySettings(),
+        enabled: !!user && ['barber', 'shop_owner', 'provider'].includes(user?.role),
+    });
+
+    const { data: _groupBookingSettings } = useQuery({
+        queryKey: ['provider-group-booking'],
+        queryFn: () => sovereign.groupBooking.getMySettings(),
+        enabled: !!user && ['barber', 'shop_owner', 'provider'].includes(user?.role),
+    });
+
+    // 2. Form States
+    const [isServiceDialogOpen, setIsServiceDialogOpen] = useState(false);
+    const [selectedService, setSelectedService] = useState(null);
+
+    const profileForm = useForm({
+        resolver: zodResolver(clientProfileSchema),
+        defaultValues: { full_name: user?.full_name || '', email: user?.email || '', phone: user?.phone || '', address: user?.address || '' }
+    });
+
+    const businessForm = useForm({
+        resolver: zodResolver(shopDetailsSchema),
+        defaultValues: { name: '', location: '', description: '', phone: '' }
+    });
+
+    const serviceForm = useForm({
+        resolver: zodResolver(serviceSchema),
+        defaultValues: { name: '', category: 'Hair', price: 0, duration_min: 30, description: '' }
+    });
+
+    useEffect(() => {
+        if (user) profileForm.reset({ full_name: user.full_name || '', email: user.email || '', phone: user.phone || '', address: user.address || '' });
+    }, [user, profileForm]);
+
+    useEffect(() => {
+        if (myShop) {businessForm.reset({
+            name: myShop.name || '',
+            location: myShop.location || '',
+            description: myShop.description || '',
+            phone: myShop.phone || ''
+        });}
+    }, [myShop, businessForm]);
+
+    // 3. Mutations
+    const updateProfileMutation = useMutation({
+        mutationFn: (data) => sovereign.entities.User.update(user.id, data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['currentUser'] });
+            toast.success("Profile updated");
+        }
+    });
+
+    const updateShopMutation = useMutation({
+        mutationFn: (data) => shopId ? sovereign.entities.Shop.update(shopId, data) : sovereign.entities.Shop.create({ ...data, owner_id: user.id }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['my-shop'] });
+            toast.success("Shop details saved");
+        }
+    });
+
+    const saveServiceMutation = useMutation({
+        mutationFn: (data) => {
+            const payload = {
+                name: data.name,
+                category: data.category,
+                price: data.price,
+                duration_minutes: data.duration_min,
+                description: data.description || '',
+            };
+            return selectedService
+                ? sovereign.entities.Service.update(selectedService.id, payload)
+                : sovereign.entities.Service.create({ ...payload, shop_id: shopId });
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['my-shop-services'] });
+            setIsServiceDialogOpen(false);
+            setSelectedService(null);
+            serviceForm.reset();
+            toast.success("Service saved");
+        }
+    });
+
+    const deleteServiceMutation = useMutation({
+        mutationFn: (id) => sovereign.entities.Service.delete(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['my-shop-services'] });
+            toast.success("Service removed");
+        }
+    });
+
+    const checkStripeStatusMutation = useMutation({
+        mutationFn: () => sovereign.functions.invoke('checkStripeConnectStatus', { userId: user?.id }),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['currentUser'] })
+    });
+
+    const initiateStripeMutation = useMutation({
+        mutationFn: () => sovereign.functions.invoke('initiateStripeConnect', { userId: user?.id }),
+        onSuccess: (data) => { if (data.data?.url) window.location.href = data.data.url; }
+    });
+
+    const handleServiceEdit = (svc) => {
+        setSelectedService(svc);
+        serviceForm.reset({
+            name: svc.name,
+            category: svc.category,
+            price: svc.price,
+            duration_min: svc.duration_minutes || svc.duration_min,
+            description: svc.description || ''
+        });
+        setIsServiceDialogOpen(true);
+    };
+
+    return (
+        <div className="stb-page pb-16 font-sans">
+            <MetaTags title="Provider Settings" description="Manage your professional shop profile and account." />
+
+            <PageHeader
+                label="Provider"
+                title="Console settings"
+                subtitle="Configure your professional presence and financial rails."
+                compact
+                variant="light"
+                tier="app"
+            >
+                <div className="flex items-center gap-3 shrink-0">
+                    <ReplaySetupGuideLink />
+                    <UserAvatar src={user?.avatar_url} name={user?.full_name} className="w-12 h-12 border-2 border-border shadow-sm" />
+                </div>
+            </PageHeader>
+
+            <PageContent>
+
+            <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+                <TabsList className="bg-muted/50 p-1.5 rounded-lg mb-8 flex-wrap">
+                    <TabsTrigger value="general" className=" px-5">General</TabsTrigger>
+                    <TabsTrigger value="story" className=" px-5">Profile Story</TabsTrigger>
+                    <TabsTrigger value="business" className=" px-5">Business</TabsTrigger>
+                    <TabsTrigger value="services" className=" px-5">Services</TabsTrigger>
+                    <TabsTrigger value="pricing" className=" px-5">Pricing</TabsTrigger>
+                    <TabsTrigger value="hours" className=" px-5">Hours</TabsTrigger>
+                    <TabsTrigger value="capacity" className=" px-5">Chairs</TabsTrigger>
+                    <TabsTrigger value="payments" className=" px-5">Payments</TabsTrigger>
+                    <TabsTrigger value="shipping" className=" px-5">Shipping</TabsTrigger>
+                    <TabsTrigger value="notifications" className=" px-5">Alerts</TabsTrigger>
+                </TabsList>
+
+                {/* GENERAL PROFILE */}
+                <TabsContent value="general">
+                    <Card className="border-border shadow-sm  overflow-hidden bg-card">
+                        <CardHeader className="border-b border-border">
+                            <CardTitle className="text-xl font-bold">Personal Profile</CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-8">
+                            <form onSubmit={profileForm.handleSubmit((d) => updateProfileMutation.mutate(d))} className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="space-y-2">
+                                        <Label className="font-bold text-foreground/90">Display Name</Label>
+                                        <Input {...profileForm.register('full_name')} className=" border-border hover:border-foreground/20 transition-colors" />
+                                        {profileForm.formState.errors.full_name && <p className="text-destructive text-xs mt-1">{profileForm.formState.errors.full_name.message}</p>}
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="font-bold text-foreground/90">Email Address</Label>
+                                        <Input {...profileForm.register('email')} className=" border-border" disabled />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="font-bold text-foreground/90">Phone</Label>
+                                        <Input {...profileForm.register('phone')} className=" border-border" placeholder="10 digits number" />
+                                    </div>
+                                </div>
+                                <div className="pt-4 border-t border-border flex justify-end">
+                                    <Button type="submit" className=" px-8 font-bold shadow-lg" disabled={updateProfileMutation.isPending}>
+                                        {updateProfileMutation.isPending ? 'Syncing...' : 'Update Profile'}
+                                    </Button>
+                                </div>
+                            </form>
+                        </CardContent>
+                    </Card>
+
+                    {(barber || shopId || providerLanguages?.shop) && (
+                        <Card className="border-border shadow-sm  overflow-hidden bg-card mt-6">
+                            <CardContent className="p-8">
+                                <ProviderLanguagesPanel
+                                    barberLanguages={providerLanguages?.barber?.spoken_languages ?? []}
+                                    shopLanguages={providerLanguages?.shop?.spoken_languages ?? []}
+                                    shopId={providerLanguages?.shop?.id || shopId}
+                                    shopName={providerLanguages?.shop?.name || myShop?.name}
+                                />
+                            </CardContent>
+                        </Card>
+                    )}
+
+                    {(barber || shopId || childrenFriendlySettings?.shop) && (
+                        <Card className="border-border shadow-sm  overflow-hidden bg-card mt-6">
+                            <CardContent className="p-8">
+                                <ProviderChildrenFriendlyPanel
+                                    barberFriendly={childrenFriendlySettings?.barber?.children_friendly ?? false}
+                                    shopFriendly={childrenFriendlySettings?.shop?.children_friendly ?? false}
+                                    shopId={childrenFriendlySettings?.shop?.id || shopId}
+                                    shopName={childrenFriendlySettings?.shop?.name || myShop?.name}
+                                />
+                            </CardContent>
+                        </Card>
+                    )}
+
+                    {(barber || shopId || attestationSettings?.shop) && (
+                        <Card className="border-border shadow-sm  overflow-hidden bg-card mt-6">
+                            <CardContent className="p-8">
+                                <ProviderAttestationPanel
+                                    barberLicensed={attestationSettings?.barber?.licensed ?? false}
+                                    barberInsured={attestationSettings?.barber?.insured ?? false}
+                                    shopLicensed={attestationSettings?.shop?.licensed ?? false}
+                                    shopInsured={attestationSettings?.shop?.insured ?? false}
+                                    shopId={attestationSettings?.shop?.id || shopId}
+                                    shopName={attestationSettings?.shop?.name || myShop?.name}
+                                />
+                            </CardContent>
+                        </Card>
+                    )}
+
+                    {!!user && ['barber', 'shop_owner', 'provider'].includes(user?.role) && (
+                        <Card className="border-border shadow-sm  overflow-hidden bg-card mt-6">
+                            <CardContent className="p-8">
+                                <ProviderServiceLocationPanel />
+                            </CardContent>
+                        </Card>
+                    )}
+
+                    {!!user && ['barber', 'shop_owner', 'provider'].includes(user?.role) && (
+                        <Card className="border-border shadow-sm  overflow-hidden bg-card mt-6">
+                            <CardContent className="p-8">
+                                <ProviderAtHomeServicePanel />
+                            </CardContent>
+                        </Card>
+                    )}
+
+                    {!!user && ['barber', 'shop_owner', 'provider'].includes(user?.role) && (
+                        <Card className="border-border shadow-sm  overflow-hidden bg-card mt-6">
+                            <CardContent className="p-8">
+                                <ProviderGroupBookingPanel />
+                            </CardContent>
+                        </Card>
+                    )}
+                </TabsContent>
+
+                <TabsContent value="story">
+                    <ProviderShowcaseEditor />
+                </TabsContent>
+
+                {/* BUSINESS INFO */}
+                <TabsContent value="business">
+                    {barber && (
+                        <Card className="border-border shadow-sm  bg-card mb-6">
+                            <CardHeader className="border-b border-border">
+                                <CardTitle className="text-xl font-bold">Barber location & SEO</CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-8">
+                                <ProviderSeoLocationPanel barber={barber} />
+                            </CardContent>
+                        </Card>
+                    )}
+                    <Card className="border-border shadow-sm  bg-card">
+                        <CardHeader className="border-b border-border">
+                            <CardTitle className="text-xl font-bold">Shop Identity</CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-8">
+                            <form onSubmit={businessForm.handleSubmit((d) => updateShopMutation.mutate(d))} className="space-y-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="space-y-2">
+                                        <Label className="font-bold text-foreground/90">Shop Name</Label>
+                                        <Input {...businessForm.register('name')} className=" border-border" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="font-bold text-foreground/90">Physical Address</Label>
+                                        <AddressAutocomplete
+                                            value={businessForm.watch('location') || ''}
+                                            onChange={(value) => businessForm.setValue('location', value)}
+                                            onSelect={(item) => businessForm.setValue('location', item.formatted_address)}
+                                            placeholder="Shop street address"
+                                            inputClassName="rounded-lg h-11"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="font-bold text-foreground/90">Public Description</Label>
+                                    <textarea {...businessForm.register('description')} className="w-full min-h-[120px] rounded-lg border-border border p-4 text-sm focus:ring-2 focus:ring-primary outline-none" placeholder="Tell your clients about your vibe..." />
+                                </div>
+                                <div className="flex justify-end pt-4">
+                                    <Button type="submit" className=" px-8 font-bold" disabled={updateShopMutation.isPending}>
+                                        Save Changes
+                                    </Button>
+                                </div>
+                            </form>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* SERVICES MENU */}
+                <TabsContent value="services">
+                    <Card className="border-border shadow-sm  bg-card">
+                        <CardHeader className="flex flex-row items-center justify-between p-8">
+                            <div>
+                                <CardTitle className="text-xl font-bold">Service Menu</CardTitle>
+                                <p className="text-muted-foreground text-sm mt-1">Manage what you offer and for how much.</p>
+                            </div>
+                            <Button onClick={() => { setSelectedService(null); serviceForm.reset(); setIsServiceDialogOpen(true); }} className=" bg-primary text-primary-foreground font-bold">
+                                <Plus className="w-4 h-4 mr-2" /> Add Service
+                            </Button>
+                        </CardHeader>
+                        <CardContent className="px-8 pb-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {services.length > 0 ? services.map((svc) => (
+                                    <div key={svc.id} className="group p-5 stb-panel flex items-center justify-between hover:border-primary/30 hover:shadow-sm transition-all bg-muted/30">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center font-bold text-muted-foreground group-hover:text-primary">
+                                                {svc.category?.charAt(0) || 'S'}
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-foreground">{svc.name}</p>
+                                                <p className="text-[11px] text-muted-foreground font-bold uppercase">{svc.duration_minutes || svc.duration_min}m • ${svc.price}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <Button variant="ghost" size="icon" onClick={() => handleServiceEdit(svc)} className="h-9 w-9 rounded-full hover:bg-card border border-transparent hover:border-border">
+                                                <Edit3 className="w-4 h-4 text-muted-foreground" />
+                                            </Button>
+                                            <Button variant="ghost" size="icon" onClick={() => deleteServiceMutation.mutate(svc.id)} className="h-9 w-9 rounded-full hover:bg-destructive/10 border border-transparent hover:border-destructive/20">
+                                                <Trash2 className="w-4 h-4 text-destructive" />
+                                            </Button>
+                                        </div>
+                                    </div>
+                                )) : (
+                                    <div className="col-span-full py-12 flex flex-col items-center justify-center border border-dashed border-border  text-muted-foreground font-medium">
+                                        No services yet. Define your first service.
+                                    </div>
+                                )}
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Dialog open={isServiceDialogOpen} onOpenChange={setIsServiceDialogOpen}>
+                        <DialogContent className="border-none shadow-elevation-lg p-0 overflow-hidden max-w-md">
+                            <div className="bg-primary p-8 text-primary-foreground">
+                                <h2 className={cn(stb.uiHeading, 'text-2xl')}>{selectedService ? 'Update' : 'Add'} Service</h2>
+                                <p className="text-muted-foreground text-sm">Define pricing and duration for this offering.</p>
+                            </div>
+                            <form onSubmit={serviceForm.handleSubmit((d) => saveServiceMutation.mutate(d))} className="p-8 space-y-5 bg-card">
+                                <div className="space-y-2">
+                                    <Label className="font-bold text-foreground/90">Display Name</Label>
+                                    <Input {...serviceForm.register('name')} placeholder="e.g. Sharp Cut" className="" />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label className="font-bold text-foreground/90">Price ($)</Label>
+                                        <Input {...serviceForm.register('price', { valueAsNumber: true })} type="number" className="" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label className="font-bold text-foreground/90">Duration (Min)</Label>
+                                        <Input {...serviceForm.register('duration_min', { valueAsNumber: true })} type="number" className="" />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label className="font-bold text-foreground/90">Category</Label>
+                                    <select {...serviceForm.register('category')} className="w-full rounded-lg border-border border p-2 text-sm outline-none">
+                                        <option value="Hair">Hair</option>
+                                        <option value="Beard">Beard</option>
+                                        <option value="Shave">Shave</option>
+                                        <option value="Kids">Kids</option>
+                                    </select>
+                                </div>
+                                <Button type="submit" className="w-full rounded-lg h-12 bg-primary text-primary-foreground font-bold tracking-tight" disabled={saveServiceMutation.isPending}>
+                                    {saveServiceMutation.isPending ? 'Processing...' : (selectedService ? 'Update Service' : 'Confirm Service')}
+                                </Button>
+                            </form>
+                        </DialogContent>
+                    </Dialog>
+                </TabsContent>
+
+                <TabsContent value="pricing">
+                    <ProviderPricingPanel shopId={shopId} services={services} />
+                </TabsContent>
+
+                {/* PAYMENTS & STRIPE */}
+                <TabsContent value="payments">
+                    <Card className="border-border shadow-sm  bg-card">
+                        <CardHeader className="p-8 pb-4">
+                            <CardTitle className="text-xl font-bold">Financial Rails</CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-8 pt-0 space-y-8">
+                            <ProviderFeeWalletPanel
+                                shopId={shopId}
+                                isShopOwner={myShopMembership?.role === 'owner'}
+                            />
+                            <ProviderAutoRechargePanel />
+                            <ProviderAdCreditsPanel />
+                            <ProviderPaymentProtectionPanel
+                                shopId={shopId}
+                                isShopOwner={myShopMembership?.role === 'owner'}
+                            />
+                            {user?.stripe_account_id ? (
+                                <div className={`p-6 rounded-lg border transition-colors ${user.stripe_connect_status === 'active' ? 'bg-primary/5 border-primary/20' : 'bg-warning/10 border-warning/30'}`}>
+                                    <div className="flex items-start gap-4">
+                                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${user.stripe_connect_status === 'active' ? 'bg-primary text-primary-foreground' : 'bg-primary text-primary-foreground'}`}>
+                                            {user.stripe_connect_status === 'active' ? <CheckCircle className="w-6 h-6" /> : <AlertCircle className="w-6 h-6" />}
+                                        </div>
+                                        <div className="flex-1">
+                                            <h4 className={`text-lg font-bold ${user.stripe_connect_status === 'active' ? 'text-primary' : 'text-foreground'}`}>
+                                                {user.stripe_connect_status === 'active' ? 'Payment Engine Active' : 'Account Onboarding'}
+                                            </h4>
+                                            <p className={`text-sm font-medium ${user.stripe_connect_status === 'active' ? 'text-primary/90' : 'text-muted-foreground'}`}>
+                                                {user.stripe_connect_status === 'active'
+                                                    ? 'Your bank account is successfully linked and verified.'
+                                                    : 'Your account setup is incomplete. Complete onboarding to receive payouts.'}
+                                            </p>
+                                        </div>
+                                        <Button variant="outline" onClick={() => checkStripeStatusMutation.mutate()} className=" font-bold" disabled={checkStripeStatusMutation.isPending}>
+                                            Refetch Status
+                                        </Button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="p-10 text-center border-2 border-dashed border-border ">
+                                    <div className="w-16 h-16 bg-muted flex items-center justify-center  mx-auto mb-6 text-muted-foreground">
+                                        <AlertCircle className="w-8 h-8" />
+                                    </div>
+                                    <h3 className={cn(stb.uiHeading, 'text-2xl text-foreground mb-2')}>Setup Payouts</h3>
+                                    <p className="text-muted-foreground max-w-sm mx-auto mb-8 font-medium">Link your bank account via Stripe to accept automatic credit card payments from clients.</p>
+                                    <Button onClick={() => initiateStripeMutation.mutate()} className={cn(stb.btn, 'h-14 px-10 transition-transform active:scale-95')} disabled={initiateStripeMutation.isPending}>
+                                        <CheckCircle className="w-5 h-5 mr-3" /> Connect Stripe Account
+                                    </Button>
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                <TabsContent value="shipping">
+                    {barber || shopId ? (
+                        <SellerShippingProfile
+                            ownerType={shopId && myShopMembership?.role === 'owner' ? 'shop' : 'barber'}
+                            barberId={!shopId || myShopMembership?.role !== 'owner' ? barber?.id : undefined}
+                            shopId={shopId && myShopMembership?.role === 'owner' ? shopId : undefined}
+                        />
+                    ) : (
+                        <Card className="border-border shadow-sm  bg-card p-8">
+                            <p className="text-muted-foreground">Complete your provider profile to configure shipping.</p>
+                        </Card>
+                    )}
+                </TabsContent>
+
+                {/* OPENING HOURS & AVAILABILITY */}
+                <TabsContent value="hours">
+                    {shopId && myShopMembership && ['owner', 'manager'].includes(myShopMembership.role) ? (
+                        <AvailabilityManager barber={barber} shopId={shopId} />
+                    ) : (
+                        <Card className="border-border shadow-sm  bg-card">
+                            <CardHeader className="p-8">
+                                <CardTitle className="text-xl font-bold">Standard Availability</CardTitle>
+                                <p className="text-muted-foreground text-sm mt-1">Define your weekly operating routine.</p>
+                            </CardHeader>
+                            <CardContent className="px-8 pb-8">
+                                {shopId && barber?.id && <ShopHoursEditor shopId={shopId} barberId={barber.id} />}
+                            </CardContent>
+                        </Card>
+                    )}
+                </TabsContent>
+
+                {/* CHAIRS & CAPACITY */}
+                <TabsContent value="capacity">
+                    <ShopChairsPanel shopId={shopId} barberId={barber?.id} />
+                </TabsContent>
+            </Tabs>
+            </PageContent>
+        </div>
+    );
+}

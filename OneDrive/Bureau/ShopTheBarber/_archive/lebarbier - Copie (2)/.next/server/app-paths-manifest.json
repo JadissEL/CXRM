@@ -1,0 +1,9 @@
+{
+  "/page": "app/page.js",
+  "/search/page": "app/search/page.js",
+  "/api/barbers/search/route": "app/api/barbers/search/route.js",
+  "/barbers/[barberId]/page": "app/barbers/[barberId]/page.js",
+  "/api/barbers/[barberId]/route": "app/api/barbers/[barberId]/route.js",
+  "/booking/page": "app/booking/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
+}

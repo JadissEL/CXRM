@@ -1,0 +1,6 @@
+{
+    "telemetry.editStats.showDecorations": true,
+    "editor.experimental.treeSitterTelemetry": true,
+    "telemetry.editStats.showStatusBar": true,
+    "telemetry.editStats.details.enabled": true
+}

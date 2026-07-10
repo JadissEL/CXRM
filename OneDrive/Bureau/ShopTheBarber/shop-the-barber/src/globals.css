@@ -1,0 +1,7 @@
+/**
+ * DEPRECATED — Do not import. Active tokens live in src/index.css.
+ * Kept for reference only; will be removed in a future cleanup.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

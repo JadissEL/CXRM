@@ -1,0 +1,23 @@
+Shop The Barber — consolidated workspace
+========================================
+Consolidated on 2026-06-25. See CONSOLIDATION_REPORT.md for full details.
+
+Main folder: C:\Users\Jadiss\OneDrive\Bureau\ShopTheBarber
+
+CANONICAL PRODUCTION PROJECT (source of truth):
+- shop-the-barber                    (shopthebarber-app — React/Vite + Fastify/Drizzle; production)
+
+ARCHIVED (legacy / duplicates / design — kept for reference, not production):
+- _archive/shop-the-barber-66280349           (legacy vendor SDK export — superseded by shop-the-barber)
+- _archive/lebarbier                          (Next.js + Supabase experiment)
+- _archive/lebarbier - Copie                  (duplicate)
+- _archive/lebarbier - Copie (2)              (duplicate)
+- _archive/pixel-verse                        (Builder.io + Express experiment)
+- _archive/pixel-verse - Copie                (duplicate)
+- _archive/stitch_shopthebarber_homepage      (design/mockup assets)
+- _archive/stitch_shopthebarber_homepage (3)  (design/mockup assets)
+- _archive/stitch_shopthebarber_homepage - Downloads  (duplicate mockups)
+- _archive/SHOPTHEBARBER                       (UML diagrams / docs)
+- _archive/PROJO-vscode                        (editor settings)
+
+Archiving was a reversible file move only — no code changes to archived projects.

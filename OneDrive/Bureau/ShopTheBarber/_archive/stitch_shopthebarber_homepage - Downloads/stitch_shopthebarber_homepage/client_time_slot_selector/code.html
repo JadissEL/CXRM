@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Client Time Slot Selector</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#B87333", // Warm Copper
+                        "background-light": "#F7F8FA", // Off-White/Very Light Grey
+                        "background-dark": "#1A2A3A", // Dark Indigo/Navy
+                        "secondary": "#4A5568", // Slate Grey
+                        "dark-text": "#1A2A3A", // Dark Indigo/Navy
+                        "light-text": "#f0f2f5"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.bg-pattern {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDfDIt2ZHlXUwFFYJebVSyNVNWwrurwIXRAxqrrwho2ECiOmZ4tpoOah8uRpOCbZO4JmqNDlLD7CXKC0r7jvULHKv1ionILi2ALeiT2i6Py97ww9rE1Ava6YDc-Bk20T809-Ytf_OCT1EarWP2z6IclOOa8L-6aHMAVhiA83ecizXVap3Nn1m4Ft3aw9Ty14fizhiz4lb6a3wsPpdvBbs2RRWd4GEsBUkbAnSiSv7MvOEXXPChB5kbJjietrMKxYEO0vKth0j8gzzk)
+    }</style>
+</head>
+<body class="bg-background-light font-display text-dark-text">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden bg-pattern">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 sm:px-8 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<div class="flex flex-wrap gap-2 p-4">
+<a class="text-secondary text-base font-medium leading-normal hover:text-primary" href="#">Services</a>
+<span class="text-secondary text-base font-medium leading-normal">/</span>
+<span class="text-dark-text text-base font-medium leading-normal">Time</span>
+<span class="text-secondary text-base font-medium leading-normal">/</span>
+<a class="text-secondary text-base font-medium leading-normal" href="#">Provider</a>
+</div>
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<p class="text-dark-text text-4xl sm:text-5xl font-black leading-tight tracking-[-0.033em] min-w-72">Select Your Time</p>
+</div>
+<div class="flex flex-col gap-4 p-4 mt-4">
+<h3 class="text-dark-text text-lg font-bold leading-tight tracking-[-0.015em]">Your Selected Services</h3>
+<div class="flex gap-3 flex-wrap">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-dark-text/10 px-4">
+<p class="text-dark-text text-sm font-medium leading-normal">Men's Haircut</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-dark-text/10 px-4">
+<p class="text-dark-text text-sm font-medium leading-normal">Beard Trim</p>
+</div>
+</div>
+<p class="text-secondary text-sm font-normal leading-normal">Total Duration: 45 min</p>
+</div>
+<div class="flex flex-col gap-6 p-4 mt-8">
+<h3 class="text-dark-text text-lg font-bold leading-tight tracking-[-0.015em]">When would you like to book?</h3>
+<div class="flex flex-wrap gap-2 rounded-xl bg-dark-text/5 p-2">
+<button class="flex-1 px-4 py-2 text-sm font-bold rounded-lg bg-white text-primary shadow-sm">Exact Time</button>
+<button class="flex-1 px-4 py-2 text-sm font-medium rounded-lg text-secondary hover:text-dark-text hover:bg-white/50">Time Range</button>
+<button class="flex-1 px-4 py-2 text-sm font-medium rounded-lg text-secondary hover:text-dark-text hover:bg-white/50">Next Available</button>
+<button class="flex-1 px-4 py-2 text-sm font-medium rounded-lg text-secondary hover:text-dark-text hover:bg-white/50">Urgent</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-secondary" for="date-select">Select a date</label>
+<div class="relative">
+<input class="w-full h-12 px-4 pr-10 text-dark-text bg-white border-gray-300 rounded focus:border-primary focus:ring-primary/50 focus:ring-2 transition-colors" id="date-select" type="date" value="2024-05-24"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary pointer-events-none">calendar_today</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-secondary" for="time-select">Select a time</label>
+<div class="relative">
+<input class="w-full h-12 px-4 pr-10 text-dark-text bg-white border-gray-300 rounded focus:border-primary focus:ring-primary/50 focus:ring-2 transition-colors" id="time-select" type="time" value="09:00"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary pointer-events-none">schedule</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-4 mt-8">
+<h3 class="text-dark-text text-lg font-bold leading-tight tracking-[-0.015em]">Available Times for May 24, 2024</h3>
+<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">09:00 AM</button>
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">09:30 AM</button>
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">10:00 AM</button>
+<button class="h-12 w-full flex items-center justify-center rounded-lg bg-gray-100 text-gray-400 border border-gray-200 text-sm font-medium cursor-not-allowed relative overflow-hidden">
+<span class="z-10">10:30 AM</span>
+<div class="absolute top-1/2 left-0 w-full h-px bg-gray-400 -translate-y-1/2"></div>
+</button>
+<button class="h-12 w-full flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold ring-2 ring-primary ring-offset-2 ring-offset-background-light shadow-lg scale-105">11:00 AM</button>
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">11:30 AM</button>
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">12:00 PM</button>
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">12:30 PM</button>
+<button class="h-12 w-full flex items-center justify-center rounded-lg bg-gray-100 text-gray-400 border border-gray-200 text-sm font-medium cursor-not-allowed relative overflow-hidden">
+<span class="z-10">01:00 PM</span>
+<div class="absolute top-1/2 left-0 w-full h-px bg-gray-400 -translate-y-1/2"></div>
+</button>
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">01:30 PM</button>
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">02:00 PM</button>
+<button class="group h-12 w-full flex items-center justify-center rounded-lg bg-white text-dark-text border border-gray-300 text-sm font-medium transition-all hover:bg-primary/10 hover:border-primary hover:shadow-md hover:-translate-y-0.5">02:30 PM</button>
+</div>
+</div>
+<div class="flex-col gap-4 p-4 mt-8 hidden">
+<h3 class="text-dark-text text-lg font-bold leading-tight tracking-[-0.015em]">No Available Times Found</h3>
+<div class="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-gray-300 rounded-lg">
+<span class="material-symbols-outlined text-5xl text-secondary mb-4">event_busy</span>
+<p class="text-secondary">No providers were found for the selected services at this time.</p>
+<p class="text-secondary text-sm">Please try a different date or time range.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sticky bottom-0 left-0 right-0 w-full bg-background-light/80 backdrop-blur-sm border-t border-gray-200 z-10 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col sm:flex-row items-center justify-between max-w-[960px] mx-auto p-4 gap-4">
+<div class="flex items-center gap-4 bg-white/50 border border-dark-text/10 rounded-xl p-3 shadow-sm">
+<div class="relative flex items-center justify-center">
+<svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 120 120">
+<circle class="text-gray-200" cx="60" cy="60" fill="none" r="54" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="60" cy="60" fill="none" pathLength="1" r="54" stroke="currentColor" stroke-dasharray="1" stroke-dashoffset="0.01" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center">
+<span class="text-primary text-xl font-bold leading-none tracking-tighter">04:59</span>
+</div>
+</div>
+<div class="flex flex-col text-left">
+<p class="text-dark-text text-base font-bold">Your Slot is Reserved!</p>
+<p class="text-secondary text-sm">Please complete your booking.</p>
+</div>
+</div>
+<button class="h-12 w-full sm:w-auto px-10 flex items-center justify-center rounded-lg bg-background-dark text-white text-base font-bold transition-transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl">Find Barbers</button>
+</div>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Freelancer Barber Settings &amp; Privacy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ec7813",
+              "background-light": "#f8f7f6",
+              "background-dark": "#181411",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        .material-symbols-outlined.fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-row">
+<!-- SideNavBar Component -->
+<aside class="flex w-64 flex-col border-r border-[#393028] bg-[#181411] p-4">
+<div class="flex h-full flex-col justify-between">
+<div class="flex flex-col gap-4">
+<div class="flex gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Profile picture of Jameson Locke" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIZY9pyBxl6MUfemgnCN9MQEt5REumTSJEWrKMdP08fg2EGdJ62-wW6B3-E5WSbHCo1VGKR-pDupXdzgRXnpJSO88AcJiTif6G41w-ae3iKiL6gbU_I2ehhT8s5APU64F9i01cHG3V0VR18qtu0jQmWEEihTWQ3Q1ajSFCOputba3oUPzJ97Ezyc8oSyJuAtAQXc5DJUv5CAlX1R213pO-Ibsf_aTPiZPuDW5mY2QSAZDSMRZ8BQQvhJoBXy1jjZvLrSkc9GERazk");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">Jameson Locke</h1>
+<p class="text-[#b9aa9d] text-sm font-normal leading-normal">Master Barber</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 pt-4">
+<a class="flex items-center gap-3 px-3 py-2" href="#">
+<span class="material-symbols-outlined text-white">person</span>
+<p class="text-white text-sm font-medium leading-normal">Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2" href="#">
+<span class="material-symbols-outlined text-white">calendar_month</span>
+<p class="text-white text-sm font-medium leading-normal">Availability</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2" href="#">
+<span class="material-symbols-outlined text-white">credit_card</span>
+<p class="text-white text-sm font-medium leading-normal">Payments</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2" href="#">
+<span class="material-symbols-outlined text-white">notifications</span>
+<p class="text-white text-sm font-medium leading-normal">Notifications</p>
+</a>
+<a class="flex items-center gap-3 rounded-lg bg-[#393028] px-3 py-2" href="#">
+<span class="material-symbols-outlined fill-1 text-white">shield</span>
+<p class="text-white text-sm font-medium leading-normal">Privacy</p>
+</a>
+</nav>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">View Public Profile</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 p-8">
+<div class="mx-auto max-w-4xl">
+<!-- PageHeading Component -->
+<div class="flex flex-wrap justify-between gap-3 pb-8">
+<div class="flex min-w-72 flex-col gap-3">
+<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Privacy &amp; Sharing</p>
+<p class="text-[#b9aa9d] text-base font-normal leading-normal">Control how your profile and availability are seen by shops and clients.</p>
+</div>
+</div>
+<!-- ActionPanel Component -->
+<div class="pb-8 @container">
+<div class="flex flex-1 flex-col items-start justify-between gap-4 rounded-lg border border-primary/50 bg-[#393028] p-5 @[480px]:flex-row @[480px]:items-center">
+<div class="flex flex-col gap-1">
+<p class="text-white text-base font-bold leading-tight">Hide all freelance activity from shops</p>
+<p class="text-[#b9aa9d] text-base font-normal leading-normal">
+                                    Your freelance portfolio and mobile service availability will be hidden from all affiliated shops. You will only appear as a barber working within their schedule.
+                                </p>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-[#181411] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary">
+<div class="h-full w-[27px] rounded-full bg-white" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+<input class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- SectionHeader Component -->
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Detailed Privacy Controls</h2>
+<div class="flex flex-col rounded-lg border border-[#393028] bg-[#181411]">
+<!-- ListItem Component 1 -->
+<div class="flex items-center gap-4 px-4 min-h-[72px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-white flex items-center justify-center rounded-lg bg-[#393028] shrink-0 size-12">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-base font-medium leading-normal line-clamp-1">Show my availability for the salon</p>
+<p class="text-[#b9aa9d] text-sm font-normal leading-normal line-clamp-2">Allow your affiliated salon to see your schedule and book clients for you.</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-[#393028] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary">
+<div class="h-full w-[27px] rounded-full bg-white" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<hr class="border-[#393028] mx-4"/>
+<!-- ListItem Component 2 -->
+<div class="flex items-center gap-4 px-4 min-h-[72px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-white flex items-center justify-center rounded-lg bg-[#393028] shrink-0 size-12">
+<span class="material-symbols-outlined">moped</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-base font-medium leading-normal line-clamp-1">Allow mobile services (freelance)</p>
+<p class="text-[#b9aa9d] text-sm font-normal leading-normal line-clamp-2">Enable clients to book you for appointments at their location.</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-[#393028] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary">
+<div class="h-full w-[27px] rounded-full bg-white" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+<input class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<hr class="border-[#393028] mx-4"/>
+<!-- ListItem Component 3 -->
+<div class="flex items-center gap-4 px-4 min-h-[72px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-white flex items-center justify-center rounded-lg bg-[#393028] shrink-0 size-12">
+<span class="material-symbols-outlined">photo_library</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-white text-base font-medium leading-normal line-clamp-1">Make my freelance portfolio public</p>
+<p class="text-[#b9aa9d] text-sm font-normal leading-normal line-clamp-2">Your work and services will be discoverable by potential new clients.</p>
+</div>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-[#393028] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary">
+<div class="h-full w-[27px] rounded-full bg-white" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+</div>
+<div class="flex justify-end pt-8">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Save Changes</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShopTheBarber Blog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#127ae2",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gray-200 dark:border-b-gray-800 px-10 py-3 bg-white dark:bg-background-dark">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">ShopTheBarber</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal text-[#111418] dark:text-gray-300 hover:text-primary dark:hover:text-primary" href="#">Home</a>
+<a class="text-sm font-medium leading-normal text-[#111418] dark:text-gray-300 hover:text-primary dark:hover:text-primary" href="#">Bookings</a>
+<a class="text-sm font-medium leading-normal text-[#111418] dark:text-gray-300 hover:text-primary dark:hover:text-primary" href="#">Barbers</a>
+<a class="text-sm font-bold leading-normal text-primary" href="#">Blog</a>
+<a class="text-sm font-medium leading-normal text-[#111418] dark:text-gray-300 hover:text-primary dark:hover:text-primary" href="#">Shop</a>
+</div>
+<div class="flex gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Log In</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f0f2f4] dark:bg-gray-700 text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Sign Up</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<!-- HeroSection -->
+<div class="@container px-4 py-10">
+<div class="flex flex-col gap-6 @[480px]:gap-8 @[864px]:flex-row bg-white dark:bg-gray-800/50 p-6 rounded-xl shadow-sm">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg @[480px]:h-auto @[480px]:min-w-[400px] @[864px]:w-full" data-alt="A stylish man with a fresh fade haircut looking off to the side" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1a2EHoSB4hybLv_-wO4szTiVlxb9s8CU6DvpCLSqrUmDwfdoJE-bUutrfM0x7jPN-vuDeCqKyqEbzyik0SuV9_dsYea1nMi3HbeT58shCpiJOXU6MsE_MO9QxxYK4pUvrWG3UnEVI4Y3L0Xpf0b3ld3oBl_2ZiDdJmgKrgmXbrnHS6-eTnDwTxade_PENHTsVUdYycU0HaDd-izdt7c7W4tTO4InSRf1oRPZT_jyzJmOAoP2gU2P-VqTM5dqJxQD9nkTZ9DyqT_8");'></div>
+<div class="flex flex-col gap-6 @[480px]:min-w-[400px] @[480px]:gap-8 @[864px]:justify-center">
+<div class="flex flex-col gap-2 text-left">
+<h1 class="text-[#111418] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">The Top 5 Fades for 2024</h1>
+<h2 class="text-[#111418] dark:text-gray-300 text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">Stay ahead of the trend with our expert guide to the most popular fade hairstyles of the year, curated by master barbers.</h2>
+</div>
+<button class="flex min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
+<span class="truncate">Read More</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Search and Filters -->
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#617589] dark:text-gray-400 flex border-none bg-white dark:bg-gray-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-0 border-none bg-white dark:bg-gray-800 focus:border-none h-full placeholder:text-[#617589] dark:placeholder:text-gray-400 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search for articles, tips, barbers..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex gap-3 p-4 overflow-x-auto">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full cursor-pointer bg-primary/20 dark:bg-primary/30 px-4">
+<p class="text-primary dark:text-white text-sm font-medium leading-normal">Trending Styles</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full cursor-pointer bg-[#f0f2f4] dark:bg-gray-700 px-4">
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal">Grooming Guides</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full cursor-pointer bg-[#f0f2f4] dark:bg-gray-700 px-4">
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal">Product Reviews</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full cursor-pointer bg-[#f0f2f4] dark:bg-gray-700 px-4">
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal">Barber Spotlights</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full cursor-pointer bg-[#f0f2f4] dark:bg-gray-700 px-4">
+<p class="text-[#111418] dark:text-gray-200 text-sm font-medium leading-normal">Industry News</p>
+</div>
+</div>
+<!-- SectionHeader -->
+<h2 class="text-[#111418] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Recent Posts</h2>
+<!-- Recent Posts Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-5">
+<!-- Blog Card 1 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-gray-800/50 shadow-sm overflow-hidden group">
+<img class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Close up of a barber applying shaving cream to a client's face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvMhxFdgBbzhQzd69JrwH1pqfplpM1P4PABvxhkSRGf6TlKry04UCBIsfkxCIkTiuOxCS6xyDtvTe_lPPPfEIbxbDGcZZaDZvuR0AJyI_-H0K82Dg7kWEowU9W5dtn0mpyyWGL-stY90j-8agP3l1lSq4GBCFvM3SGyuSOL4KoZ3cUbfb24qiiR9-nUtuimMoMLIR_z78ape9ERCADBmTNoSYpLRY5wWvWIoKRQwd64Lk48yAbgrb_NJrtjPwOU2nWi2x1ck4G8QM"/>
+<div class="flex flex-col gap-3 p-4 pt-0">
+<p class="text-xs font-semibold uppercase tracking-wider text-primary">Grooming Guides</p>
+<h3 class="text-lg font-bold leading-tight tracking-tight text-[#111418] dark:text-white">Your Ultimate Guide to Beard Oils</h3>
+<div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">person</span>
+<span>By ShopTheBarber</span>
+<span class="mx-1">•</span>
+<span>Oct 12, 2023</span>
+</div>
+</div>
+</div>
+<!-- Blog Card 2 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-gray-800/50 shadow-sm overflow-hidden group">
+<img class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A collection of professional barber tools laid out on a dark surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFK3EYYHmjtXFb_l9CC0iIdw1L04C-xb2Qy1AKLGmDMsblH6SNWm6p-KjCk6q7ub-Y2iNh5ioV0HLh-RkX_M6KVohECCWoVjJbI54N4U5DDAhwX3oPVRQUr8ytsn2SGgjQw_x7TEFLvKm-aWj4lMB_i0U6_Jk3Msko-WJHN0OlBivIkJYETvfvkCCzs_FTSmr4NRcbcWhfyVFcYFPprFwqRJ_Jkj4XHNYYXUfSHHnqgY5U7xyz_GE_xg5ERFqyl9dj7uuFlv8m7Lg"/>
+<div class="flex flex-col gap-3 p-4 pt-0">
+<p class="text-xs font-semibold uppercase tracking-wider text-primary">Barber Spotlights</p>
+<h3 class="text-lg font-bold leading-tight tracking-tight text-[#111418] dark:text-white">Meet the Master Barbers on ShopTheBarber</h3>
+<div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-sm">content_cut</span>
+<span>By John Blade</span>
+<span class="mx-1">•</span>
+<span>Oct 10, 2023</span>
+</div>
+</div>
+</div>
+<!-- Blog Card 3 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-gray-800/50 shadow-sm overflow-hidden group">
+<img class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A man with a fresh haircut posing in a stylish urban setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcw9tEok5mu9kwZEoZhBY1WwMTykzJ5ILCzAEaAYaINLURbPG48lp4l26hQpWSpGq8LhrCyGVg58pVxD_MFCBxAc8ZEgb68WGM9Hb61NCCudjfPPRp-fX-NRY3a1kwYvQvacIu5PCb26GwbIBkUslCtCou174xsXY2ZHZizq6rzPLhltk-96uD2NGLns14BRVzOKh4W1lOATOGkKLQ8oHo3tp8yZYkwOAbxt4ijSpBlnUCfc1d8KALuS2HGYZWlNpuAMdhmOKmNcs"/>
+<div class="flex flex-col gap-3 p-4 pt-0">
+<p class="text-xs font-semibold uppercase tracking-wider text-primary">Trending Styles</p>
+<h3 class="text-lg font-bold leading-tight tracking-tight text-[#111418] dark:text-white">The Pompadour: A Timeless Classic Reimagined</h3>
+<div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">person</span>
+<span>By ShopTheBarber</span>
+<span class="mx-1">•</span>
+<span>Oct 05, 2023</span>
+</div>
+</div>
+</div>
+<!-- Blog Card 4 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-gray-800/50 shadow-sm overflow-hidden group">
+<img class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A flat lay of various men's grooming products on a wooden background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkYbY9dqF1o6CS_Q3bJQXzYKm-N8g3oR7lv4x4JVUXOqPwjmuA7Sc1tHK5TVGQU_OZeGmeqjViJZtxcwuGMcTIAWt3aQG4wt8vuGq3sNK-KikK2PIrh4J1yBq0hh2rN1MA_TAv-AK5mA01Tu0licZWH2ihyhL5H9bccuFAki3q_LrFjoM6kxgLkYf30J0jeXvbQtQSC-ZWmMZGBna4olzuOEvKh8jYeoJPnvMaGV2Ty78s6lChbochn6P9SXuhE5ngz-4oARoErWA"/>
+<div class="flex flex-col gap-3 p-4 pt-0">
+<p class="text-xs font-semibold uppercase tracking-wider text-primary">Product Reviews</p>
+<h3 class="text-lg font-bold leading-tight tracking-tight text-[#111418] dark:text-white">Top 3 Hair Clays for a Matte Finish</h3>
+<div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-sm">content_cut</span>
+<span>By Alex Cutter</span>
+<span class="mx-1">•</span>
+<span>Sep 28, 2023</span>
+</div>
+</div>
+</div>
+<!-- Blog Card 5 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-gray-800/50 shadow-sm overflow-hidden group">
+<img class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A barber carefully shaving a client's neckline with a straight razor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB73Gm51NhYJ0qXx8WkMFsCf-ii9Qab7R7nSaRBJholJFQj6Ii0vrE6dCRQBVA1JlzXt-iSLt-WWpBcHh9vAwNjdQvbHb0l8Ko1OtdpeLKrZuEwT5uHt8BuRNOoYgw5KCKE73WUMdaCJbN-pmHCqW80FBvhhGvC1tJBbuvd3N0MSiwKixpKt3RiBGbtgwGW2PEzYqopnhCWltWKNjFh-eD-4kY9uVJZUrM2O8I-0tod0tpuA9lzZBAxPj5rm50sMoMNvVTJ6HQcCP4"/>
+<div class="flex flex-col gap-3 p-4 pt-0">
+<p class="text-xs font-semibold uppercase tracking-wider text-primary">Grooming Guides</p>
+<h3 class="text-lg font-bold leading-tight tracking-tight text-[#111418] dark:text-white">Achieving the Perfect At-Home Shave</h3>
+<div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">person</span>
+<span>By ShopTheBarber</span>
+<span class="mx-1">•</span>
+<span>Sep 22, 2023</span>
+</div>
+</div>
+</div>
+<!-- Blog Card 6 -->
+<div class="flex flex-col gap-4 rounded-xl bg-white dark:bg-gray-800/50 shadow-sm overflow-hidden group">
+<img class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A group of men with different hairstyles laughing together" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB032byUZWF2rsHpBYEraD8CtkYsw3c0vqeTEJ2XY6C3Tb7d2AtbFZ_cry-u_rwSURblumVjPImg7ZsXgqWvJunkhaIF_OYGy_wEB_UCuguAVOzZYqNbZ_OxTHGRnQ5ZYjoLsRkm_vkfvCL3XGD5HTouNzCD8uRkqhgfOP3DbSKU2MGuKH3rAOOkeJm45PN6eJlMZoAm9ozf6wMTQGfwUm1erNK3kxSM2g9mI5Unj9EbS-J2GfAVr8cYdnu0YBG6Ys001qgNGxiulM"/>
+<div class="flex flex-col gap-3 p-4 pt-0">
+<p class="text-xs font-semibold uppercase tracking-wider text-primary">Industry News</p>
+<h3 class="text-lg font-bold leading-tight tracking-tight text-[#111418] dark:text-white">Barbercon 2023: The Highlights</h3>
+<div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">person</span>
+<span>By ShopTheBarber</span>
+<span class="mx-1">•</span>
+<span>Sep 15, 2023</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Newsletter Signup -->
+<div class="px-4 py-10">
+<div class="flex flex-col items-center gap-4 rounded-xl bg-white dark:bg-gray-800/50 p-8 text-center shadow-sm">
+<h2 class="text-2xl font-bold text-[#111418] dark:text-white">Get Grooming Tips Straight to Your Inbox</h2>
+<p class="max-w-md text-sm text-gray-600 dark:text-gray-300">Subscribe to our newsletter for the latest articles, trends, and exclusive offers from the world of men's grooming.</p>
+<form class="mt-2 flex w-full max-w-sm flex-col gap-3 sm:flex-row">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-600 bg-transparent dark:bg-gray-700 h-12 placeholder:text-[#617589] dark:placeholder:text-gray-400 px-4 text-base font-normal leading-normal" placeholder="Enter your email" type="email"/>
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Subscribe</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-background-dark border-t border-gray-200 dark:border-gray-800">
+<div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+<div>
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#111418] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">ShopTheBarber</h2>
+</div>
+<p class="mt-4 max-w-xs text-gray-500 dark:text-gray-400">The premier booking ecosystem for men's professional grooming.</p>
+</div>
+<div class="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Services</p>
+<ul class="mt-6 space-y-4 text-sm">
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Book a Cut</a></li>
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Find Barbers</a></li>
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Shop Products</a></li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Company</p>
+<ul class="mt-6 space-y-4 text-sm">
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">About</a></li>
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Careers</a></li>
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Helpful Links</p>
+<ul class="mt-6 space-y-4 text-sm">
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Contact</a></li>
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">FAQs</a></li>
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Live Chat</a></li>
+</ul>
+</div>
+<div>
+<p class="font-bold text-gray-900 dark:text-white">Legal</p>
+<ul class="mt-6 space-y-4 text-sm">
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Privacy Policy</a></li>
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Terms &amp; Conditions</a></li>
+<li><a class="text-gray-700 dark:text-gray-300 transition hover:opacity-75" href="#">Returns Policy</a></li>
+</ul>
+</div>
+</div>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400">© 2024. ShopTheBarber. All rights reserved.</p>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

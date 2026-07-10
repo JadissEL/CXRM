@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Barbershop Manager Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ec6d13",
+              "background-light": "#f8f7f6",
+              "background-dark": "#221810",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="sticky top-0 h-screen w-64 flex-shrink-0 bg-[#181411] p-4 flex flex-col justify-between">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-3 px-3 pt-2">
+<span class="material-symbols-outlined text-primary text-3xl">content_cut</span>
+<h1 class="text-white text-lg font-bold">ShopTheBarber</h1>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<p class="text-primary text-sm font-bold leading-normal">Dashboard</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-white">calendar_month</span>
+<p class="text-white text-sm font-medium leading-normal">Schedule</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-white">cut</span>
+<p class="text-white text-sm font-medium leading-normal">Services</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-white">group</span>
+<p class="text-white text-sm font-medium leading-normal">Team</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-white">book_online</span>
+<p class="text-white text-sm font-medium leading-normal">Bookings</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-white">payments</span>
+<p class="text-white text-sm font-medium leading-normal">Finances</p>
+</div>
+</div>
+</div>
+<div class="flex gap-3 items-center border-t border-white/10 pt-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Abstract gradient of orange and brown tones" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8bO1117exXwT2QDsZeAbyCVR0uZjpBkDqWki8CiDWc3CbyDnR8W21bHs4MQ0vef1-jRmNIOPoYLHn_XefFrk2SsbVoBDw_ebWA8tONbQ0ys3tYYCfJVi9GLo05bFZcLQw9wyBmZ4ISqapUDvVWks1wqhL7KCskmXK4I5ly6qF2Y7zWmAbeL0TJ1HjkCBEnKF-xcKdQq32AMZFP0cFulvRldmU834bPEk9WfB2CPbflEF6soq-nWPmiGbvsHHQFpejRm7t2wuvO3c");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-sm font-medium leading-normal">Alex Rivera</h1>
+<p class="text-[#b9a89d] text-xs font-normal leading-normal">Manager</p>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="mx-auto max-w-7xl">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between gap-3 items-center mb-6">
+<p class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Good Morning, Alex</p>
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded-lg flex items-center gap-2 transition-colors duration-200">
+<span class="material-symbols-outlined">add</span>
+                        New Booking
+                    </button>
+</div>
+<!-- Stats -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#181411]">
+<p class="text-white/70 text-base font-medium leading-normal">Today's Revenue</p>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">$1,250</p>
+<p class="text-[#0bda16] text-sm font-medium leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-base">arrow_upward</span>
+                            +5.2%
+                        </p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#181411]">
+<p class="text-white/70 text-base font-medium leading-normal">Total Bookings</p>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">15</p>
+<p class="text-[#0bda16] text-sm font-medium leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-base">arrow_upward</span>
+                            +1.5%
+                        </p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#181411]">
+<p class="text-white/70 text-base font-medium leading-normal">Capacity</p>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">75%</p>
+<p class="text-[#fa3f38] text-sm font-medium leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-base">arrow_downward</span>
+                           -2.0%
+                        </p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#181411]">
+<p class="text-white/70 text-base font-medium leading-normal">New Clients</p>
+<p class="text-white tracking-tight text-3xl font-bold leading-tight">3</p>
+<p class="text-[#0bda16] text-sm font-medium leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-base">arrow_upward</span>
+                           +10%
+                        </p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Chart and Team Schedule -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Charts -->
+<div class="bg-[#181411] rounded-xl p-6">
+<div class="flex min-w-72 flex-1 flex-col gap-2">
+<p class="text-white text-lg font-bold leading-normal">Last 7 Days Revenue</p>
+<p class="text-white tracking-tight text-4xl font-black leading-tight">$8,450</p>
+<div class="flex gap-2 items-center">
+<p class="text-white/70 text-sm font-normal leading-normal">vs. Previous Week</p>
+<p class="text-[#0bda16] text-sm font-medium leading-normal flex items-center gap-1">
+<span class="material-symbols-outlined text-base">arrow_upward</span>
+                                        +8.1%
+                                    </p>
+</div>
+<div class="grid min-h-[220px] grid-flow-col gap-6 grid-rows-[1fr_auto] items-end justify-items-center pt-6 px-3">
+<div class="bg-primary/20 hover:bg-primary transition-colors duration-200 rounded-t w-full" style="height: 60%;"></div>
+<p class="text-white/60 text-xs font-bold leading-normal tracking-[0.015em]">Mon</p>
+<div class="bg-primary/20 hover:bg-primary transition-colors duration-200 rounded-t w-full" style="height: 10%;"></div>
+<p class="text-white/60 text-xs font-bold leading-normal tracking-[0.015em]">Tue</p>
+<div class="bg-primary/20 hover:bg-primary transition-colors duration-200 rounded-t w-full" style="height: 20%;"></div>
+<p class="text-white/60 text-xs font-bold leading-normal tracking-[0.015em]">Wed</p>
+<div class="bg-primary/20 hover:bg-primary transition-colors duration-200 rounded-t w-full" style="height: 70%;"></div>
+<p class="text-white/60 text-xs font-bold leading-normal tracking-[0.015em]">Thu</p>
+<div class="bg-primary/20 hover:bg-primary transition-colors duration-200 rounded-t w-full" style="height: 10%;"></div>
+<p class="text-white/60 text-xs font-bold leading-normal tracking-[0.015em]">Fri</p>
+<div class="bg-primary rounded-t w-full" style="height: 100%;"></div>
+<p class="text-white/60 text-xs font-bold leading-normal tracking-[0.015em]">Sat</p>
+<div class="bg-primary/20 hover:bg-primary transition-colors duration-200 rounded-t w-full" style="height: 90%;"></div>
+<p class="text-white/60 text-xs font-bold leading-normal tracking-[0.015em]">Sun</p>
+</div>
+</div>
+</div>
+<!-- Team Schedule -->
+<div class="bg-[#181411] rounded-xl p-6">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] pb-4">Team Schedule</h2>
+<div class="flex flex-col gap-4">
+<div class="flex items-center">
+<div class="w-32 flex-shrink-0"></div>
+<div class="flex-1 grid grid-cols-4 text-center text-white/60 text-sm font-bold">
+<span>9am - 12pm</span>
+<span>12pm - 3pm</span>
+<span>3pm - 6pm</span>
+<span>6pm - 9pm</span>
+</div>
+</div>
+<!-- Barber Row 1 -->
+<div class="flex items-center gap-4">
+<div class="w-28 flex-shrink-0 flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Portrait of John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyHShZfxeVRYoqgl8mZyqJu2biG6lOJ1m_PvEP9TBLQrBuW5HO4wHDBom1AeAOJ7i7W3wZO3Wj2rmNtQibgoSTc7Jfv3fK81kJXeSeFpnUOzfD4yZP4SEaUJaMr2BCkIKrzbrBKpr_XqtrHc0x2uj5AxKyumINwnNXAHGrhWjVp5iMFG-DBd_SehMZu4rauzQW7w4ywTG8yBDh8Yq9q8-s9bZzTD0BluDRf-xQLg-R7-mu7NvWT0FJGEK1fBuJldkaJzCXjoe8Em8");'></div>
+<div>
+<p class="text-white font-medium text-sm">John D.</p>
+<p class="text-white/50 text-xs">On Duty</p>
+</div>
+</div>
+<div class="flex-1 bg-background-dark h-12 rounded-lg relative grid grid-cols-12 gap-1 p-1">
+<div class="col-span-3 bg-primary/80 rounded p-2 flex flex-col justify-center cursor-move">
+<p class="text-white text-xs font-bold truncate">M. Johnson</p>
+<p class="text-white/70 text-[10px] truncate">Fade &amp; Shave</p>
+</div>
+<div class="col-start-5 col-span-2 bg-primary/80 rounded p-2 flex flex-col justify-center cursor-move">
+<p class="text-white text-xs font-bold truncate">T. Williams</p>
+<p class="text-white/70 text-[10px] truncate">Haircut</p>
+</div>
+</div>
+</div>
+<!-- Barber Row 2 with Conflict -->
+<div class="flex items-center gap-4">
+<div class="w-28 flex-shrink-0 flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Portrait of Michael B" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA-h_Kq_TIhf0SjijE47uAPhaow74ktMxRm7OZ27TcnNVJiYLoU3wGZtRc8sD-KKbFmFOO9TvUsHG3E26K12EYaoqvZv_GKio59RFTbT3XIGS_7Oj9O5a7XyopnNymoIRralvDxh6X4niMyPhjXY_uxRkSoBMJmLAEYFLJWuVPz4sfJDjGbj0IaRgJN5a5f4NwFMQTkZdApjrfe63ysSmRr_LlbAVvmKJGGdcFIEQGjofZwCajeZZEI5ejp0PuqZ6RwqOuwStDu_kk");'></div>
+<div>
+<p class="text-white font-medium text-sm">Michael B.</p>
+<p class="text-white/50 text-xs">On Duty</p>
+</div>
+</div>
+<div class="flex-1 bg-background-dark h-12 rounded-lg relative grid grid-cols-12 gap-1 p-1">
+<div class="col-span-2 bg-primary/80 rounded p-2 flex flex-col justify-center cursor-move">
+<p class="text-white text-xs font-bold truncate">S. Clark</p>
+<p class="text-white/70 text-[10px] truncate">Beard Trim</p>
+</div>
+<div class="col-start-3 col-span-2 bg-red-500/80 rounded p-2 flex flex-col justify-center cursor-not-allowed ring-2 ring-red-500 relative">
+<p class="text-white text-xs font-bold truncate">C. Kent</p>
+<p class="text-white/70 text-[10px] truncate">Conflict!</p>
+<span class="material-symbols-outlined absolute top-1 right-1 text-white text-sm">error</span>
+</div>
+<div class="col-start-8 col-span-4 bg-primary/80 rounded p-2 flex flex-col justify-center cursor-move">
+<p class="text-white text-xs font-bold truncate">L. Davis</p>
+<p class="text-white/70 text-[10px] truncate">Full Service</p>
+</div>
+</div>
+</div>
+<!-- Barber Row 3 -->
+<div class="flex items-center gap-4">
+<div class="w-28 flex-shrink-0 flex items-center gap-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Portrait of Steve R" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD3ycoDR9Bw0Sv8f9pOt56yQD8zFLm6V2-Wn7L3D93wFvJiTYGMkV-hMn3NOxKUTCrLidDlD9bm1BU_cWUx9Nd0hbtay4jyAvjd7A6BsDm-4W0pFiFOJQHggmX_g-g_vOBcEUVycSahtW3Dz6ZfB692wR1o08WqYnpMKlO1dlFUs-xaeY6uH0QuAI_XLSnbMsFdMvdHGTpBo9ApNwc6s-ogof5aKNtnKvMZs-c2-QXTv68DQZgC7b3adiUGY3UcAHkxtZ-I7j4d8cY");'></div>
+<div>
+<p class="text-white font-medium text-sm">Steve R.</p>
+<p class="text-red-400 text-xs">Day Off</p>
+</div>
+</div>
+<div class="flex-1 bg-background-dark/50 h-12 rounded-lg relative grid grid-cols-12 gap-1 p-1">
+<div class="col-span-12 h-full flex items-center justify-center">
+<p class="text-white/40 text-sm">Unavailable</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Upcoming Bookings -->
+<div class="lg:col-span-1 bg-[#181411] rounded-xl p-6 self-start">
+<!-- SectionHeader -->
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] pb-4">Upcoming Bookings</h2>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between p-3 rounded-lg bg-background-dark">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Portrait of Mark Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWxbkx3eBMwieruKKQINdLqnRgOeos-641pgr_KqzIXhm98bG4x0nMmbxUv0N3nowSs1UHMi5Y1hgZfOUk0ldjb4XQb6HwdeT4digH5jQXAc1QbveqEo6rYewy0G725olThrx4UakuppY-lMvKy2W9YUDhWE7LRtViPWlx81xdxZa82eeiFyWrvOxOTr2DyCMJcpASmBb0Rl6x6w6BKpupF7aXyU8pVDgl_SI1K4-e4uxHsTmYwFSxDVoRCQdKyKWx3yIyTndOfao");'></div>
+<div>
+<p class="text-white font-medium text-sm">Mark Johnson</p>
+<p class="text-white/60 text-xs">Fade &amp; Shave w/ John</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold text-sm">9:00 AM</p>
+<p class="text-primary text-xs font-medium">Confirmed</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-background-dark">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Portrait of Sam Clark" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA1TOnvRi08-EFu7d7mcIA1W-ZGA9zHI0A4XZgGy9iDPEQ7GTzxylNFNyV0UVvx2-2noPP5RtieK3nzWqDL-xxKeeGYOnXAdie6xjshhNxJHinesA1Cbq3Q5Ljs7OAuTaP2UoH65Yv22NvgzpCamU3Oa9vuFezwPcsOuZ33bLeEivePK5Ui86hHFm_FrE2MhLkQWVxspPn0nzl_ZmJygmiyzjCZIos4X34Vb-iT7fGPfhJ3yYlG3DEXLFOXPhPhiYl_ahtwQdE9GQY");'></div>
+<div>
+<p class="text-white font-medium text-sm">Sam Clark</p>
+<p class="text-white/60 text-xs">Beard Trim w/ Michael</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold text-sm">9:00 AM</p>
+<p class="text-primary text-xs font-medium">Confirmed</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-background-dark">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Portrait of Chris Kent" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBp7sCySZ9xTqylR-nR_8b1GfXU9vfQWTDlI-w-ogxB2QJdr86Pxvq_7JwESFxafH5dQe5d0c8t9nbyf00RZgT2Fbo22b95HUbu8V4G8120zAtENgF6zK5u_rGrhxd1H4gHDLt0mCC4THLF8pq4yhUdACWBsNDupAxeky92EFHWww1Kp-uWtDvF-ZzYqfOdQwP34OpuJ5oxAabxx4Cma6G40Y30NXCpIR3rOl9Ag4GlhGTr7d6kfkVe0uA54qq63ML8spJG9GPhgHs");'></div>
+<div>
+<p class="text-white font-medium text-sm">Chris Kent</p>
+<p class="text-white/60 text-xs">Haircut w/ Michael</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold text-sm">9:45 AM</p>
+<p class="text-yellow-400 text-xs font-medium">Conflict</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-background-dark">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Portrait of Tom Williams" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADgJsMY-qHAwoZ4Lr2w1UvDObyaN5SoWgGdSzAeM2JM2HQcRqmqePvUdwgI_x7qoomZokLHdfW0acM3Jw7E_ZQrxpfbELXkeE2xG01Nkagf-LRCVjECx8TmjN3PeOV7MMFI5rphrmNykaQqaDbxBgoTq-G_dmJYn6zPZ8Xc1t4VXFOInAK7GPx62Hs7FNhpmhb9Zb4xJ27DSXS6NV5G87v33kDH-HwfeIxx-H4Q4OABTkVjeUF7gWCZUEyjvgfhRyU8zChZrZ06sk");'></div>
+<div>
+<p class="text-white font-medium text-sm">Tom Williams</p>
+<p class="text-white/60 text-xs">Haircut w/ John</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold text-sm">11:00 AM</p>
+<p class="text-primary text-xs font-medium">Confirmed</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-background-dark">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Portrait of Liam Davis" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDsuXG02TXWhyzblBEE6YxBxKLeOzVitZe1mrAHUx6nTAhI1Tlj1l0Cy-HtJT6ODbG-zFr650necao5oM_HbQFGSPpW1m-hTxfsfhFRZQVdjIARShRIjJjyaMTfcm_bGi5hTBq2Ek2Ei9th4OoMY_SwB0CuRvr6rqp7pAAYnzMATnGUHsp5pRA7jo7H07cl6lu6PoaNGaYgaG22DKkDqSNAwtvP46uQdX4jeEzOuOXRTvG-7SLwV4IGfUIXq4UiMduBJDziMFLKh_E");'></div>
+<div>
+<p class="text-white font-medium text-sm">Liam Davis</p>
+<p class="text-white/60 text-xs">Full Service w/ Michael</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-white font-bold text-sm">2:30 PM</p>
+<p class="text-white/60 text-xs font-medium">Pending</p>
+</div>
+</div>
+<button class="w-full text-center text-primary font-bold py-2 rounded-lg hover:bg-primary/10 transition-colors duration-200">View All Bookings</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

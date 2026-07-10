@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Barbershop Settings &amp; Privacy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#E57A44", /* Warm Copper Accent */
+              "background-light": "#f6f6f8", /* Not used for this dark theme, but configured */
+              "background-dark": "#121022", /* Dark Indigo/Navy */
+              "slate-grey": "#3D3B54",
+              "slate-grey-light": "#9F9DB9",
+              "slate-grey-dark": "#1C1C27"
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-dark font-display text-white">
+<div class="relative flex h-auto min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex flex-col h-screen min-w-64 max-w-64 p-4 border-r border-slate-grey/50 bg-background-dark sticky top-0">
+<div class="flex flex-col justify-between h-full">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 px-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="The Barber's Den shop logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBvKNpvnfuSjXF5PDMyQ4gq1Jyx6LvIh8uErghjAxtH1QQrKmoYovqglatiI6zVyeW_46NVKzyOx96KWXDqPLnx7R3ZwtTkPQzIGRV1_n9D-r02jDXSSjNzihw9X94vcFqhfAWMn3h-vjWCSIJFkk6Qy1WNwBoP9WVWpOskpc-n0OyJ4elr4EfX2ctUsGbpKjOa2CqZxza2H-KwlaeFsBIwSIwWtAmTMF1kc3xgw4Dyj5inbq_IrsLoaQuNAxsjcsWTSBNVnwg5Jnw");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-normal">The Barber's Den</h1>
+<p class="text-slate-grey-light text-sm font-normal leading-normal">Shop Manager</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined fill">storefront</span>
+<p class="text-sm font-semibold leading-normal">Shop Profile</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-grey-light hover:bg-slate-grey-dark hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<p class="text-sm font-medium leading-normal">Team Management</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-grey-light hover:bg-slate-grey-dark hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">content_cut</span>
+<p class="text-sm font-medium leading-normal">Services</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-grey-light hover:bg-slate-grey-dark hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<p class="text-sm font-medium leading-normal">Payment &amp; Payouts</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-grey-light hover:bg-slate-grey-dark hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<p class="text-sm font-medium leading-normal">Notifications</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-grey-light hover:bg-slate-grey-dark hover:text-white transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<p class="text-sm font-medium leading-normal">Privacy</p>
+</a>
+</nav>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-grey-dark hover:bg-slate-grey transition-colors duration-200 text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">View Live Page</span>
+<span class="material-symbols-outlined ml-2">open_in_new</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8 lg:p-12 overflow-y-auto">
+<div class="max-w-4xl mx-auto flex flex-col gap-8">
+<!-- PageHeading -->
+<header>
+<div class="flex min-w-72 flex-col gap-2">
+<h1 class="text-white text-4xl font-black leading-tight tracking-[-0.033em]">Shop Profile</h1>
+<p class="text-slate-grey-light text-base font-normal leading-normal">Manage your barbershop's details and appearance on the platform.</p>
+</div>
+</header>
+<!-- Shop Details Card -->
+<section class="bg-slate-grey-dark/50 border border-slate-grey/50 rounded-xl p-6">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-1">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Shop Details</h2>
+<p class="text-slate-grey-light text-sm font-normal leading-normal">Update your shop's name, address, and contact information.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- TextField for Shop Name -->
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-white text-sm font-medium leading-normal pb-2">Shop Name</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-grey bg-slate-grey-dark h-12 placeholder:text-slate-grey-light p-[15px] text-base font-normal leading-normal" value="The Barber's Den"/>
+</label>
+<!-- TextField for Phone Number -->
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-white text-sm font-medium leading-normal pb-2">Phone Number</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-grey bg-slate-grey-dark h-12 placeholder:text-slate-grey-light p-[15px] text-base font-normal leading-normal" value="(555) 123-4567"/>
+</label>
+</div>
+<!-- TextField for Address -->
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-white text-sm font-medium leading-normal pb-2">Address</p>
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-grey bg-slate-grey-dark min-h-24 placeholder:text-slate-grey-light p-[15px] text-base font-normal leading-normal">123 Main Street, Anytown, USA 12345</textarea>
+</label>
+<div class="flex justify-end gap-3 mt-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-grey hover:bg-slate-grey/80 text-white text-sm font-medium leading-normal">
+<span class="truncate">Cancel</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary/80 text-white text-sm font-bold leading-normal">
+<span class="truncate">Save Changes</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Photo Gallery Card -->
+<section class="bg-slate-grey-dark/50 border border-slate-grey/50 rounded-xl p-6">
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Photo Gallery</h2>
+<p class="text-slate-grey-light text-sm font-normal leading-normal">Upload images to showcase your shop's interior, exterior, and work.</p>
+</div>
+<div class="flex justify-center items-center w-full border-2 border-dashed border-slate-grey rounded-lg p-8 text-center cursor-pointer hover:border-primary/80 hover:bg-slate-grey-dark transition-colors duration-200">
+<div class="flex flex-col items-center gap-2 text-slate-grey-light">
+<span class="material-symbols-outlined text-4xl">upload_file</span>
+<p class="text-base font-semibold">Click to upload or drag and drop</p>
+<p class="text-xs">SVG, PNG, JPG or GIF (max. 800x400px)</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="Interior of a modern barbershop" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQIq9py4zdvIWTZlvS_eJxjux5WcypZeqSnmUgMMQDGsX-oegq1J0Nw4nmjkAzzmDaYy_QIJAz5vj9YL9ajW7WDUlDEOkABPBOOXwHCvnxgvpJ1zCehY2288tfSxgIQ7zS-5BlGi9lzyVhgLQ4o34Udvrz_mLmvVdd9r8zdpgJLLNWpN0xKSfZ_61M7al-CdpwmMB11UEC59Ro0dBZk_YYwgSQ1XFm5qXQP6oC2hOBTSzEE7fkeAtni8n5pZj55O2tOkfqFkApTkc");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="A barber cutting a client's hair" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD8vw0fPXrRqauxUW8R6qlWvdMMZKHy7DEo1iPCKDH1X5mex2B5DPiVsJcbS4k3HlQqTnjrVvmopTTMU7yx8xAuRYiMZA0Tmka7yr-nzZo5bcjW4PzU1xDWel64hC6XwntAQLXiOpWQUdKyZwa_G_-OsV7EsP1uqL8bh13s2b5awcdt8a4IQt0eO69VOmRZsfwq2TJqDk82YPKpZkOJVoRtLRj7oiCDo21rGm_64DexCmihazPe8CfCvgj6fCCeW53Vaht9AT6asZ0");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="A collection of barber tools on a wooden counter" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXmIDrcsK95b1Mhif7wGl-qEb-bG0t-LwGXY8f43Iyqa3bhUZLzJucmyjjXEVbiHaFMMhO0rgzNuLWZz5qbYtkrGjZTBhzrGSDtZPoFQkszqMN64Ogc75X6a1O784E82IjL7nNpRWXFfQuaMh23C51-2fuSTNLHYBMWZ4bFyUQ1WrXBBnA3LprFxxDZ4aKc21PUjCMoE3hfoJQxm92O1QxIis8aUHnGfj8f0g1UtfOniFvSBsmNPBUbPTSfn-lVcOZmAD_SNChhog");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="A close-up of a sharp razor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCQjz9099qhyQfI27S73NbkbBviKhbPZUzAMk8CQC8RNboqotUvAn2g0wZIQlqPkOzH8TWHnthZAmPCIu6goNHCtyn27WoiRz5cn4w-n3VCjr2F3ReAOERxOqCcyHbSoKKy-3PQpzRKGkD_-jkqb-8WVoOXoQ3rRxD4bOO6qbHefNSj-Swmcao0Xt5iVythM6wTWs3dIrYsBMOidKAho1LjjFHT2NroN1q8AKyxTC01EZSRyf-1dtGhvXpeOWaOV0EY-s4YdQ9dYPM");'></div>
+</div>
+</div>
+</section>
+<!-- Business Hours Card -->
+<section class="bg-slate-grey-dark/50 border border-slate-grey/50 rounded-xl p-6">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-2">
+<div class="flex flex-col gap-1">
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Business Hours</h2>
+<p class="text-slate-grey-light text-sm font-normal leading-normal">Set your weekly opening and closing times.</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary hover:bg-primary/80 text-white text-sm font-bold leading-normal w-full md:w-auto">
+<span class="truncate">Save Hours</span>
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<div class="grid grid-cols-[1fr,auto,1fr,auto] sm:grid-cols-[100px,1fr,1fr,auto] items-center gap-2 sm:gap-4">
+<p class="text-sm font-medium">Monday</p>
+<input class="form-input rounded-lg text-white border-slate-grey bg-slate-grey-dark focus:ring-primary/50 focus:border-primary/50 text-sm w-full" type="time" value="09:00"/>
+<input class="form-input rounded-lg text-white border-slate-grey bg-slate-grey-dark focus:ring-primary/50 focus:border-primary/50 text-sm w-full" type="time" value="18:00"/>
+<p class="text-sm text-slate-grey-light justify-self-end">Open</p>
+</div>
+<div class="grid grid-cols-[1fr,auto,1fr,auto] sm:grid-cols-[100px,1fr,1fr,auto] items-center gap-2 sm:gap-4">
+<p class="text-sm font-medium">Tuesday</p>
+<input class="form-input rounded-lg text-white border-slate-grey bg-slate-grey-dark focus:ring-primary/50 focus:border-primary/50 text-sm w-full" type="time" value="09:00"/>
+<input class="form-input rounded-lg text-white border-slate-grey bg-slate-grey-dark focus:ring-primary/50 focus:border-primary/50 text-sm w-full" type="time" value="18:00"/>
+<p class="text-sm text-slate-grey-light justify-self-end">Open</p>
+</div>
+<!-- Add other days similarly -->
+<div class="grid grid-cols-[1fr,auto,1fr,auto] sm:grid-cols-[100px,1fr,1fr,auto] items-center gap-2 sm:gap-4 opacity-50">
+<p class="text-sm font-medium">Saturday</p>
+<input class="form-input rounded-lg text-white border-slate-grey bg-slate-grey-dark focus:ring-primary/50 focus:border-primary/50 text-sm w-full" disabled="" type="time" value="10:00"/>
+<input class="form-input rounded-lg text-white border-slate-grey bg-slate-grey-dark focus:ring-primary/50 focus:border-primary/50 text-sm w-full" disabled="" type="time" value="16:00"/>
+<p class="text-sm text-slate-grey-light justify-self-end">Closed</p>
+</div>
+<div class="grid grid-cols-[1fr,auto,1fr,auto] sm:grid-cols-[100px,1fr,1fr,auto] items-center gap-2 sm:gap-4 opacity-50">
+<p class="text-sm font-medium">Sunday</p>
+<input class="form-input rounded-lg text-white border-slate-grey bg-slate-grey-dark focus:ring-primary/50 focus:border-primary/50 text-sm w-full" disabled="" type="time" value="00:00"/>
+<input class="form-input rounded-lg text-white border-slate-grey bg-slate-grey-dark focus:ring-primary/50 focus:border-primary/50 text-sm w-full" disabled="" type="time" value="00:00"/>
+<p class="text-sm text-slate-grey-light justify-self-end">Closed</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

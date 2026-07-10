@@ -1,0 +1,48 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate deploy",
+    "migrate:dev": "prisma migrate dev",
+    "seed": "tsx src/db/seed.ts",
+    "studio": "prisma studio",
+    "build:db": "node scripts/build-database.mjs",
+    "backfill:cities": "tsx scripts/backfill-barber-cities.ts",
+    "backfill:coordinates": "tsx scripts/backfill-barber-coordinates.ts",
+    "backfill:at-home": "tsx scripts/backfill-at-home-areas.ts",
+    "verify:schema": "node scripts/verify-production-schema.mjs",
+    "sync:test-db": "node scripts/sync-test-database.mjs",
+    "test": "vitest run",
+    "set-stripe-keys": "node scripts/set-stripe-keys.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@clerk/backend": "^3.0.1",
+    "@fastify/cors": "^11.2.0",
+    "@fastify/helmet": "^13.0.2",
+    "@prisma/client": "^6.19.0",
+    "@sentry/node": "^9.47.1",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.7.2",
+    "resend": "^6.9.1",
+    "stripe": "^20.3.0",
+    "twilio": "^5.5.2",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.1.0",
+    "prisma": "^6.19.0",
+    "tsx": "^4.21.0",
+    "vitest": "^2.1.6"
+  }
+}

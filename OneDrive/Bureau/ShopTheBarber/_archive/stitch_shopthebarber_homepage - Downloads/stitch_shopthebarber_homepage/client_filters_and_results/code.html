@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShopTheBarber - Find Your Barber</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+<script>
+      tailwind.config = {
+          darkMode: "class",
+          theme: {
+              extend: {
+                  colors: {
+                      "primary": "#b87333", // Warm Copper
+                      "background-light": "#F7F8FA", // Off-White/Very Light Grey
+                      "background-dark": "#192a51", // Dark Indigo/Navy
+                      "slate-grey": "#708090",
+                      "card-dark": "#203464",
+                      "brand-navy": "#192a51" // Added for accents
+                  },
+                  fontFamily: {
+                      "display": ["Space Grotesk", "sans-serif"]
+                  },
+                  borderRadius: {
+                      "DEFAULT": "0.5rem",
+                      "lg": "1rem",
+                      "xl": "1.5rem",
+                      "full": "9999px"
+                  },
+              },
+          },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light text-brand-navy">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-grey/20 px-6 sm:px-10 lg:px-20 py-3 bg-background-light/80 backdrop-blur-sm sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-brand-navy">
+<div class="size-6 text-brand-navy">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-brand-navy text-lg font-bold leading-tight tracking-[-0.015em]">ShopTheBarber</h2>
+</div>
+</div>
+<div class="hidden md:flex flex-1 justify-center">
+<div class="flex items-center gap-9">
+<a class="text-brand-navy text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-brand-navy text-sm font-bold leading-normal" href="#">Appointments</a>
+<a class="text-brand-navy text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Messages</a>
+<a class="text-brand-navy text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Favorites</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-white/60 text-brand-navy hover:bg-slate-grey/10 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCk4fUgCHUG-PIel9OUNfTWG5n_WqeEjCwFKGtN3OW27p0xPH46iiQ_vc9096RsmZMausw8PwwJgMrB7mCjcIkKp1bbM5UIk9FxZqOYrSzM5Bj4l4-j-lzBKoFpdWdT38DTz3j4vjo1Z9YhFZ71_2xj1lmviF6YeXMbvkGbW9VRNemmkK2aifF6m1qjBIwJB7IuMQD2u2yy_sQs-yt5CEXWkKQHL5ndjjXoCbN6OnitMBElQofq6HdSt4YpAQmohDCqc9RUvuCrLc");'></div>
+</div>
+</header>
+<main class="px-6 sm:px-10 lg:px-20 py-5">
+<div class="layout-content-container flex flex-col w-full">
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<div class="flex min-w-72 flex-col gap-3">
+<p class="text-brand-navy text-4xl font-black leading-tight tracking-[-0.033em]">Find Your Next Barber</p>
+<p class="text-slate-grey text-base font-normal leading-normal">Showing results for Haircut &amp; Beard Trim in New York, NY</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+<aside class="lg:col-span-3">
+<div class="sticky top-28">
+<h2 class="text-brand-navy text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Filters</h2>
+<div class="flex flex-col p-4 bg-white rounded-xl shadow-sm">
+<details class="flex flex-col border-b border-b-slate-grey/20 py-2 group" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+<p class="text-brand-navy text-sm font-medium leading-normal">Type of Provider</p>
+<span class="material-symbols-outlined text-brand-navy group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="space-y-3 pt-3 pb-2">
+<label class="flex items-center gap-3 cursor-pointer"><input checked="" class="form-radio bg-slate-grey/20 border-slate-grey/30 text-brand-navy focus:ring-brand-navy" name="provider_type" type="radio"/><span class="text-slate-grey text-sm">Freelancer</span></label>
+<label class="flex items-center gap-3 cursor-pointer"><input class="form-radio bg-slate-grey/20 border-slate-grey/30 text-brand-navy focus:ring-brand-navy" name="provider_type" type="radio"/><span class="text-slate-grey text-sm">Barbershop</span></label>
+</div>
+</details>
+<details class="flex flex-col border-b border-b-slate-grey/20 py-2 group">
+<summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+<p class="text-brand-navy text-sm font-medium leading-normal">Mode</p>
+<span class="material-symbols-outlined text-brand-navy group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="space-y-3 pt-3 pb-2">
+<label class="flex items-center gap-3 cursor-pointer"><input class="form-radio bg-slate-grey/20 border-slate-grey/30 text-brand-navy focus:ring-brand-navy" name="mode" type="radio"/><span class="text-slate-grey text-sm">Service at Barber's place</span></label>
+<label class="flex items-center gap-3 cursor-pointer"><input class="form-radio bg-slate-grey/20 border-slate-grey/30 text-brand-navy focus:ring-brand-navy" name="mode" type="radio"/><span class="text-slate-grey text-sm">Service at Client's place</span></label>
+</div>
+</details>
+<details class="flex flex-col border-b border-b-slate-grey/20 py-2 group" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+<p class="text-brand-navy text-sm font-medium leading-normal">Minimum Rating</p>
+<span class="material-symbols-outlined text-brand-navy group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="flex items-center gap-2 pt-3 pb-2 text-slate-grey">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-slate-grey/50">star</span>
+<span class="text-sm ml-auto">4.0+</span>
+</div>
+</details>
+<details class="flex flex-col border-b border-b-slate-grey/20 py-2 group">
+<summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+<p class="text-brand-navy text-sm font-medium leading-normal">Distance</p>
+<span class="material-symbols-outlined text-brand-navy group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="pt-3 pb-2">
+<input class="w-full h-2 bg-slate-grey/20 rounded-lg appearance-none cursor-pointer accent-brand-navy" type="range"/>
+<p class="text-slate-grey text-sm text-right mt-1">Up to 10 miles</p>
+</div>
+</details>
+<details class="flex flex-col border-b border-b-slate-grey/20 py-2 group">
+<summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+<p class="text-brand-navy text-sm font-medium leading-normal">Price Range</p>
+<span class="material-symbols-outlined text-brand-navy group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="pt-3 pb-2">
+<input class="w-full h-2 bg-slate-grey/20 rounded-lg appearance-none cursor-pointer accent-brand-navy" type="range"/>
+<p class="text-slate-grey text-sm text-right mt-1">Up to $150</p>
+</div>
+</details>
+<div class="flex items-center justify-between gap-6 py-4">
+<p class="text-brand-navy text-sm font-medium leading-normal">Kids-Friendly</p>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-grey/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-navy"></div>
+</label>
+</div>
+<div class="flex flex-col gap-3 pt-4 border-t border-slate-grey/20">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-brand-navy text-white text-sm font-bold leading-normal tracking-[0.015em] w-full hover:opacity-90 transition-opacity">
+<span class="truncate">Apply Filters</span>
+</button>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-slate-grey hover:bg-slate-grey/10 text-sm font-bold leading-normal tracking-[0.015em] w-full transition-colors">
+<span class="truncate">Clear All</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<main class="lg:col-span-9 space-y-8">
+<div class="flex justify-end items-center">
+<label class="text-sm text-slate-grey mr-2" for="sort">Sort by:</label>
+<select class="form-select w-48 rounded-lg border-slate-grey/30 bg-white text-brand-navy focus:border-brand-navy focus:ring-brand-navy text-sm" id="sort" name="sort">
+<option>Relevance (default)</option>
+<option>Closest</option>
+<option>Highest Rated</option>
+<option>Price low-to-high</option>
+</select>
+</div>
+<div>
+<h3 class="text-xl font-bold text-brand-navy mb-4">Freelancers</h3>
+<div class="space-y-4">
+<div class="bg-white rounded-xl shadow-sm p-4 flex flex-col sm:flex-row gap-4 hover:shadow-lg transition-shadow">
+<div class="w-full sm:w-32 h-32 flex-shrink-0 bg-cover bg-center rounded-lg" data-alt="Photo of barber Jay Carter" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJmRejwbGBRFWRYgLr14WXTLUIbj_rp2-DZBF4uTeZloAtP15eETxNGZboFDlyzTdea3WePjUOLXf6mapOgLgF4niKgbT_NIwSYa8s5sd2jJstURtdAvNaqkbSMtdK7W7EnHoAEafr8etbkF-qlOnGIjTWXkmsn_hd6D8HcmyesyQ_kBvRK1l0_Md3kRyg0aSbmE2fbXuKkuhvCR51ULfcMWoud6S1zV1zp3YdocQdhp8EmDyvE7ro3FSjMvCXRLk_xKrT-1filic');"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="text-lg font-bold text-brand-navy">Jay Carter</h4>
+<div class="flex items-center gap-1 text-sm text-slate-grey">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.9 (152 reviews)</span>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-4 text-sm text-slate-grey">
+<div class="flex items-center gap-1 text-brand-navy">
+<span class="material-symbols-outlined text-brand-navy/80">check_circle</span> Haircut
+                                                </div>
+<div class="flex items-center gap-1 text-brand-navy">
+<span class="material-symbols-outlined text-brand-navy/80">check_circle</span> Beard Trim
+                                                </div>
+<div class="flex items-center gap-1 text-slate-grey/50">
+<span class="material-symbols-outlined">cancel</span> Shave
+                                                </div>
+</div>
+<div class="mt-2 flex items-center gap-4 text-sm text-slate-grey">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">near_me</span>1.8 miles away</span>
+<span class="font-bold text-brand-navy">From $50</span>
+</div>
+</div>
+<div class="sm:w-56 flex-shrink-0 border-t sm:border-t-0 sm:border-l border-slate-grey/20 pt-4 sm:pt-0 sm:pl-4">
+<h5 class="text-sm font-bold text-brand-navy mb-2">Available Times</h5>
+<div class="grid grid-cols-3 gap-2">
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">10:00 AM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">11:30 AM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-brand-navy rounded-md bg-brand-navy text-white">2:00 PM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">2:30 PM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">4:00 PM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">5:00 PM</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<h3 class="text-xl font-bold text-brand-navy mb-4">Barbershops</h3>
+<div class="space-y-4">
+<div class="bg-white rounded-xl shadow-sm p-4 flex flex-col sm:flex-row gap-4 hover:shadow-lg transition-shadow">
+<div class="w-full sm:w-32 h-32 flex-shrink-0 bg-cover bg-center rounded-lg" data-alt="Photo of The Dapper Den barbershop interior" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCpgRbOAH8wCRum-YmPW_ouJ8TpyjPG6RytLyefQenSiN0-YyzkkqcQhYjf4fjcCyf2FWGsuZnp9Xl6qR4S32m2GTvOEJxwJj6jbFDyfbckieVI5QphIRJrlcoCcoLLas1vhqMsY-sNz8mMBOOoTpBpm2L_7jq9VfUjxiHGKCSYs16naA5CxgBdMZrLdNhlDQ6OOoUUNdCYTC1_V84Zj8FmZUpMamJo6uHU56lxPvg_zHnwzCoyR7DEBW9zl81CEWbWNb2c7xBuCHk');"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="text-lg font-bold text-brand-navy">The Dapper Den</h4>
+<div class="flex items-center gap-1 text-sm text-slate-grey">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.8 (310 reviews)</span>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-4 text-sm text-slate-grey">
+<div class="flex items-center gap-1 text-brand-navy">
+<span class="material-symbols-outlined text-brand-navy/80">check_circle</span> Haircut
+                                                </div>
+<div class="flex items-center gap-1 text-brand-navy">
+<span class="material-symbols-outlined text-brand-navy/80">check_circle</span> Beard Trim
+                                                </div>
+<div class="flex items-center gap-1 text-brand-navy">
+<span class="material-symbols-outlined text-brand-navy/80">check_circle</span> Shave
+                                                </div>
+</div>
+<div class="mt-2 flex items-center gap-4 text-sm text-slate-grey">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">near_me</span>3.2 miles away</span>
+<span class="font-bold text-brand-navy">From $45</span>
+</div>
+</div>
+<div class="sm:w-56 flex-shrink-0 border-t sm:border-t-0 sm:border-l border-slate-grey/20 pt-4 sm:pt-0 sm:pl-4">
+<h5 class="text-sm font-bold text-brand-navy mb-2">Next Available</h5>
+<div class="grid grid-cols-3 gap-2">
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">9:30 AM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">10:00 AM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">1:00 PM</button>
+</div>
+<button class="mt-2 w-full text-sm font-bold text-brand-navy">View all times</button>
+</div>
+</div>
+<div class="bg-white rounded-xl shadow-sm p-4 flex flex-col sm:flex-row gap-4 hover:shadow-lg transition-shadow">
+<div class="w-full sm:w-32 h-32 flex-shrink-0 bg-cover bg-center rounded-lg" data-alt="Photo of The King's Cut barbershop logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZMuNbYqj72xiXx69tHHHWpOlueQdQKjUZ0esyp6NoVQGrqkxhKyf9l7XYpc8cvRP2oK5LjTyzvrja72xjL_I5F5FsuJ0U-Kecj_fdotFCgbJCq5E2QnhHlMq4Y16tdef0Tw_idnR71gbog1v9KJFdYTm6-L7qRb0bikqjI-pKJuhRXRmZWNl9Av_2SnrnvtNr3i8zpynGFWn6jwGowIaMmoy_6x5vnGQ_0SUvCuCu_T8_od5g8DpiyfNHwI70NKOUGWwp08-rXUo');"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="text-lg font-bold text-brand-navy">King's Cut</h4>
+<div class="flex items-center gap-1 text-sm text-slate-grey">
+<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.7 (245 reviews)</span>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-4 text-sm text-slate-grey">
+<div class="flex items-center gap-1 text-brand-navy">
+<span class="material-symbols-outlined text-brand-navy/80">check_circle</span> Haircut
+                                                </div>
+<div class="flex items-center gap-1 text-brand-navy">
+<span class="material-symbols-outlined text-brand-navy/80">check_circle</span> Beard Trim
+                                                </div>
+</div>
+<div class="mt-2 flex items-center gap-4 text-sm text-slate-grey">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-base">near_me</span>4.5 miles away</span>
+<span class="font-bold text-brand-navy">From $40</span>
+</div>
+</div>
+<div class="sm:w-56 flex-shrink-0 border-t sm:border-t-0 sm:border-l border-slate-grey/20 pt-4 sm:pt-0 sm:pl-4">
+<h5 class="text-sm font-bold text-brand-navy mb-2">Next Available</h5>
+<div class="grid grid-cols-3 gap-2">
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">12:30 PM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">1:00 PM</button>
+<button class="text-xs font-semibold py-2 px-1 border border-slate-grey/30 rounded-md text-slate-grey hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-colors">3:30 PM</button>
+</div>
+<button class="mt-2 w-full text-sm font-bold text-brand-navy">View all times</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

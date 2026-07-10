@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#B87333",
+                        "background-light": "#f4f4f4",
+                        "background-dark": "#1A2238",
+                        "card-dark": "#283046",
+                        "border-dark": "#4A4A4A",
+                        "text-light": "#f4f4f4",
+                        "text-muted-dark": "#9DA4B9",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark px-10 py-3">
+<div class="flex items-center gap-4 text-text-light">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.13 2.44l-8.37 8.37c-.38.38-.38 1.02 0 1.41l1.59 1.59c-1.33.44-2.43 1.54-2.87 2.87l-1.59-1.59a.996.996 0 00-1.41 0L2.44 18.13a.996.996 0 000 1.41l2.44 2.44c.39.39 1.02.39 1.41 0l3.04-3.04a.996.996 0 000-1.41l-1.59-1.59c.44-1.33 1.54-2.43 2.87-2.87l1.59 1.59c.39.39 1.02.39 1.41 0l8.37-8.37a.996.996 0 000-1.41L19.54 2.44a.996.996 0 00-1.41 0zM8.5 4H10v2.5L8.5 8zM5.5 7H7v2.5L5.5 11zM14 12.5l-1.5-1.5H15V11h-2.5zm-3-4L9.5 7H11V4.5H8.5z"></path>
+</svg>
+</div>
+<h2 class="text-text-light text-lg font-bold leading-tight tracking-[-0.015em]">ShopTheBarber</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-text-light text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-text-light text-sm font-medium leading-normal" href="#">Services</a>
+<a class="text-text-light text-sm font-medium leading-normal" href="#">Barbers</a>
+<a class="text-text-light text-sm font-medium leading-normal" href="#">My Bookings</a>
+</div>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-card-dark text-text-light gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined text-text-light" style="font-size: 20px;">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBL1MKle4b3hePFBPAv1Ge6QE8W46jvcCTWMOvH0aJNPbAQL0Bu9ZOjiEUCH1_77EmqHjs_gN_Ps1cEsJItY1voi0Do4tXSMA2F6R_7wp_4-9CK5Jlefc52n5DSSniOEps-EjGMxvm4XRi5ki-y11PfjIBmipyD1DCbiuVd8svCPFPm2ALktLR6UOi9KuGeFmHPhX3lExyM5tVHSD2b4jG8A5YGQfsN6froM2QYo01_3q_8Jc4spBO52Nl2F6GaDV4w8YXAxE0W0gI");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-5 sm:py-10 px-4">
+<div class="layout-content-container flex flex-col w-full max-w-[960px] flex-1 gap-8">
+<div class="flex flex-col items-center text-center gap-4 pt-8">
+<div class="flex items-center justify-center size-20 rounded-full bg-primary/20">
+<span class="material-symbols-outlined text-primary" style="font-size: 48px;">check_circle</span>
+</div>
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-text-light text-4xl font-black leading-tight tracking-[-0.033em]">Your Booking is Confirmed!</p>
+<p class="text-text-muted-dark text-base font-normal leading-normal">Booking ID: #STB8675309</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="rounded-xl border border-border-dark bg-card-dark overflow-hidden">
+<h2 class="text-text-light text-[22px] font-bold leading-tight tracking-[-0.015em] px-6 pb-3 pt-5">Booking Summary</h2>
+<ul>
+<li>
+<div class="flex items-center gap-4 px-6 min-h-[72px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-text-light flex items-center justify-center rounded-lg bg-[#3a4461] shrink-0 size-12">
+<span class="material-symbols-outlined">content_cut</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-text-light text-base font-medium leading-normal line-clamp-1">Men's Haircut</p>
+<p class="text-text-muted-dark text-sm font-normal leading-normal line-clamp-2">Performed by Alex Johnson</p>
+</div>
+</div>
+<div class="shrink-0">
+<p class="text-text-light text-base font-normal leading-normal">$45.00</p>
+</div>
+</div>
+</li>
+<li>
+<div class="flex items-center gap-4 px-6 min-h-[72px] py-2 justify-between">
+<div class="flex items-center gap-4">
+<div class="text-text-light flex items-center justify-center rounded-lg bg-[#3a4461] shrink-0 size-12">
+<span class="material-symbols-outlined">brush</span>
+</div>
+<div class="flex flex-col justify-center">
+<p class="text-text-light text-base font-medium leading-normal line-clamp-1">Beard Trim</p>
+<p class="text-text-muted-dark text-sm font-normal leading-normal line-clamp-2">Performed by Alex Johnson</p>
+</div>
+</div>
+<div class="shrink-0">
+<p class="text-text-light text-base font-normal leading-normal">$30.00</p>
+</div>
+</div>
+</li>
+<li class="border-t border-border-dark">
+<div class="flex items-center justify-between px-6 py-4">
+<p class="text-text-light text-base font-bold">Total</p>
+<p class="text-text-light text-lg font-bold">$75.00</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="rounded-xl border border-border-dark bg-card-dark p-6">
+<h2 class="text-text-light text-[22px] font-bold leading-tight tracking-[-0.015em] mb-4">Performer Details</h2>
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16 shrink-0" data-alt="Barber Alex Johnson's profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMgxlQPp4_XTuG5pMpe8C_5qKysWL2xAHub1kuEuP9wduugNTnFUG0QXx3b4vCKT_KPq8eqHKojDsUWrbMwpDwdOceI7L-9dWvSPmdEuT28GHyHcaUHKF3AUG4CALcbPaJ46Z8y65HpUyqoppBMLauUzT7Rr-OtEToifWhGVucwfpd1aoNez35fFH4RAMIOSJg1Nt1AilPxvyW-xt8Rb4tLl-PRwQ_0SBroCggZp-L-dv8Mm2wF0VVj4Q6j_SfhOXqOLUPabvOduk");'></div>
+<div class="flex flex-col">
+<p class="text-text-light text-lg font-bold">Alex Johnson</p>
+<p class="text-text-muted-dark text-sm">Lead Barber</p>
+</div>
+<button class="ml-auto flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#3a4461] text-text-light gap-2 text-sm font-medium leading-normal min-w-0 px-4">
+<span class="material-symbols-outlined" style="font-size: 18px;">chat</span> Message Barber
+                                    </button>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1 flex flex-col gap-6">
+<div class="rounded-xl border border-border-dark bg-card-dark p-6">
+<h3 class="text-text-light text-lg font-bold mb-1">Date &amp; Time</h3>
+<div class="flex items-center gap-2 text-text-muted-dark mb-4">
+<span class="material-symbols-outlined" style="font-size: 20px;">calendar_today</span>
+<p class="text-text-light">Friday, October 27, 2024</p>
+</div>
+<div class="flex items-center gap-2 text-text-muted-dark">
+<span class="material-symbols-outlined" style="font-size: 20px;">schedule</span>
+<p class="text-text-light">2:30 PM</p>
+</div>
+</div>
+<div class="rounded-xl border border-border-dark bg-card-dark overflow-hidden flex flex-col">
+<div class="p-6">
+<h3 class="text-text-light text-lg font-bold mb-2">Location</h3>
+<p class="text-text-light font-medium">The Gentry Barbershop</p>
+<p class="text-text-muted-dark text-sm">123 Artisan Ave, Suite 101, Metro City, 90210</p>
+</div>
+<div class="w-full bg-center bg-no-repeat bg-cover aspect-[4/3] flex-1" data-alt="Map showing the location of The Gentry Barbershop" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAQxFL44F9oEZZfGDjv2fhb8iZSMBAPFz4_wZ1GCzYY9bVLccZM-XZxK-72OFu-8ExqR02q1paYSdS1KtO9aGiLLBXEoon2P43bwy8GaWSc42jzJCv_6YGX9j0CWNQid7NV1B1o9FOaDiyq2iq1CArhxqmXi6vmOjmfDuv490NHvaFRduCKym7NkCC-8iKHmZuADxwivBAwj6UJ7RdDJGL2cADKHbC8n20eNIe2qIsfbcG6g-JITSIdXFhle-Mq4tvPA2CLm8UHXq8");'></div>
+<div class="p-4">
+<a class="flex w-full items-center justify-center text-center rounded-lg h-11 bg-[#3a4461] text-text-light gap-2 text-sm font-bold tracking-wide" href="#">
+                                        Get Directions
+                                    </a>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-border-dark mt-4 pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+<button class="flex w-full sm:w-auto items-center justify-center rounded-lg h-12 bg-primary text-white gap-2 text-base font-bold min-w-0 px-6">
+<span class="material-symbols-outlined" style="font-size: 20px;">event</span> Add to Calendar
+                        </button>
+<button class="flex w-full sm:w-auto items-center justify-center rounded-lg h-12 bg-card-dark text-text-light gap-2 text-base font-bold min-w-0 px-6 border border-border-dark">
+<span class="material-symbols-outlined" style="font-size: 20px;">share</span> Share Receipt
+                        </button>
+<a class="flex w-full sm:w-auto items-center justify-center rounded-lg h-12 text-text-light gap-2 text-base font-bold min-w-0 px-6 hover:bg-card-dark transition-colors" href="#">
+                            Go to My Bookings
+                        </a>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

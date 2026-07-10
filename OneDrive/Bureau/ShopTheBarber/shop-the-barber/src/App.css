@@ -1,0 +1,2 @@
+/* Clerk sign-in/sign-up branding is hidden via the appearance.elements API in SignIn.jsx and SignUp.jsx.
+   Avoid structural CSS selectors (e.g. .cl-footer > div) — Clerk warns when those target internal DOM. */

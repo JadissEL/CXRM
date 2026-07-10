@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShopTheBarber - Premium Grooming for Men &amp; Boys</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<style type="text/tailwindcss">
+        @layer base {
+          html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+          body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F8F8;
+          }
+          h1, h2, h3, h4, h5, h6 {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-weight: 600;
+            letter-spacing: -0.025em;
+          }
+        }
+        @layer utilities {
+          .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(230, 230, 230, 0.7);
+          }
+          .hero-bg {
+            background-color: #e6e6e6;
+            background-image:
+              radial-gradient(ellipse 90% 60% at 50% -15%, rgba(85, 112, 134, 0.2), transparent),
+              url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmCig3JQwC_tAchktO2PvabTL6bndnqw-sS_RiE7b6CoQ79SCvUET9TFKHoCiTDz3WAs3xKcROKXrvnVQJyoFO9WfV5ejPdGAr-AciJH7pbB3XtwokiRZIvDzkaAwYQ7dNlQEofGCLGXSWO2tVjHoGrQ3dNNWJBQVcYBnKWa4cP888lPy8a7ygoCaynVty_dM7tebTdDSYt4hg1Z4EEOB0rZUeWJMNguYsp-McEoQ6bR93fug0mHebI_wXJPkprXq9E907TSxqhhM');
+            background-size: cover;
+            background-position: center 40%;
+          }
+          .text-glow-steel {
+            text-shadow: 0 0 20px rgba(85, 112, 134, 0.7);
+          }
+          .text-sculptural {
+            text-shadow: 0px 1px 3px rgba(0,0,0,0.1), 0px 0px 1px rgba(255,255,255,0.3);
+          }
+          .transition-all-calm {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .cta-gradient {
+            background: linear-gradient(120deg, #F8F8F8 0%, #E6E6E6 100%);
+          }
+        }
+    </style>
+<script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                'primary': '#557086', // Steel Blue
+                'espresso-brown': '#5B4632',
+                'matte-silver': '#A9B0B7',
+                'background': '#F8F8F8',
+                'surface': '#FFFFFF',
+                'charcoal': '#121212',
+                'slate': '#3C3C3C',
+                'soft-gray': '#E6E6E6',
+              },
+              fontFamily: {
+                display: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                body: ['Inter', 'sans-serif'],
+              },
+              borderRadius: {
+                'xl': '12px',
+                '2xl': '16px',
+                '3xl': '20px',
+                '4xl': '24px',
+              },
+              boxShadow: {
+                'apple-1': '0 2px 8px rgba(0, 0, 0, 0.04)',
+                'apple-2': '0 6px 20px -4px rgba(0, 0, 0, 0.07)',
+                'apple-3': '0 12px 32px -8px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0,0,0,0.05)',
+              },
+              spacing: {
+                '16': '4rem',
+                '24': '6rem',
+                '32': '8rem',
+              }
+            },
+          },
+        };
+    </script>
+</head>
+<body class="bg-background text-slate antialiased">
+<div class="max-w-[1920px] mx-auto">
+<header class="fixed top-6 left-1/2 -translate-x-1/2 w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-50">
+<nav class="w-full mx-auto px-6 py-3 rounded-2xl flex items-center justify-between glass-card shadow-apple-2">
+<a class="text-xl font-display font-bold text-charcoal" href="#">ShopTheBarber</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate/80 hover:text-charcoal transition-colors text-[15px]" href="#">Features</a>
+<a class="text-slate/80 hover:text-charcoal transition-colors text-[15px]" href="#">Barbers</a>
+<a class="text-slate/80 hover:text-charcoal transition-colors text-[15px]" href="#">About</a>
+</div>
+<div class="flex items-center space-x-2 sm:space-x-4">
+<a class="hidden sm:block text-charcoal hover:text-primary transition-colors font-medium text-[15px] px-2" href="#">Log in</a>
+<a class="bg-primary text-white px-5 py-2.5 rounded-xl font-medium text-[15px] hover:scale-105 transform transition-all-calm shadow-apple-1 hover:shadow-apple-2" href="#">Sign Up</a>
+</div>
+</nav>
+</header>
+<main>
+<section class="relative hero-bg overflow-hidden min-h-screen flex items-center justify-center pt-24 pb-16">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+<div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<div class="max-w-4xl mx-auto">
+<h1 class="text-5xl md:text-6xl lg:text-[80px] leading-tight font-display font-bold text-charcoal tracking-tighter text-sculptural">
+                          Grooming for men and boys— book the best barbers <span class="text-primary text-glow-steel">near you.</span>
+</h1>
+<p class="mt-6 text-lg text-slate/90 max-w-2xl mx-auto">
+                            Discover and book top-rated barbers for premium haircuts, shaves, and styles. Effortless booking, exceptional results.
+                        </p>
+<div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="w-full sm:w-auto text-center bg-primary text-white px-8 py-4 rounded-xl font-semibold shadow-apple-2 hover:scale-105 transform transition-all-calm" href="#">Find a Barber</a>
+<a class="w-full sm:w-auto text-center text-charcoal px-8 py-4 rounded-xl font-semibold border border-matte-silver/50 hover:border-matte-silver/80 transform transition-all-calm bg-white/30 backdrop-blur-sm shadow-apple-1 hover:scale-105" href="#">Become a Partner</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 sm:py-32">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-display font-bold text-charcoal tracking-tighter">The Modern Standard in Grooming</h2>
+<p class="mt-4 text-lg text-slate">A seamless, premium experience from discovery to appointment.</p>
+</div>
+<div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="relative group">
+<div class="absolute -inset-px bg-gradient-to-br from-primary/20 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="relative p-8 h-full glass-card rounded-3xl shadow-apple-2 transition-all-calm group-hover:shadow-apple-3">
+<div class="bg-primary/10 p-4 rounded-2xl w-fit mb-6 ring-1 ring-inset ring-white/50"><span class="material-symbols-outlined text-primary text-4xl">verified</span></div>
+<h3 class="text-2xl font-display font-semibold text-charcoal">Vetted Professionals</h3>
+<p class="mt-2 text-slate/90">Only the best, highly-rated barbers and shops make it to our platform, ensuring quality and trust.</p>
+</div>
+</div>
+<div class="relative group mt-0 md:-mt-8">
+<div class="absolute -inset-px bg-gradient-to-br from-espresso-brown/20 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="relative p-8 h-full glass-card rounded-3xl shadow-apple-2 transition-all-calm group-hover:shadow-apple-3">
+<div class="bg-espresso-brown/10 p-4 rounded-2xl w-fit mb-6 ring-1 ring-inset ring-white/50"><span class="material-symbols-outlined text-espresso-brown text-4xl">calendar_month</span></div>
+<h3 class="text-2xl font-display font-semibold text-charcoal">Effortless Booking</h3>
+<p class="mt-2 text-slate/90">Find available slots in real-time and book your appointment in just a few taps, anytime, anywhere.</p>
+</div>
+</div>
+<div class="relative group mt-0 md:-mt-16">
+<div class="absolute -inset-px bg-gradient-to-br from-primary/20 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="relative p-8 h-full glass-card rounded-3xl shadow-apple-2 transition-all-calm group-hover:shadow-apple-3">
+<div class="bg-primary/10 p-4 rounded-2xl w-fit mb-6 ring-1 ring-inset ring-white/50"><span class="material-symbols-outlined text-primary text-4xl">cut</span></div>
+<h3 class="text-2xl font-display font-semibold text-charcoal">Diverse Services</h3>
+<p class="mt-2 text-slate/90">From classic cuts to modern fades and luxury shaves, find your perfect service with transparent pricing.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 sm:py-32 bg-soft-gray/40">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-display font-bold text-charcoal tracking-tighter">Featured Barbers</h2>
+<p class="mt-4 text-lg text-slate">Meet some of the top-rated professionals in your area.</p>
+</div>
+<div class="mt-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group"><div class="glass-card rounded-3xl shadow-apple-2 overflow-hidden transition-all-calm group-hover:shadow-apple-3 group-hover:-translate-y-2"><img alt="Interior of Legacy Barbers" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcBaQhy52yX8VDGSqtMtBWhan055dTl6hctDs7VK3y_bO4QZcGwG6b_22VIuf27SALBDCN0kWVmv6XwfKZCCklNtHpvGpI5dk0ispdy9gO8NOv9iqos0fnhO1QJDO2AFzWAb8a3zY5AtRgL7XMISsnBGpIdKyV1Vu2g2odCjnkANHVodQcOZojAfaqjAzOrU8IqgO3-XaezL-8j9t5QAX7TjD-qU01V-Jw_q9UYALIXccJ0xETQUEzUY0knYfULkUJSHXfcjcIvA4"/><div class="p-6"><div class="flex justify-between items-start"><div><h3 class="font-display font-semibold text-lg text-charcoal">Legacy Barbers</h3><p class="text-sm text-slate/80 mt-1">Downtown, 9 Folsom St</p></div><div class="flex items-center gap-1 text-espresso-brown/90 text-xs font-bold py-1 px-2.5 rounded-full ring-1 ring-inset ring-espresso-brown/20 bg-espresso-brown/10"><span class="material-symbols-outlined text-sm">star</span><span>4.9</span></div></div></div></div></div>
+<div class="group"><div class="glass-card rounded-3xl shadow-apple-2 overflow-hidden transition-all-calm group-hover:shadow-apple-3 group-hover:-translate-y-2"><img alt="Client at The Gentleman's Cut" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBstnYnAI5-Bp_UaR4DuoQpA9L1MzeefM_5ah--As2_d6fworXi5EU_gOsTB8-O1tT3lTe6FLHXJmFoa6WCVSKBVVeOQaGkaEy_5RWCaHSDzz_V-_TJqZ2wfLkZ5ajAQhlQdSWEvX3qxK3GNTdfK-Efn4QDQCZp5vvhaYEP-5BhoHR67epLxic7oPFhZUHoA2yIgrKWfHXNj6T5IQBQZmw3gvwE-sMr4Pet7qDx1TXad-ZiwOukYw6vWjb_iPWCs51OnKYb7t42W0E"/><div class="p-6"><div class="flex justify-between items-start"><div><h3 class="font-display font-semibold text-lg text-charcoal">The Gentleman's Cut</h3><p class="text-sm text-slate/80 mt-1">Oak District, 12 Oak St</p></div><div class="flex items-center gap-1 text-espresso-brown/90 text-xs font-bold py-1 px-2.5 rounded-full ring-1 ring-inset ring-espresso-brown/20 bg-espresso-brown/10"><span class="material-symbols-outlined text-sm">star</span><span>5.0</span></div></div></div></div></div>
+<div class="group"><div class="glass-card rounded-3xl shadow-apple-2 overflow-hidden transition-all-calm group-hover:shadow-apple-3 group-hover:-translate-y-2"><img alt="Barber at Precision Shaves" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmRc4_5RFHsiTZFRS2p7OflsNT0lPnIyQB6kw8F5LWCycMIK1rdiLrKsNrqb4fqYrGiR7KN9907shEKVmhzFzKYMlfBKO8GeXYVUH2QMXBuyVUbLQCMbe2pqcIN7n-fXhHAIIYyRFILaWK7jkvuuG--z1MjZ_r-emd6-0Ub_d_-252si9tdp7IUbfllU1nKMYyuSFagvAiefqmsmciS_gDTzKtmu_JteJhK3SH__fMW9T5exc8q2cj0-5TYKbZsgEe450OJc_-hnA"/><div class="p-6"><div class="flex justify-between items-start"><div><h3 class="font-display font-semibold text-lg text-charcoal">Precision Shaves</h3><p class="text-sm text-slate/80 mt-1">West End, 112 River Rd</p></div><div class="flex items-center gap-1 text-espresso-brown/90 text-xs font-bold py-1 px-2.5 rounded-full ring-1 ring-inset ring-espresso-brown/20 bg-espresso-brown/10"><span class="material-symbols-outlined text-sm">star</span><span>4.8</span></div></div></div></div></div>
+<div class="group"><div class="glass-card rounded-3xl shadow-apple-2 overflow-hidden transition-all-calm group-hover:shadow-apple-3 group-hover:-translate-y-2"><img alt="Stylist at City Style Barbers" class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoY9TSioPJpUyqS9ccNAfnVLzX4gGqPu7PQfsL66Ce8XSfHsAV6R_T8YLDaUMNLguK2SXQubVzLjt5CyTstnQBiw_GwlYlMhSCFIoY4hiBJI4A7_p5Rd2LgiBj5Z9AObLMgQ6eoD7qOeESO9tdA9gHrxCpfEALkTiYQl2EzgiqoW9dlxK6wlTKWeIDotuQwHO-oPoE8MWjq2vl7DQert73Tin7isekJ-dT51A2nE53DUsqUdrEXKgpAjLT2GK9DJx24z7kgsyDBwo"/><div class="p-6"><div class="flex justify-between items-start"><div><h3 class="font-display font-semibold text-lg text-charcoal">City Style Barbers</h3><p class="text-sm text-slate/80 mt-1">Market District, 45 Ave</p></div><div class="flex items-center gap-1 text-espresso-brown/90 text-xs font-bold py-1 px-2.5 rounded-full ring-1 ring-inset ring-espresso-brown/20 bg-espresso-brown/10"><span class="material-symbols-outlined text-sm">star</span><span>4.9</span></div></div></div></div></div>
+</div>
+</div>
+</section>
+<section class="py-24 sm:py-32">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto">
+<h2 class="text-4xl md:text-5xl font-display font-bold text-charcoal tracking-tighter">How It Works</h2>
+<p class="mt-4 text-lg text-slate">Book your perfect grooming experience in three simple steps.</p>
+</div>
+<div class="mt-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative h-[600px]">
+<img alt="A focused barber" class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-apple-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClw7JZWxg-O67jm3cITDwiUP4EmPfYeJd3O_nLWfyr4DgbzrPn4a7-LIaeX1WdROIyxipqnsW84ILJ5e_j_vsQEOF7U2evnZgC0UMRUa59SR9ci7BhAdQup9rJUeU4JhVLqA5EPJYE8_hEiLlb7myz-tiJOKK0Rl8wTbiMPg1oYkw64dUk-xSqzTDDSfNi2r7U5kzvienZ6CYJhiBsNcIDSkS4TG624Dce6pLJeg5Ln3xTZwUNxkRRrKF_PjgVBH_4-f4owHJEqUY"/>
+<div class="absolute -bottom-8 -left-8 w-48 p-6 glass-card rounded-3xl shadow-apple-3">
+<span class="material-symbols-outlined text-primary text-4xl">search</span>
+<p class="mt-2 font-semibold text-charcoal">Find &amp; Discover</p>
+</div>
+<div class="absolute -top-8 -right-8 w-48 p-6 glass-card rounded-3xl shadow-apple-3">
+<span class="material-symbols-outlined text-espresso-brown text-4xl">event_available</span>
+<p class="mt-2 font-semibold text-charcoal">Book Instantly</p>
+</div>
+</div>
+<div class="space-y-12">
+<div class="flex items-start gap-6">
+<div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-2xl bg-primary/10 text-primary text-xl font-bold">1</div>
+<div>
+<h3 class="text-xl font-display font-semibold text-charcoal">Find your barber</h3>
+<p class="mt-1 text-slate/90">Browse our curated list of top-rated barbers and shops near you using our advanced search filters.</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-2xl bg-espresso-brown/10 text-espresso-brown text-xl font-bold">2</div>
+<div>
+<h3 class="text-xl font-display font-semibold text-charcoal">Choose a service</h3>
+<p class="mt-1 text-slate/90">Select from a wide range of services, from classic cuts to luxury shaves, and see real-time availability.</p>
+</div>
+</div>
+<div class="flex items-start gap-6">
+<div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-2xl bg-primary/10 text-primary text-xl font-bold">3</div>
+<div>
+<h3 class="text-xl font-display font-semibold text-charcoal">Book instantly</h3>
+<p class="mt-1 text-slate/90">Pick a date and time that works for you and confirm your booking securely. It’s that simple.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 sm:py-32">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="relative rounded-4xl p-12 md:p-20 cta-gradient shadow-apple-2 overflow-hidden">
+<div class="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-primary/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-espresso-brown/5 rounded-full blur-3xl"></div>
+<div class="relative z-10 text-center">
+<h2 class="text-4xl md:text-5xl font-display font-bold text-charcoal tracking-tighter">Ready to elevate your grooming routine?</h2>
+<p class="mt-4 max-w-2xl mx-auto text-lg text-slate">Find and book the best barbers in your city with just a few clicks. Your perfect look awaits.</p>
+<div class="mt-10">
+<a class="inline-block bg-primary text-white px-8 py-4 rounded-xl font-semibold shadow-apple-2 hover:scale-105 transform transition-all-calm" href="#">Find Your Perfect Barber</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="mt-24 sm:mt-32 border-t border-soft-gray">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+<div class="col-span-2 lg:col-span-2">
+<a class="text-2xl font-display font-bold text-charcoal" href="#">ShopTheBarber</a>
+<p class="mt-4 text-slate max-w-xs">The premier ecosystem for discovering and booking men's grooming services.</p>
+<div class="flex items-center space-x-4 mt-6">
+<a class="text-matte-silver hover:text-primary transition-colors" href="#"><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg></a>
+<a class="text-matte-silver hover:text-espresso-brown transition-colors" href="#"><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.585.069-4.85c.149-3.225 1.664 4.771 4.919-4.919C8.415 2.175 8.796 2.163 12 2.163zm0 1.441c-3.116 0-3.479.011-4.694.067-2.45.112-3.582 1.232-3.694 3.694-.056 1.215-.067 1.578-.067 4.694s.011 3.479.067 4.694c.112 2.461 1.244 3.582 3.694 3.694 1.215.056 1.578.067 4.694.067s3.479-.011 4.694-.067c2.461-.112 3.582-1.232 3.694-3.694.056-1.215.067-1.578.067-4.694s-.011-3.479-.067-4.694c-.112-2.461-1.244-3.582-3.694-3.694-1.215-.056-1.578-.067-4.694-.067zM12 6.874c-2.849 0-5.156 2.306-5.156 5.156s2.306 5.156 5.156 5.156 5.156-2.306 5.156-5.156-2.306-5.156-5.156-5.156zm0 8.518c-1.856 0-3.364-1.508-3.364-3.364s1.508-3.364 3.364-3.364 3.364 1.508 3.364 3.364-1.508 3.364-3.364 3.364zm5.156-8.232c-.722 0-1.306-.585-1.306-1.306s.585-1.306 1.306-1.306 1.306.585 1.306 1.306-.585 1.306-1.306 1.306z"></path></svg></a>
+<a class="text-matte-silver hover:text-primary transition-colors" href="#"><svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+</div>
+</div>
+<div>
+<h4 class="font-display text-charcoal font-semibold">Company</h4>
+<ul class="mt-4 space-y-3">
+<li><a class="text-slate hover:text-primary transition-colors" href="#">About</a></li>
+<li><a class="text-slate hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="text-slate hover:text-primary transition-colors" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-display text-charcoal font-semibold">For Barbers</h4>
+<ul class="mt-4 space-y-3">
+<li><a class="text-slate hover:text-primary transition-colors" href="#">Become a Partner</a></li>
+<li><a class="text-slate hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="text-slate hover:text-primary transition-colors" href="#">Dashboard Login</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-4 lg:col-span-2">
+<h4 class="font-display text-charcoal font-semibold">Resources</h4>
+<ul class="mt-4 space-y-3">
+<li><a class="text-slate hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="text-slate hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="text-slate hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-soft-gray text-center text-sm text-matte-silver">
+<p>© 2024 ShopTheBarber. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

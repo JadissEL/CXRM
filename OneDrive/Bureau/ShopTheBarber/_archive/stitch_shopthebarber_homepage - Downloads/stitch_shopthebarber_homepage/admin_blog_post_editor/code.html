@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Blog Post Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#127ae2",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "charcoal": "#2C3E50",
+              "amber": "#D4AF37",
+              "off-white": "#F8F9FA",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full">
+<!-- SideNavBar -->
+<aside class="flex h-screen flex-col border-r border-gray-200 bg-white dark:border-gray-700 dark:bg-background-dark w-64 flex-shrink-0">
+<div class="flex flex-col gap-4 p-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="ShopTheBarber logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCeahadvYNqf1FkLph_2wN90LQC0F0BDUQF0kA6Jpz_dxkLVbAJrAtLeedX1WjBCZ2HPYTxK2b73oaOMK5T08MMJbxsb7-61HVLJOJnEM4JYnUA1P5O7uRZXdktw4_5cEOouoQUxvXZpBdI6xAsUGldi_LMjCioKqLii7RAlFoTTdZXcSc178UbAjFsi1JCj1JpU9qrOn0NGYwG24W4IfySYe-JU3k4jcCV-wKWuFdXX9F_Za8nM9xTbxppNA1PZwTGUvIDSNsRXio");'></div>
+<div class="flex flex-col">
+<h1 class="text-charcoal dark:text-off-white text-base font-medium leading-normal">Admin Panel</h1>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">ShopTheBarber</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-800 dark:text-gray-200">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-800 dark:text-gray-200">calendar_month</span>
+<p class="text-sm font-medium leading-normal">Bookings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-800 dark:text-gray-200">group</span>
+<p class="text-sm font-medium leading-normal">Customers</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-800 dark:text-gray-200">content_cut</span>
+<p class="text-sm font-medium leading-normal">Services</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-charcoal/10 dark:bg-off-white/10 text-charcoal dark:text-off-white" href="#">
+<span class="material-symbols-outlined text-charcoal dark:text-off-white" style="font-variation-settings: 'FILL' 1;">article</span>
+<p class="text-sm font-medium leading-normal">Blog</p>
+</a>
+</div>
+</div>
+<div class="mt-auto p-4">
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-800 dark:text-gray-200">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+<span class="material-symbols-outlined text-gray-800 dark:text-gray-200">logout</span>
+<p class="text-sm font-medium leading-normal">Logout</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<div class="p-8">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+<p class="text-charcoal dark:text-off-white text-4xl font-black leading-tight tracking-tight min-w-72">Create New Post</p>
+<div class="flex items-center gap-3">
+<span class="text-sm text-gray-500 dark:text-gray-400">Autosaved</span>
+<button class="text-sm font-medium text-charcoal dark:text-off-white py-2 px-4 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700">Save Draft</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-charcoal text-white text-sm font-bold leading-normal tracking-[0.015em]">Publish</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Editor -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-white dark:bg-background-dark p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+<!-- TextField for Title -->
+<label class="flex flex-col w-full">
+<input class="form-input w-full resize-none overflow-hidden text-2xl font-bold text-charcoal dark:text-off-white focus:outline-0 focus:ring-0 border-0 bg-transparent p-0 placeholder:text-gray-400 dark:placeholder:text-gray-500" placeholder="Enter post title here" value=""/>
+</label>
+</div>
+<div class="bg-white dark:bg-background-dark rounded-xl border border-gray-200 dark:border-gray-700">
+<!-- ToolBar -->
+<div class="flex justify-between gap-2 p-3 border-b border-gray-200 dark:border-gray-700">
+<div class="flex gap-1">
+<button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">format_bold</span>
+</button>
+<button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">format_italic</span>
+</button>
+<button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">format_underlined</span>
+</button>
+<button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+</button>
+<button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">format_list_numbered</span>
+</button>
+<button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">format_quote</span>
+</button>
+<button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">link</span>
+</button>
+<button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300">
+<span class="material-symbols-outlined">image</span>
+</button>
+</div>
+</div>
+<!-- BodyText Area -->
+<div class="p-6 min-h-[400px]">
+<p class="text-gray-400 dark:text-gray-500 text-base font-normal leading-relaxed">Start writing your story...</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Settings -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- Publishing Panel -->
+<div class="bg-white dark:bg-background-dark p-5 rounded-xl border border-gray-200 dark:border-gray-700">
+<h3 class="text-lg font-bold text-charcoal dark:text-off-white mb-4">Publishing</h3>
+<div class="flex items-center justify-between mb-4">
+<label class="text-sm font-medium text-gray-700 dark:text-gray-300" for="publish-toggle">Publish Immediately</label>
+<div class="relative inline-flex cursor-pointer items-center">
+<input checked="" class="peer sr-only" id="publish-toggle" type="checkbox"/>
+<div class="h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-0.5 after:left-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-charcoal peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-charcoal/30 dark:border-gray-600 dark:bg-gray-700"></div>
+</div>
+</div>
+<label class="flex flex-col w-full">
+<p class="text-sm font-medium text-gray-700 dark:text-gray-300 pb-2">Schedule Publication</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-charcoal dark:text-off-white focus:outline-0 focus:ring-0 border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark focus:border-charcoal dark:focus:border-amber h-11 placeholder:text-gray-400 p-2.5 text-sm font-normal leading-normal" disabled="" type="datetime-local"/>
+</label>
+<div class="mt-4 flex items-center gap-2">
+<p class="text-sm font-medium text-gray-700 dark:text-gray-300">Status:</p>
+<span class="inline-flex items-center rounded-full bg-amber/10 px-2.5 py-0.5 text-xs font-medium text-amber">Draft</span>
+</div>
+</div>
+<!-- Categories & Tags Panel -->
+<div class="bg-white dark:bg-background-dark p-5 rounded-xl border border-gray-200 dark:border-gray-700">
+<h3 class="text-lg font-bold text-charcoal dark:text-off-white mb-4">Categories &amp; Tags</h3>
+<label class="flex flex-col w-full mb-4">
+<p class="text-sm font-medium text-gray-700 dark:text-gray-300 pb-2">Categories</p>
+<select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-charcoal dark:text-off-white focus:outline-0 focus:ring-0 border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark focus:border-charcoal dark:focus:border-amber h-11 placeholder:text-gray-400 px-2.5 text-sm font-normal leading-normal">
+<option>Select a category</option>
+<option>Grooming Tips</option>
+<option>Style Guides</option>
+<option>Product Reviews</option>
+</select>
+</label>
+<label class="flex flex-col w-full">
+<p class="text-sm font-medium text-gray-700 dark:text-gray-300 pb-2">Tags</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-charcoal dark:text-off-white focus:outline-0 focus:ring-0 border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark focus:border-charcoal dark:focus:border-amber h-11 placeholder:text-gray-400 p-2.5 text-sm font-normal leading-normal" placeholder="Add tags (comma separated)"/>
+</label>
+</div>
+<!-- Featured Image Panel -->
+<div class="bg-white dark:bg-background-dark p-5 rounded-xl border border-gray-200 dark:border-gray-700">
+<h3 class="text-lg font-bold text-charcoal dark:text-off-white mb-4">Featured Image</h3>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-800 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-700" for="dropzone-file">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400">cloud_upload</span>
+<p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+</div>
+<input class="hidden" id="dropzone-file" type="file"/>
+</label>
+</div>
+</div>
+<!-- SEO Panel -->
+<div class="bg-white dark:bg-background-dark p-5 rounded-xl border border-gray-200 dark:border-gray-700">
+<h3 class="text-lg font-bold text-charcoal dark:text-off-white mb-4">SEO Settings</h3>
+<label class="flex flex-col w-full mb-4">
+<div class="flex justify-between items-center pb-2">
+<p class="text-sm font-medium text-gray-700 dark:text-gray-300">Meta Title</p>
+<p class="text-xs text-gray-400 dark:text-gray-500">0 / 60</p>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-charcoal dark:text-off-white focus:outline-0 focus:ring-0 border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark focus:border-charcoal dark:focus:border-amber h-11 placeholder:text-gray-400 p-2.5 text-sm font-normal leading-normal" placeholder="Enter SEO meta title"/>
+</label>
+<label class="flex flex-col w-full">
+<div class="flex justify-between items-center pb-2">
+<p class="text-sm font-medium text-gray-700 dark:text-gray-300">Meta Description</p>
+<p class="text-xs text-gray-400 dark:text-gray-500">0 / 160</p>
+</div>
+<textarea class="form-textarea flex w-full min-w-0 flex-1 resize-y overflow-hidden rounded-lg text-charcoal dark:text-off-white focus:outline-0 focus:ring-0 border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark focus:border-charcoal dark:focus:border-amber placeholder:text-gray-400 p-2.5 text-sm font-normal leading-normal" placeholder="Enter SEO meta description" rows="3"></textarea>
+</label>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

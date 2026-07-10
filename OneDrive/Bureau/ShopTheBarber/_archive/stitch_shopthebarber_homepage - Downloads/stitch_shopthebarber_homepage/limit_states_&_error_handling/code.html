@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShopTheBarber - Limit States &amp; Error Handling</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#b87333",
+              "background-light": "#f6f6f8",
+              "background-dark": "#1a233a",
+              "card-light": "#ffffff",
+              "card-dark": "#2d3748",
+              "text-light": "#1a233a",
+              "text-dark": "#eaeaea",
+              "subtle-light": "#4a5568",
+              "subtle-dark": "#a0aec0",
+              "border-light": "#e2e8f0",
+              "border-dark": "#4a5568"
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-10 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-text-light dark:text-text-dark">
+<span class="material-symbols-outlined text-primary text-3xl">content_cut</span>
+<h1 class="text-xl font-bold">ShopTheBarber</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-sm font-medium text-text-light dark:text-text-dark" href="#">Appointments</a>
+<a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Shop</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-primary/90 transition-colors">
+<span class="truncate">Log In</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-card-light dark:bg-card-dark text-text-light dark:text-text-dark text-sm font-bold leading-normal tracking-wide hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<span class="truncate">Sign Up</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCj1K_-sbQeWXpq_V6_Dt0Rk7CzXnPUjbeEEp9L2NTVuqtcUoWCUVFKGRu4AuPPnrzHlG-E35hHTTrlM9uqitxUwJAbIdkJUjfSdZnh34IgetNhbAAHBPSZH0oLJqW0iF_80u7heSmYv80aJ5mXpZMTrPN1MQy8Fkmv_HfOH28KtV_tLIYGJokiTWze_abHltaZKOblgCgbnc0Dq5QOiJl5-AW7VCosOYdd5HLHqcylTzcDZqo5YNJUcuLhVbMpr7sdhRvlxNnE0u0");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+<div class="flex flex-col gap-16 md:gap-24">
+<!-- Screen 1: No Search Results -->
+<section class="flex flex-col items-center text-center" id="no-results">
+<div class="flex flex-col items-center gap-6 max-w-lg">
+<div class="text-primary">
+<span class="material-symbols-outlined !text-7xl">search_off</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<h2 class="text-2xl md:text-3xl font-bold">Couldn't Find Any Barbers</h2>
+<p class="text-subtle-light dark:text-subtle-dark">
+                                    Don't worry, let's try a few things to find the perfect barber for you. Here are some tips:
+                                </p>
+<ul class="text-sm text-subtle-light dark:text-subtle-dark list-disc list-inside text-left mt-2 space-y-1">
+<li>Double-check for any typos.</li>
+<li>Try searching for a different neighborhood or ZIP code.</li>
+<li>Broaden your search filters for date and time.</li>
+</ul>
+</div>
+<button class="flex mt-4 min-w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide hover:bg-primary/90 transition-colors">
+<span class="truncate">Modify Search</span>
+</button>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full border-t border-border-light dark:border-border-dark"></div>
+<!-- Screen 2: Slot Taken -->
+<section class="flex flex-col items-center text-center" id="slot-taken">
+<div class="flex flex-col items-center gap-6 max-w-lg">
+<div class="text-primary">
+<span class="material-symbols-outlined !text-7xl">event_busy</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<h2 class="text-2xl md:text-3xl font-bold">Sorry, That Time Was Just Booked!</h2>
+<p class="text-subtle-light dark:text-subtle-dark">
+                                    Looks like you've got great taste! Someone else just snagged that appointment. Here are some other times that are available nearby.
+                                </p>
+</div>
+<div class="w-full max-w-md mt-4">
+<div class="flex h-12 flex-1 items-center justify-center rounded-xl bg-card-light dark:bg-card-dark p-1.5 shadow-inner">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-background-light has-[:checked]:dark:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-text-light has-[:checked]:dark:text-text-dark text-subtle-light dark:text-subtle-dark text-sm font-medium leading-normal transition-all">
+<span class="truncate">2:30 PM</span>
+<input class="invisible absolute w-0" name="time-slot" type="radio" value="2:30 PM"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-background-light has-[:checked]:dark:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-text-light has-[:checked]:dark:text-text-dark text-subtle-light dark:text-subtle-dark text-sm font-medium leading-normal transition-all">
+<span class="truncate">3:00 PM</span>
+<input checked="" class="invisible absolute w-0" name="time-slot" type="radio" value="3:00 PM"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-background-light has-[:checked]:dark:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-text-light has-[:checked]:dark:text-text-dark text-subtle-light dark:text-subtle-dark text-sm font-medium leading-normal transition-all">
+<span class="truncate">4:15 PM</span>
+<input class="invisible absolute w-0" name="time-slot" type="radio" value="4:15 PM"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-background-light has-[:checked]:dark:bg-background-dark has-[:checked]:shadow-sm has-[:checked]:text-text-light has-[:checked]:dark:text-text-dark text-subtle-light dark:text-subtle-dark text-sm font-medium leading-normal transition-all">
+<span class="truncate">4:45 PM</span>
+<input class="invisible absolute w-0" name="time-slot" type="radio" value="4:45 PM"/>
+</label>
+</div>
+</div>
+<button class="flex mt-4 min-w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide hover:bg-primary/90 transition-colors">
+<span class="truncate">Book 3:00 PM</span>
+</button>
+<button class="text-sm font-medium text-primary hover:underline">View Full Schedule</button>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full border-t border-border-light dark:border-border-dark"></div>
+<!-- Screen 3: General Error -->
+<section class="flex flex-col items-center text-center" id="general-error">
+<div class="flex flex-col items-center gap-6 max-w-lg">
+<div class="text-primary">
+<span class="material-symbols-outlined !text-7xl">error</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<h2 class="text-2xl md:text-3xl font-bold">Oops! Something Went Wrong.</h2>
+<p class="text-subtle-light dark:text-subtle-dark">
+                                    It's not you, it's us. We've hit a snag in the system. Please try your last action again.
+                                </p>
+</div>
+<div class="flex items-center gap-4 mt-4">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-wide hover:bg-primary/90 transition-colors">
+<span class="truncate">Try Again</span>
+</button>
+<a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-card-light dark:bg-card-dark border-t border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-subtle-light dark:text-subtle-dark">© 2024 ShopTheBarber. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-sm text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

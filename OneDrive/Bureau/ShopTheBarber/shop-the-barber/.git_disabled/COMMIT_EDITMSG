@@ -1,0 +1,5 @@
+Fix provider auth sync, tab empty states, and blog image upload.
+
+Shop owners no longer see false sign-in gates on Payouts/Clients while Clerk is active. Dashboard tabs always show empty-state feedback. Blog authors can upload cover and inline images with clearer moderation copy.
+
+Co-authored-by: Cursor <cursoragent@cursor.com>

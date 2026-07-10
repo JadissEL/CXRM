@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blog Post Detail Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b98d4d",
+                        "background-light": "#f5f5f5",
+                        "background-dark": "#101922",
+                        "charcoal": "#1a1a1a",
+                        "charcoal-secondary": "#4a4a4a"
+                    },
+                    fontFamily: {
+                        "display": ["Lato", "sans-serif"],
+                        "heading": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- TopNavBar Component -->
+<header class="flex w-full items-center justify-center border-b border-solid border-gray-200 dark:border-gray-800 bg-white dark:bg-charcoal">
+<div class="flex items-center justify-between whitespace-nowrap px-4 sm:px-10 py-3 max-w-7xl w-full">
+<div class="flex items-center gap-4 text-charcoal dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-charcoal dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] font-heading">ShopTheBarber</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-charcoal dark:text-gray-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Bookings</a>
+<a class="text-charcoal dark:text-gray-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Barbers</a>
+<a class="text-primary dark:text-primary text-sm font-bold leading-normal" href="#">Blog</a>
+<a class="text-charcoal dark:text-gray-300 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-background-light dark:bg-background-dark text-charcoal dark:text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDvkdr_GGranNqKcqdYgSHfPgfjwqAU4Fs0SAo8XTW3_PH6_0rzuIxNb4RbxwWbiDlhoSZbxbAcZDycFkcgZ3uMzSte3aCly5SORH42ZuMXwBQwAr2VEuicuFwdhfNiHoEQi1mDDcSXfxchR3KdoW7ZZYR3PngEmxjJDdCwbdp7rs1ZzQQYSbwI6zPbDnAlzBDHn2heWeSWY-lIbX5eP66rtTBKV34xnuosrT-cM7xlD_kA7q78z1O-eCA_wZT6gpvBUuzAHoyi1_E");'></div>
+</div>
+</div>
+<button class="md:hidden flex items-center justify-center rounded-lg h-10 w-10 text-charcoal dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-4 py-8 sm:px-6 lg:px-8">
+<div class="max-w-4xl mx-auto">
+<!-- HeaderImage Component -->
+<div class="mb-8">
+<div class="bg-cover bg-center flex flex-col justify-end overflow-hidden rounded-lg min-h-[400px] shadow-lg" data-alt="A skilled barber giving a client a sharp fade haircut in a stylish barbershop." style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPFcxuPk4lCjzMM8QPjAH7edi0BZeKVN3Hw1eE3FEmndbj4Pg5qrb9yl0mPaB0wsPgK8JGO54kbeu24SggM_qEMHvxPFew0ZjZTg1O6615BvG6h8s2p0wlbT5gYs3HxcNTBRgMMud5RB9RYEkTbDwoSUErVSzxPT10cgg4wE7JcT9a1vh4wv8D-RAgMSAXrI4t_jL82p0ysUvboddM8u5lUmRHOwgZEwWJFMbK3EfDFZCizzJw4WyC5k1y_RBI8mk9P0WFyoHSNMs");'>
+<div class="flex p-6 md:p-8">
+<h1 class="text-white text-3xl md:text-5xl font-bold leading-tight font-heading">The Ultimate Guide to Maintaining a Perfect Fade</h1>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Main Content -->
+<div class="flex-grow">
+<!-- ProfileHeader Component -->
+<div class="flex items-center gap-4 mb-8">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-14 w-14" data-alt="Profile picture of John Blade, a master barber." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkJDqyToybzAU_SSfgFB3uIqiFKOpiPqrvzK1aKt2--JyBmf5PTPvj8IQIPVI7JVmtEllgzEH-oX7iDg3HwHtA6WNXZiuwaqqRGFSJTbTYX7Z8Ee6NyiLXoilSkfAcsllq2jtJIeDXx1OQYbw9R636-O2EdrJhH-l7h8cWFeFa8RP55KH_rcWd2ny8ndppsFnmHd1ZHKnP1bnBt7hduarf2wVFQ5dc56fREn7xk3WGwmLFPyoGcFGJkHHp0EFlPAmER2ZbGNrwh5Y");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-charcoal dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">John Blade</p>
+<p class="text-charcoal-secondary dark:text-gray-400 text-sm font-normal leading-normal">Published on August 15, 2024 • 7 min read</p>
+</div>
+</div>
+<!-- BodyText Components -->
+<article class="prose prose-lg dark:prose-invert max-w-none text-charcoal dark:text-gray-300 font-display leading-relaxed space-y-6">
+<p>Maintaining a fade requires precision and the right routine. A sharp fade can elevate your entire look, but it can also grow out quickly if not properly cared for. In this guide, we'll walk you through the essential steps and products to keep your fade looking fresh between visits to the barbershop. From daily moisturizing to weekly touch-ups, we've got you covered.</p>
+<p>First, it's crucial to understand your hair type and growth rate. For most men, a fade will start to lose its sharpness within a week. To combat this, you'll need a good quality trimmer for home use. Don't aim to recreate the barber's work; instead, focus on cleaning up the neckline and sideburns to extend the life of your cut. This simple step can make a world of difference.</p>
+<h2 class="font-heading text-charcoal dark:text-white">Daily Care is Key</h2>
+<p>Hydration is non-negotiable. Use a lightweight, non-greasy moisturizer on your scalp and hair daily. This prevents dryness and flakiness, which can be especially noticeable on shorter hair. Look for products containing natural oils like argan or jojoba oil. Additionally, wash your hair with a sulfate-free shampoo 2-3 times a week to avoid stripping natural oils.</p>
+<figure>
+<img alt="Close-up of a perfectly executed skin fade." class="w-full rounded-lg shadow-md" data-alt="Close-up of a perfectly executed skin fade." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsIx-yx8jNwYl4eATGpKBW2Ko4luqyMgSVOpvFWFlVpBfYZ2XE45LWg-9tfPS7ViXz83sO_GtAIjnGYtH1ZYOlnGX4oL-9WwWeG7imNRVoJsjsnxF0zZ8yEb65FvtCR9YtQQWQQ0mE5_wauhT71XewDeoTtJZfeKk7aX_8gq0QaB7z72uktc9ygxYtkhPTdLxMXWHUACvjnYQUy7cf-6H_c8R8M5SZaqrRqWF7u5CItHMA6x8szIdn3Qrnrc-plI0FyA2eH7mByIE"/>
+<figcaption class="text-center text-sm text-charcoal-secondary dark:text-gray-500 mt-2">A clean skin fade requires attention to detail and proper tools.</figcaption>
+</figure>
+<h2 class="font-heading text-charcoal dark:text-white">The Weekly Touch-Up</h2>
+<p>Set aside 15 minutes once a week for a touch-up. Using your trimmer, carefully edge up your neckline, following the line your barber created. Be conservative – you can always take more off, but you can't put it back. Use a handheld mirror to see the back. For the sides, use the trimmer guard that matches the shortest part of your fade to gently blend the new growth at the very bottom.</p>
+</article>
+</div>
+<!-- Sidebar -->
+<aside class="w-full lg:w-72 flex-shrink-0">
+<!-- Author Bio Card -->
+<div class="bg-white dark:bg-charcoal p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 text-center mb-8">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-20 w-20 mx-auto mb-4" data-alt="Profile picture of John Blade." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDOv_jqntLyTnoFOl07q5ohNWYokNmbZ1ifluuIY8hEdBkgaQKGb_nrvUvInjDoWVgCVSRVLNKdNbMagX3Ax7neWeXMwKeoBAekdskdY465n-6ZJAd6iu4lsP5UFDCQXs_dCzWhvT8ixaO6bvq-eVkz5Jr2WYao7wWgGq6c7LPGlVq2LBG4nHHbPkhmZYIl9IkbBwAZf9HKEiZD7a8HuJTLGHMegeM0fDdsnALRUXU_zQTi2yG3XDxkWX5CWqzxAOUE8ZsAAf5t3C4");'></div>
+<h3 class="text-xl font-bold font-heading text-charcoal dark:text-white">John Blade</h3>
+<p class="text-charcoal-secondary dark:text-gray-400 text-sm mb-4">Master Barber</p>
+<p class="text-charcoal dark:text-gray-300 text-sm mb-4">With over 15 years of experience, John specializes in classic cuts and modern fades. His precision and artistry have made him a local legend.</p>
+<a class="inline-block bg-primary text-white font-bold py-2 px-4 rounded-lg text-sm hover:bg-opacity-90 transition-colors" href="#">View Profile</a>
+</div>
+<!-- Social Sharing -->
+<div class="bg-white dark:bg-charcoal p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 mb-8">
+<h3 class="text-xl font-bold font-heading text-charcoal dark:text-white mb-4">Share this post</h3>
+<div class="flex justify-center gap-4">
+<a class="flex items-center justify-center w-10 h-10 rounded-full bg-background-light dark:bg-background-dark text-charcoal dark:text-white hover:bg-primary/20 dark:hover:bg-primary/30" href="#"><span class="material-symbols-outlined text-xl">share</span></a>
+<a class="flex items-center justify-center w-10 h-10 rounded-full bg-background-light dark:bg-background-dark text-charcoal dark:text-white hover:bg-primary/20 dark:hover:bg-primary/30" href="#">
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="flex items-center justify-center w-10 h-10 rounded-full bg-background-light dark:bg-background-dark text-charcoal dark:text-white hover:bg-primary/20 dark:hover:bg-primary/30" href="#">
+<svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</a>
+</div>
+</div>
+</aside>
+</div>
+<!-- Related Posts Section -->
+<div class="mt-16 pt-12 border-t border-gray-200 dark:border-gray-800">
+<h2 class="text-3xl font-bold font-heading text-center text-charcoal dark:text-white mb-8">You Might Also Like</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Related Post Card 1 -->
+<div class="flex flex-col bg-white dark:bg-charcoal rounded-lg shadow-sm overflow-hidden border border-gray-200 dark:border-gray-800">
+<div class="bg-cover bg-center h-48" data-alt="A collection of high-quality beard oils and balms." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrM_geIkC3KIU6_-CVg61V39rk_5M5DPnEmDJ6VrzKaY37INH3TrCL6T42Ks6HKXfD2b47qNeidV3uRh37ps6C6WSiW2zAb0lkRFUxDPi38F4Ke9G2ptRq-y1fbTpi8IyqMvq40VdWqmb85TP7mhxodK-Ik1B7jshPQlL7cM1PZ3wVp8xoCRKgbkFoQmA2D_koqI5uQIFerwGecVFsw3wKrXU-hvB9XGaHUDyeRoJ0bZdNeL7JWELKfeIR1nrr-yfi17ZVV0Rnlyk");'></div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-bold font-heading text-lg text-charcoal dark:text-white mb-2 flex-grow">Choosing the Right Beard Oil For You</h3>
+<a class="text-primary font-bold text-sm hover:underline" href="#">Read More →</a>
+</div>
+</div>
+<!-- Related Post Card 2 -->
+<div class="flex flex-col bg-white dark:bg-charcoal rounded-lg shadow-sm overflow-hidden border border-gray-200 dark:border-gray-800">
+<div class="bg-cover bg-center h-48" data-alt="A barber using a straight razor for a clean shave." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8kzc3x4x2mfVuaMjMfI48HXOZOcLrsb4gDSmjZ6gimdoRYuJUSGSZ-aOwqoXoxldvTj0Q8l8q52TKDNkLSCCNxoV21L2kC8P6EsH-HHZ6qEjhjK3We_N2lggvd6agw1-ctPJ7BqJZGsI5oMsg5aWQvhj45oCcqWYux2LMHYPle9HWpYDRnYuQtASH2E4e3sutZfIpxQAmnw8Bw5Qxv1ZoRm2kpqBsy22aYSueNs6NYob2zBvJ3CZW7doMx3TbcYsiXVbpZwOGT-U");'></div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-bold font-heading text-lg text-charcoal dark:text-white mb-2 flex-grow">The Art of the Straight Razor Shave</h3>
+<a class="text-primary font-bold text-sm hover:underline" href="#">Read More →</a>
+</div>
+</div>
+<!-- Related Post Card 3 -->
+<div class="flex flex-col bg-white dark:bg-charcoal rounded-lg shadow-sm overflow-hidden border border-gray-200 dark:border-gray-800">
+<div class="bg-cover bg-center h-48" data-alt="Different classic men's hairstyles." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAjaEl6EaCZcWX6GFL_vnNMtNY4NVWNz0wyYJTeDbEDIcDRVd-SS5KbIqJnrVHu8gNIa7ZwCasXjN9ks3mN6jOKTIchY5qOY4VW1eDwVCJT_q15SC_SzRHc_8_34k3XqoVkAnFZsGqLHAA-Dds0URIGHM7tvqSmmnQ3NiIJgCN-h-NizyCc0Ob_F3Iye8O1QT0_Its46e_KJsO-ioh29iTlW9Y8ZfBjpvXfFsNmuagwwtwhZE4ET1VeX2TDsU1wPmvqAbha8rzB7Tg");'></div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-bold font-heading text-lg text-charcoal dark:text-white mb-2 flex-grow">5 Timeless Haircuts for the Modern Gentleman</h3>
+<a class="text-primary font-bold text-sm hover:underline" href="#">Read More →</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-charcoal dark:bg-black text-gray-400 mt-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<h2 class="text-white text-lg font-bold font-heading mb-4">ShopTheBarber</h2>
+<p class="text-sm">The premier platform for booking appointments with top-rated barbers and discovering grooming tips.</p>
+</div>
+<div>
+<h3 class="font-bold text-white mb-4">Quick Links</h3>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-primary" href="#">Bookings</a></li>
+<li><a class="hover:text-primary" href="#">Barbers</a></li>
+<li><a class="hover:text-primary" href="#">Blog</a></li>
+<li><a class="hover:text-primary" href="#">About Us</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold text-white mb-4">Support</h3>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary" href="#">FAQ</a></li>
+<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold text-white mb-4">Follow Us</h3>
+<div class="flex space-x-4">
+<a class="hover:text-primary" href="#">Facebook</a>
+<a class="hover:text-primary" href="#">Instagram</a>
+<a class="hover:text-primary" href="#">Twitter</a>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-gray-800 pt-8 text-center text-sm">
+<p>© 2024 ShopTheBarber. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

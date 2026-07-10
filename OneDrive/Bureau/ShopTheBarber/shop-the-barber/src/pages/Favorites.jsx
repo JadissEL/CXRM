@@ -1,0 +1,203 @@
+import { useState } from 'react';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { sovereign } from '@/api/apiClient';
+import { Heart } from 'lucide-react';
+import SearchField from '@/components/ui/search-field';
+import { PageLoading } from '@/components/ui/page-loading';
+import { EmptyState, TabPanelEmptyState } from '@/components/ui/empty-state';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { MetaTags } from '@/components/seo/MetaTags';
+import BarberCard from '@/components/ui/barber-card';
+import ShopCard from '@/components/ui/shop-card';
+import { motion, AnimatePresence } from 'framer-motion';
+import { signInUrlWithReturn } from '@/utils';
+import { toast } from 'sonner';
+import PageHeader from '@/components/layout/PageHeader';
+import PageContent from '@/components/layout/PageContent';
+import { cn } from '@/lib/utils';
+import { stb } from '@/lib/stbUi';
+
+export default function Favorites() {
+    const [searchTerm, setSearchTerm] = useState('');
+    const queryClient = useQueryClient();
+
+    const { data: user } = useQuery({
+        queryKey: ['currentUser'],
+        queryFn: () => sovereign.auth.me().catch(() => null),
+    });
+
+    const { data: favorites = [], isLoading: isFavoritesLoading } = useQuery({
+        queryKey: ['favorites', user?.id],
+        queryFn: () => user ? sovereign.entities.Favorite.filter({ user_id: user.id }) : [],
+        enabled: !!user,
+    });
+
+    const { data: barbers = [] } = useQuery({
+        queryKey: ['favorite-barbers'],
+        queryFn: async () => {
+            const barberIds = favorites.filter(f => f.target_type === 'barber').map(f => f.target_id);
+            if (barberIds.length === 0) return [];
+            return sovereign.entities.Barber.filter({ id: { $in: barberIds } });
+        },
+        enabled: favorites.length > 0,
+    });
+
+    const { data: shops = [] } = useQuery({
+        queryKey: ['favorite-shops'],
+        queryFn: async () => {
+            const shopIds = favorites.filter(f => f.target_type === 'shop').map(f => f.target_id);
+            if (shopIds.length === 0) return [];
+            return sovereign.entities.Shop.filter({ id: { $in: shopIds } });
+        },
+        enabled: favorites.length > 0,
+    });
+
+    const removeFavoriteMutation = useMutation({
+        mutationFn: (id) => sovereign.entities.Favorite.delete(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['favorites'] });
+            toast.success('Removed from favorites');
+        }
+    });
+
+    const filteredBarbers = barbers.filter(b =>
+        b.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        b.location?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const filteredShops = shops.filter(s =>
+        s.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        s.location?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    if (!user) {
+        return (
+            <div className="stb-page flex items-center justify-center p-4">
+                <div className="text-center space-y-4 max-w-sm">
+                    <div className="w-16 h-16 bg-card rounded-lg shadow-sm flex items-center justify-center mx-auto text-muted-foreground">
+                        <Heart className="w-8 h-8" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-foreground">Sign in for Favorites</h2>
+                    <p className="text-muted-foreground">Save your favorite barbers and shops to find them easily next time.</p>
+                    <Button variant="default" className="w-full bg-primary text-primary-foreground hover:opacity-95 rounded-lg py-6 h-auto text-lg font-medium" onClick={() => { window.location.href = signInUrlWithReturn('/Favorites'); }}>
+                        Sign In to Continue
+                    </Button>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="stb-page lg:pb-8">
+            <MetaTags title="My Favorites" description="Your saved barbers and shops" />
+
+            <PageHeader
+                label="Saved"
+                title="Favorites"
+                subtitle={`You have ${favorites.length} saved profiles`}
+                compact
+                variant="light"
+                tier="app"
+            />
+
+            <div className={cn(stb.container, 'border-b border-border pb-6 -mt-2')}>
+                <SearchField
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onClear={() => setSearchTerm('')}
+                    placeholder="Search your favorites..."
+                    size="lg"
+                    aria-label="Search favorites"
+                />
+            </div>
+
+            <PageContent>
+                <Tabs defaultValue="all" className="space-y-8">
+                    <TabsList className="bg-muted/60 p-1 rounded-lg border border-foreground/10 w-full md:w-auto inline-flex overflow-x-auto">
+                        <TabsTrigger value="all" className="px-6 rounded-md">All</TabsTrigger>
+                        <TabsTrigger value="barbers" className="px-6 rounded-md">Barbers</TabsTrigger>
+                        <TabsTrigger value="shops" className="px-6 rounded-md">Shops</TabsTrigger>
+                    </TabsList>
+
+                    {isFavoritesLoading ? (
+                        <PageLoading message="Crunching your favorites..." />
+                    ) : favorites.length === 0 ? (
+                        <EmptyState
+                            icon={Heart}
+                            title="Your favorites list is empty"
+                            description="Heart your favorite professionals to see them here for quick access."
+                            actionLabel="Explore Professionals"
+                            actionHref="/Explore"
+                        />
+                    ) : (
+                        <div className="space-y-12">
+                            <TabsContent value="all" className="mt-0">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <AnimatePresence>
+                                        {filteredBarbers.map(barber => (
+                                            <motion.div layout key={barber.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+                                                <BarberCard barber={barber} />
+                                                <button
+                                                    onClick={() => removeFavoriteMutation.mutate(favorites.find(f => f.target_id === barber.id)?.id)}
+                                                    className="mt-2 text-xs text-destructive hover:text-destructive/80 font-medium px-2"
+                                                >
+                                                    Remove from favorites
+                                                </button>
+                                            </motion.div>
+                                        ))}
+                                        {filteredShops.map(shop => (
+                                            <motion.div layout key={shop.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
+                                                <ShopCard shop={shop} />
+                                                <button
+                                                    onClick={() => removeFavoriteMutation.mutate(favorites.find(f => f.target_id === shop.id)?.id)}
+                                                    className="mt-2 text-xs text-destructive hover:text-destructive/80 font-medium px-2"
+                                                >
+                                                    Remove from favorites
+                                                </button>
+                                            </motion.div>
+                                        ))}
+                                    </AnimatePresence>
+                                </div>
+                            </TabsContent>
+
+                            <TabsContent value="barbers" className="mt-0">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {filteredBarbers.length === 0 ? (
+                                        <TabPanelEmptyState
+                                            icon={Heart}
+                                            title="No favorite barbers"
+                                            description="Save barbers you love to find them quickly here."
+                                            className="col-span-full"
+                                        />
+                                    ) : (
+                                        filteredBarbers.map(barber => (
+                                            <BarberCard key={barber.id} barber={barber} />
+                                        ))
+                                    )}
+                                </div>
+                            </TabsContent>
+
+                            <TabsContent value="shops" className="mt-0">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {filteredShops.length === 0 ? (
+                                        <TabPanelEmptyState
+                                            icon={Heart}
+                                            title="No favorite shops"
+                                            description="Save shops you visit often to book faster next time."
+                                            className="col-span-full"
+                                        />
+                                    ) : (
+                                        filteredShops.map(shop => (
+                                            <ShopCard key={shop.id} shop={shop} />
+                                        ))
+                                    )}
+                                </div>
+                            </TabsContent>
+                        </div>
+                    )}
+                </Tabs>
+            </PageContent>
+        </div>
+    );
+}

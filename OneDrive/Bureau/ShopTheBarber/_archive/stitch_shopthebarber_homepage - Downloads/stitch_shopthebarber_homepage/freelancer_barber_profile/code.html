@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Freelancer Barber Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#ec6d13",
+            "background-light": "#f8f7f6",
+            "background-dark": "#221810",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+</head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-4 sm:px-6 lg:px-10 py-3 sticky top-0 z-50 bg-background-light dark:bg-background-dark">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">ShopTheBarber</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#b9a89d] flex border-none bg-white/10 items-center justify-center pl-3 pr-2 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-base">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-white/10 focus:border-none h-full placeholder:text-[#b9a89d] px-0 pl-0 rounded-l-none border-l-0 text-sm font-normal leading-normal" placeholder="Search" value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<div class="hidden lg:flex items-center gap-8">
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Find Barbers</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">For Barbers</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">About Us</a>
+</div>
+<div class="flex items-center gap-2">
+<button class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] transition-opacity hover:opacity-90">
+<span class="truncate">Sign Up</span>
+</button>
+<button class="hidden sm:flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em] transition-colors hover:bg-white/20">
+<span class="truncate">Log In</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDWBg1Pli1KIpBA4zOf-n4ELswOZcAB2ETE6jgeXnzDnbG-qfjCE0otMlwRMFmxDAEV22kPlsx5WWrRBgciLbJVvxbTKmE6whydBGXNdFg3tGmoYVhe8I47dpfK4LENz_E1tBWlE_vGvEHSkugkOYYWlNTaCcifVg48NKSVqzKWkIqHn92PkTjA0hC3x6bC3KpcSB-rih14q8uz4wSztv-MVBD6dwd5EP7BJe7j9t-rZbI9ENEsPZuZ4I76R_UKmVVEFiW2L8E9MPQ");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 px-4 sm:px-6 lg:px-10 py-8">
+<div class="mx-auto max-w-7xl">
+<div class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden rounded-xl min-h-[280px]" data-alt="Interior of a modern, stylish barber shop with leather chairs and wooden stations." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzI1L0CwO1e_azg4H-KaIi-HLxQ_PKOxMnd-X8Bjdo5UtyfI7hoW_WOG8gwea1gGqeNFvdrGzJU-hiVGuMlEkxSKfGbJyRNDqy2XD3AL05XM1hKl8aj3hRYSEjbaGrQ0Bz9Yf5cH-LLR4q6dVPdXMWgfHCs_DgCqJcEQc_Bv9qaX75uZEK95k1iVhNGGpEhWaQb_h7mnofrrSbaa1dZktvuTc6b7OYYi6xytehCkhOIYqGLcnsN1ucBRDcqeCJwEmzuUWIjrJ9pKI");'></div>
+<div class="flex w-full flex-col gap-4 px-4 -mt-16">
+<div class="flex w-full flex-col gap-4 @[520px]:flex-row @[520px]:justify-between @[520px]:items-end">
+<div class="flex gap-4 items-end">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-background-dark" data-alt="Profile picture of Johnathan 'Blade' Smith, a master barber." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlCgzyWWK0MtV5LqjNUpaSffQ1h0PwA2Rivo1Aq12T0mTlwNJY4xifr8h8dN3fM1kxw4kSiskGeGIo6PXXTeB2YCnfvhrS3HaM3r5_7eN5pyl0vrEv3bYsQhYv1lNuxQBQ44iTA6Uje4fuCpTiTDUsK5bqRT8-1uxh0rbkbyscyu6WteYckNEFXdL4hm5gQTufGCCfKxmbvpqmMPP82-ZdTtKMHLUCXZ13rU5RM0lglGDsuWzUW9lu7fkldbGGAsfhezh4AZ_CasI");'></div>
+<div class="flex flex-col justify-center pb-2">
+<p class="text-white text-2xl md:text-3xl font-bold leading-tight tracking-[-0.015em]">Johnathan 'Blade' Smith</p>
+<p class="text-[#b9a89d] text-base font-normal leading-normal">Master Barber</p>
+</div>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-white/10 text-white text-sm font-bold leading-normal tracking-[0.015em] w-full max-w-[480px] @[480px]:w-auto gap-2 hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-base">ios_share</span>
+<span class="truncate">Share</span>
+</button>
+</div>
+</div>
+<div class="flex gap-3 p-4 flex-wrap pr-4">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 pl-3 pr-4">
+<span class="material-symbols-outlined text-primary text-base">star</span>
+<p class="text-white text-sm font-medium leading-normal">4.8 Stars (120 reviews)</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 pl-3 pr-4">
+<span class="material-symbols-outlined text-white/80 text-base">location_on</span>
+<p class="text-white text-sm font-medium leading-normal">Brooklyn, NY</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white/10 pl-3 pr-4">
+<span class="material-symbols-outlined text-white/80 text-base">child_care</span>
+<p class="text-white text-sm font-medium leading-normal">Kids-Friendly</p>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-12">
+<div class="flex gap-2 p-1 bg-white/5 rounded-lg border border-white/10 max-w-max">
+<a class="flex h-8 shrink-0 items-center justify-center rounded-md bg-white/10 px-4" href="#services">
+<p class="text-white text-sm font-medium leading-normal">Services</p>
+</a>
+<a class="flex h-8 shrink-0 items-center justify-center rounded-md px-4 hover:bg-white/10 transition-colors" href="#portfolio">
+<p class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors">Portfolio</p>
+</a>
+<a class="flex h-8 shrink-0 items-center justify-center rounded-md px-4 hover:bg-white/10 transition-colors" href="#reviews">
+<p class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors">Reviews</p>
+</a>
+</div>
+<!-- Services Section -->
+<section class="scroll-mt-24" id="services">
+<h3 class="text-2xl font-bold text-white mb-4">Services</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/10">
+<div>
+<h4 class="font-bold text-white">Classic Haircut</h4>
+<p class="text-sm text-white/70">30 min • Traditional scissor and clipper cut.</p>
+</div>
+<p class="font-bold text-white text-lg">$45</p>
+</div>
+<div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/10">
+<div>
+<h4 class="font-bold text-white">Beard Trim &amp; Shape-Up</h4>
+<p class="text-sm text-white/70">20 min • Includes razor line-up and hot towel.</p>
+</div>
+<p class="font-bold text-white text-lg">$25</p>
+</div>
+<div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/10">
+<div>
+<h4 class="font-bold text-white">Hot Towel Shave</h4>
+<p class="text-sm text-white/70">35 min • A luxurious close shave experience.</p>
+</div>
+<p class="font-bold text-white text-lg">$40</p>
+</div>
+<div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/10">
+<div>
+<h4 class="font-bold text-white">The Works (Haircut &amp; Shave)</h4>
+<p class="text-sm text-white/70">1 hour • Complete grooming package.</p>
+</div>
+<p class="font-bold text-white text-lg">$75</p>
+</div>
+<div class="flex justify-between items-center p-4 bg-white/5 rounded-lg border border-white/10">
+<div>
+<h4 class="font-bold text-white">Kid's Cut (Under 12)</h4>
+<p class="text-sm text-white/70">25 min • Patient and stylish cuts for the young ones.</p>
+</div>
+<p class="font-bold text-white text-lg">$30</p>
+</div>
+</div>
+</section>
+<!-- Portfolio Section -->
+<section class="scroll-mt-24" id="portfolio">
+<h3 class="text-2xl font-bold text-white mb-4">Portfolio</h3>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="aspect-square bg-cover bg-center rounded-lg" data-alt="A sharp fade haircut on a male model." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBUP0iANfwykTeDz9QttHHjFFD6EIfg8rNnRRMwr2ztrDLNpGOCvqhHIVIylsnDnCPyadsh-5l4QJxP75NTUG0Hc5jvm6QCIRX3tpmt-6LahC6Bc6emtEV5lPnKM5rKj7RncsLEVhBO6B9ef2xHdP3dVIKvSM3aOMprxg-p4En1hxJGNVZd3wUNUmJpIX865tYiqotKesPtydudQl6E4gK7WS0cvYQQty5rAk04Znc3qGxk0gkHGoBvmw9FccJAVY1lgHlsYIL3VQ')"></div>
+<div class="aspect-square bg-cover bg-center rounded-lg" data-alt="A man with a perfectly groomed beard and mustache." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdvANckLwSIDhZjUQ0R7qPieq_Yrzrjw7Am3XSHqpEifVqpHCzw7EKg313g07bVsy_uF5qJYQplPHc8Wds-jgopV_ASTwtqZ3WEC5MyMXoxJft90EXGSqP2lmXUwa2zNHEbejv8pLab5-h8Nb9mrsa74WOEav_U0zU5VSiStJX9uQyhZecdiPSYz9tnO9dG6YHV5KmxkLHOTY_2tVhDypAuRlbICz4g4IEViF-NLPX64AAQED96mQ6144_VY4J8y-oTBva5hXnKMY')"></div>
+<div class="aspect-square bg-cover bg-center rounded-lg" data-alt="A stylish textured crop haircut on a young man." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAs1g8m4wVdr45YZKhoUOr2N7ITB8CtOPCNtVNmwQAKUSX22nUuwfVQothdTxu84BrSOo0AgY2yufvVPjC87uD1X_a9eTgSv28qh1nJoQ8w7-Wet4UYs0kj4k6ZcUreGus7xJJulKb7R5g0h0BB9nUl-Wlq7_nM8LgL5RDrB75Usl_g4rS1pAD3mlMRBycJ_MsbgVoK23Vm4EyN-CpFwhO0nADvG-MpncDyFNpFt4WBOxUgBdS_YiDZZtwPpOTLtndBe-5XBAHIDlw')"></div>
+<div class="aspect-square bg-cover bg-center rounded-lg" data-alt="Before and after shot of a haircut transformation." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDddRXV6ZthZOR-k0LcxcqrO5Nzdpy1P1DfF0LzZ0saqG14uLUtKgLZMOzcUU8W6NqHvgRYuQIiCwQ82AdnBI65NfH-22zuPaz_WaUiAyV_EnOUhYpszJ89_chRKNXaG1_6M6jyVwcy7CQTHk8y4jMAqyN7VJ65L9ZdGeqiJqIvZU86PuYKk4_zXqvXMDy9mrQf25v85U0tEqxaxGx2qWqg-QlJWVLZvf1wF5LEfBjlcNmAEAz5goJutcIeYuLAJ6chgQPQxxw1XW8')"></div>
+<div class="aspect-square bg-cover bg-center rounded-lg" data-alt="A classic pompadour hairstyle." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPqB2H4u7_8O3XniyXnvxWfPuvYuhu9W-W3U1OqaSA_tgAsQ10uPj4gqNU1GFMSFiqgv9CTShyQM_VpRTwcNKyEV4tzlsUKx62sWpP17OgtLnooEgnE941BX8RQmg__bHk4WQNRPbeiDw14LO_KVNZdtIlaQ40IH2q5HR8Dl8hLPhmi4_xBtPFlf2YYxMP5GBn8P1t5m08t9HWaEFbsvfdEhgjOtjO_egbXx-E_4LNMCal4wPs-uvYNIVIrJFz5yQDZ20dxMCXWgI')"></div>
+<div class="aspect-square bg-cover bg-center rounded-lg" data-alt="A young boy smiling after getting a new haircut." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUVazgtVRc8qmYObX0i-dCSbA7yz-bQ-xnSDoBglV1XoNa7VHIemHG02NV3ELNsTmwQam_BbI10fyvhb2XGoL60ZPKRb4eYKMSZVqZS5iP3kf1HmHuEOA5GjHxFzHwGjNDHD82aiCbCIlxIs0qBR92hdB1VN16zL8eOYEbKNL5ew4eypjcZHV83J8zLHNtykHqB8Q78F_0nMZPm1iyc5xu8jPeik2jDmD4EiAjByW68rLT5r_SoYzkmFshPGtvOtznSOf9kSK8y-E')"></div>
+</div>
+</section>
+<!-- Reviews Section -->
+<section class="scroll-mt-24" id="reviews">
+<h3 class="text-2xl font-bold text-white mb-4">Reviews</h3>
+<div class="space-y-6">
+<div class="p-4 bg-white/5 rounded-lg border border-white/10">
+<div class="flex items-center justify-between mb-2">
+<p class="font-bold text-white">David Chen</p>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+</div>
+<p class="text-white/80 text-sm">"Blade is a true artist. Best fade I've ever had, and the attention to detail is unmatched. Highly recommend!"</p>
+</div>
+<div class="p-4 bg-white/5 rounded-lg border border-white/10">
+<div class="flex items-center justify-between mb-2">
+<p class="font-bold text-white">Marcus Johnson</p>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star_half</span>
+</div>
+</div>
+<p class="text-white/80 text-sm">"Great experience. Jonathan is professional, the shop is clean, and he really listens to what you want. My go-to barber from now on."</p>
+</div>
+<div class="p-4 bg-white/5 rounded-lg border border-white/10">
+<div class="flex items-center justify-between mb-2">
+<p class="font-bold text-white">Sarah Lee</p>
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+<span class="material-symbols-outlined text-sm">star</span>
+</div>
+</div>
+<p class="text-white/80 text-sm">"Took my son here for his first proper haircut. Jonathan was incredibly patient and made him feel comfortable. The cut looks amazing!"</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Sticky Booking Column -->
+<aside class="lg:sticky top-24 h-fit">
+<div class="p-6 bg-white/5 rounded-xl border border-white/10 space-y-6">
+<h3 class="text-xl font-bold text-white text-center">Book This Barber</h3>
+<div class="space-y-4">
+<p class="text-sm font-medium text-white/80">Service Location</p>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center justify-center gap-2 rounded-lg py-3 px-2 text-sm text-white bg-white/10 border-2 border-primary ring-2 ring-primary/50">
+<span class="material-symbols-outlined text-base">storefront</span>
+                    Barber's Place
+                  </button>
+<button class="flex items-center justify-center gap-2 rounded-lg py-3 px-2 text-sm text-white/70 bg-white/5 border-2 border-transparent hover:border-white/20 transition-colors">
+<span class="material-symbols-outlined text-base">pin_drop</span>
+                    Your Place
+                  </button>
+</div>
+</div>
+<div class="space-y-3">
+<h4 class="text-sm font-medium text-white/80">Summary of Availability</h4>
+<div class="text-sm text-white/90 space-y-1">
+<div class="flex justify-between"><p>Monday - Friday</p> <p>9:00 AM - 6:00 PM</p></div>
+<div class="flex justify-between"><p>Saturday</p> <p>10:00 AM - 4:00 PM</p></div>
+<div class="flex justify-between text-white/50"><p>Sunday</p> <p>Closed</p></div>
+</div>
+</div>
+<button class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-4 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="truncate">Book Appointment</span>
+</button>
+</div>
+</aside>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

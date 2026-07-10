@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Barber Dashboard (Freelance Private)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#B87333",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#1A2238",
+                        "card-dark": "#101522",
+                        "border-dark": "#4A4A4A",
+                        "text-light": "#E0E0E0",
+                        "text-muted": "#9DA4B9",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light antialiased">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="flex w-64 flex-col bg-card-dark p-4 border-r border-border-dark/50">
+<div class="flex items-center gap-3 p-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="John Wick profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCe5I3b0rv25Di3ifnxRaCQKXcDbnhVufs0yAZtd_t5vmEjSpj2PfpYvRunr1nP3UCSBgIcsPnZd9PSHokcLC23Lra_-09N8GXM5MIEE5mBBk8cCNvLpQmOSXZPHFTlssACgljWEEb2os4ZtmujcUQTnE3ipC8aHq5ZImmoqejhGSfPY9UVsBF48L5koFWlRbadniXGdMFdlntatX0wlYpdWXrFWBnPFqOv8-o6T9bNYqE3zF6i46gRt_3zE8SFHT-tWbHkZU_-Ozk");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-normal">John Wick</h1>
+<p class="text-text-muted text-sm font-normal leading-normal">Freelance Barber</p>
+</div>
+</div>
+<nav class="mt-6 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-primary" href="#">
+<span class="material-symbols-outlined fill text-2xl">dashboard</span>
+<p class="text-sm font-semibold leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-muted hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">calendar_month</span>
+<p class="text-sm font-medium leading-normal">Calendar</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-muted hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">chat_bubble</span>
+<p class="text-sm font-medium leading-normal">Messages</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-muted hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">photo_library</span>
+<p class="text-sm font-medium leading-normal">Portfolio</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-muted hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+<div class="mt-auto">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-muted hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-2xl">logout</span>
+<p class="text-sm font-medium leading-normal">Log Out</p>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8">
+<div class="mx-auto max-w-7xl">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between pb-6 border-b border-border-dark">
+<h2 class="text-white text-2xl font-bold leading-tight tracking-tight">Freelance Dashboard</h2>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg bg-card-dark text-text-muted transition-colors hover:bg-border-dark hover:text-white">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+</button>
+</header>
+<div class="mt-8">
+<!-- SegmentedButtons -->
+<div class="flex items-center gap-6">
+<p class="text-sm font-medium text-text-muted whitespace-nowrap">Availability Status:</p>
+<div class="flex h-12 flex-1 max-w-md items-center justify-center rounded-lg bg-card-dark p-1.5 border border-border-dark/50">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-primary has-[:checked]:shadow-lg has-[:checked]:shadow-primary/20 has-[:checked]:text-white text-text-muted text-sm font-medium leading-normal transition-colors">
+<span class="truncate">Freelance Availability</span>
+<input checked="" class="invisible w-0" name="availability-toggle" type="radio" value="Freelance Availability"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-primary has-[:checked]:shadow-lg has-[:checked]:shadow-primary/20 has-[:checked]:text-white text-text-muted text-sm font-medium leading-normal transition-colors">
+<span class="truncate">Barbershop Availability</span>
+<input class="invisible w-0" name="availability-toggle" type="radio" value="Barbershop Availability"/>
+</label>
+</div>
+</div>
+<!-- SectionHeader -->
+<h2 class="text-white text-[22px] font-bold leading-tight tracking-tight pb-3 pt-8">Quick Stats</h2>
+<!-- Stats Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl bg-card-dark p-6 border border-border-dark/50 transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
+<div class="flex items-center justify-between">
+<p class="text-text-muted text-base font-medium leading-normal">Total Bookings</p>
+<span class="material-symbols-outlined text-primary text-3xl">event_available</span>
+</div>
+<p class="text-white tracking-light text-4xl font-bold leading-tight">124</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl bg-card-dark p-6 border border-border-dark/50 transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
+<div class="flex items-center justify-between">
+<p class="text-text-muted text-base font-medium leading-normal">Earnings (This Month)</p>
+<span class="material-symbols-outlined text-primary text-3xl">payments</span>
+</div>
+<p class="text-white tracking-light text-4xl font-bold leading-tight">$3,450</p>
+</div>
+<div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl bg-card-dark p-6 border border-border-dark/50 transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10">
+<div class="flex items-center justify-between">
+<p class="text-text-muted text-base font-medium leading-normal">Average Rating</p>
+<span class="material-symbols-outlined text-primary text-3xl">star</span>
+</div>
+<div class="flex items-baseline gap-1.5">
+<p class="text-white tracking-light text-4xl font-bold leading-tight">4.8</p>
+<p class="text-text-muted text-base font-medium">/ 5</p>
+</div>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Messages Card -->
+<div class="lg:col-span-1 flex flex-col rounded-xl bg-card-dark border border-border-dark/50 overflow-hidden">
+<div class="p-6">
+<h3 class="text-lg font-bold text-white">Recent Messages</h3>
+</div>
+<div class="flex flex-col gap-2 px-6 pb-4">
+<div class="flex items-center gap-4 rounded-lg p-2 hover:bg-white/5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" data-alt="Client avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuALPMsKRz1HVcVSq6bQdBlBfM3QHMTtuKKXKjWOt8m2fqEh2JwBDcuGQ94vbQqhr87ETP4CHxl69G-JPKibGVzr7fkuhtrPLRI5qfjd-YClpkKyxd6ODRSEz11kmyy0VOOjZOO84KMuMp9k2MIShZydC-bmtS5OE3y3xpoxDnDh0rSZaCX1oKOcb4o-OcWJ0gbJJoBRO89OSpbf-KxPoT-EJpdc6Ly_39bjPw3ncUv_vkCa_OIHVhvcQeesh6Y4W32cVVKIlxY37zU");'></div>
+<div class="flex-1 overflow-hidden">
+<p class="text-white font-semibold truncate">Alex Johnson</p>
+<p class="text-text-muted text-sm truncate">Hey! Looking forward to my appointment...</p>
+</div>
+<span class="text-xs text-text-muted">2m ago</span>
+</div>
+<div class="flex items-center gap-4 rounded-lg p-2 hover:bg-white/5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" data-alt="Client avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBIm4VzwAk7VSCssQql1IeO4AS_1JMIlraSwoEKRvXw-v4qys2VmEJeSrrCQ2GPmqZ_ThAoYZW11sOIfuB9QzfkI2O0jFlZQHn7Qy0GQUrJ_JZ1pvaSxN-W1ah5FQCrP2NTDQQ-78Cpwi1sauKCGh0lCmpxfzUdqev3RZX0c_JtDRsOJT8KjLVaBjfVipmgnnUsxkktEtV-rKE0FOAtNGRg-Bmleh6SpiL6EO-Ennni5ZIw5qxsVscTANI_J3n4bwTM-kpE_POvtQk");'></div>
+<div class="flex-1 overflow-hidden">
+<p class="text-white font-semibold truncate">Michael Smith</p>
+<p class="text-text-muted text-sm truncate">Can I reschedule for Friday instead?</p>
+</div>
+<span class="text-xs text-text-muted">1h ago</span>
+</div>
+<div class="flex items-center gap-4 rounded-lg p-2 hover:bg-white/5">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 flex-shrink-0" data-alt="Client avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuALgFlLiNMRcHBCKv5-ZaZWqZDY9Pd9LJDHhLw6C328nPwdrcJjO7osqIgA1ky5uSPi31gCItYAuwZ6n1Q9DTwwQYdr68QyRbokqWt9qzD8QFm3J3SBHPp7OxQhVzbXq141Y3BVHzBgIHIFbKx_u0yqqaHyZxwlrF6aFGp17CsOjHmWY-UwwdquyM9dx3Pz_pOwIqZG0nQynx8Xbh4WGMX9ktg_vFZb6IhSH-KRnck-s_x904KizcnwDR80_j0GJARvTFSugvFUlLM");'></div>
+<div class="flex-1 overflow-hidden">
+<p class="text-white font-semibold truncate">Chris Lee</p>
+<p class="text-text-muted text-sm truncate">Thanks for the great haircut yesterday!</p>
+</div>
+<span class="text-xs text-text-muted">1d ago</span>
+</div>
+</div>
+<div class="mt-auto p-6 border-t border-border-dark/50">
+<button class="w-full text-center text-sm font-semibold text-primary hover:text-white transition-colors">View All Messages</button>
+</div>
+</div>
+<!-- Portfolio Card -->
+<div class="lg:col-span-2 flex flex-col rounded-xl bg-card-dark border border-border-dark/50">
+<div class="p-6 flex justify-between items-center">
+<h3 class="text-lg font-bold text-white">My Portfolio</h3>
+<button class="flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-transform hover:scale-105">
+<span class="material-symbols-outlined text-lg">upload</span>
+<span>Upload Photo</span>
+</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 px-6 pb-6">
+<div class="aspect-square w-full rounded-lg bg-cover bg-center" data-alt="A stylish fade haircut" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQTa2IsnVeZRRElPljXY2nnm7HSpsZLQe09oNC-bKaUf4WzP8mjRivbcS3-c1-Dc9PpMKTFuFk_8R138xypswj6ij32bV0Tos-0WLhFOaT6bzPWztKJAuQBSKAO7dkWmysdZ6-VKDTW-gCIwndFhzB57YyX6bllRNiepT16j0wBnocrmN6zL0zUbMcso4Bf7O4xsqaBifwhKqlfzdqq-Ri5tDF1nX4f7r5_1kgOFC0MRmsLGTXWSS4Xe94qDBLKtfcl-3pgclbbhs')"></div>
+<div class="aspect-square w-full rounded-lg bg-cover bg-center" data-alt="A classic pompadour hairstyle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlCxXUsM_P095aIYlyOSDT6SY-LPYC3madxzijOmePm3NtfkbuDFHtijZW95lQZ4AR7RxBzR8IBjB0oZPd6t5lvWiWOOlskHu4JOwLTv0m0qMjRu0ljtW4iLe1sP_xfioRB51KwvaM9e9Ki5BWoB0inUQ6-urpJfi84HHmH8PWq_IILMdIlPJl5bLRpLevV5wTON46sA15MWRlnkGIacwRufkQ2VVu-7fTo8SOZ0jQ3isP5gdDNopxUvNTPgWMmDGl0j9E1CU5I4Q')"></div>
+<div class="aspect-square w-full rounded-lg bg-cover bg-center" data-alt="A clean beard trim" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUvS5Wo60s3ozfHuPRACQQUcufCYV2hYgCVuUHVM_JNY8VzG4vSXY6ia2S5NS0P9l6ZZD1cQG2uegGK0BdUqASKQG9VMSz3b0cTHJZLrUJODtoX4nrnD96TONydeZNb_Zpmof_26QSpcriFXnG9yxtDaXVB2sveZV9ZNMcLPL_r2UqV3TJNs5yOs4raLp_1kilvBNMywy_UJwLruH2OrSOfd79XThHBqKyQKYYr9xhcyMO5zpKsbIfwiipynL_gtR6y70ZdbYL3aE')"></div>
+<div class="aspect-square w-full rounded-lg bg-cover bg-center" data-alt="A sharp undercut hairstyle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHPXITT9z8DVtsGj--ssjL1KsFA6wgCNrOLlZQet1Fhvq19LOwDERHXEgiW0tN4CEwprHGB3Krtb4F7C-J3MHnjYhNgGsyHdZJGvcTShI7QVzltzzcNSqsMLQ3V62Ve5njTCNN8RpkL1ZemLyoJR53VbD3QD2dFgj4OCi9CAzLmT58j3Kh4L8DcMcKKbnyGhUHgNABY6Fb8aubI-r2YjBGg0h3Iw0o45TasLieB-PIroX1r2x9X97dGVKsbEANpqNLPGV_diKwYGI')"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Shortcut Bar -->
+<div class="fixed bottom-8 right-8 w-full max-w-lg">
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+<span class="material-symbols-outlined text-primary text-xl">smart_toy</span>
+</div>
+<input class="w-full rounded-lg border border-border-dark/50 bg-card-dark py-3 pl-12 pr-4 text-sm text-white placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="BoyBoy Shortcut: 'Help me optimize my schedule.'" type="text"/>
+</div>
+</div>
+</main>
+</div>
+</body></html>

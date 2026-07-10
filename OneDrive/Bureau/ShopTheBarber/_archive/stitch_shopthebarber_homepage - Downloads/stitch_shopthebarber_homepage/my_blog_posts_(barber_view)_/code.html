@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Blog Posts (Barber View)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0f66bd",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101922",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-64 flex-shrink-0 bg-[#111418]">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 p-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Barber shop logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD2y9R11hOHVsFLqXNEqM6JVYnSgKjAJyQmgaZF-VC5jzs83LWam2ydSMghq23gEn-lgpimrd6v-oir1IqWfe2ecTQIOCA3hHXhGT3EhDFtJezU3_YgLtuqVeEUBqTrXu8rNdKPx7DWLXD8C9aVf6hoAU8MngeRy-7z2uGAZXEVpDsgXVtGSixTm9yLNIctDwAvgEWR3j9hfPNLa96s_japs1qO7sAjfegbypicetwQW4VZWW5hJuGxfmxr8M0HqVfPTj1LUKKRo9A");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-medium leading-normal">Johnathan's Barber</h1>
+<p class="text-[#9dabb9] text-sm font-normal leading-normal">john.doe@email.com</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<p class="text-sm font-medium leading-normal">Bookings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 text-white" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">article</span>
+<p class="text-sm font-medium leading-normal">My Blog Posts</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">content_cut</span>
+<p class="text-sm font-medium leading-normal">Services</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-sm font-medium leading-normal">Profile</p>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-primary/90 transition-colors">
+<span class="truncate">View My Shop</span>
+</button>
+<div class="border-t border-white/10 my-2"></div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/70 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<p class="text-sm font-medium leading-normal">Logout</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8">
+<div class="w-full max-w-7xl mx-auto">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between items-center gap-4 mb-6">
+<div class="flex flex-col gap-2">
+<p class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">My Blog Posts</p>
+<p class="text-slate-500 dark:text-[#9dabb9] text-base font-normal leading-normal">Manage your submitted blog posts and create new content.</p>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-wide hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-base">add_circle</span>
+<span class="truncate">Create New Post</span>
+</button>
+</div>
+<!-- ToolBar & Chips -->
+<div class="bg-white dark:bg-[#1c2127] rounded-xl p-4 mb-6">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex gap-2 items-center">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500">search</span>
+<input class="w-64 bg-slate-100 dark:bg-background-dark border-slate-200 dark:border-slate-700 rounded-lg h-10 pl-10 focus:ring-primary focus:border-primary" placeholder="Search posts..." type="text"/>
+</div>
+<button class="p-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-background-dark transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-primary/20 text-primary dark:bg-primary/30 dark:text-white px-4">
+<p class="text-sm font-medium leading-normal">All</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 transition-colors">
+<p class="text-sm font-medium leading-normal">Published</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 transition-colors">
+<p class="text-sm font-medium leading-normal">Pending Review</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 transition-colors">
+<p class="text-sm font-medium leading-normal">Draft</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 transition-colors">
+<p class="text-sm font-medium leading-normal">Rejected</p>
+</button>
+</div>
+</div>
+</div>
+<!-- Table -->
+<div class="@container">
+<div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1c2127]">
+<table class="w-full">
+<thead class="bg-slate-50 dark:bg-slate-900/40">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 w-2/5">Post Title</th>
+<th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 w-1/5">Last Modified</th>
+<th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 w-1/5">Status</th>
+<th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 w-1/5">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20">
+<td class="px-6 py-4 whitespace-nowrap text-slate-900 dark:text-white text-sm font-medium">The Perfect Fade: A Step-by-Step Guide</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 text-sm">June 24, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/50 px-3 py-1 text-xs font-medium text-green-800 dark:text-green-300">Published</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary dark:text-blue-400">
+<a class="hover:underline" href="#">View</a>
+<span class="mx-2 text-slate-300 dark:text-slate-600">|</span>
+<a class="text-red-600 dark:text-red-500 hover:underline" href="#">Delete</a>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20">
+<td class="px-6 py-4 whitespace-nowrap text-slate-900 dark:text-white text-sm font-medium">Top 5 Beard Oils for a Healthy Sheen</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 text-sm">June 22, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/50 px-3 py-1 text-xs font-medium text-green-800 dark:text-green-300">Published</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary dark:text-blue-400">
+<a class="hover:underline" href="#">View</a>
+<span class="mx-2 text-slate-300 dark:text-slate-600">|</span>
+<a class="text-red-600 dark:text-red-500 hover:underline" href="#">Delete</a>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20">
+<td class="px-6 py-4 whitespace-nowrap text-slate-900 dark:text-white text-sm font-medium">How to Choose the Right Hairstyle for Your Face Shape</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 text-sm">June 20, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-yellow-100 dark:bg-yellow-900/50 px-3 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-300">Pending Review</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary dark:text-blue-400">
+<a class="hover:underline" href="#">Edit</a>
+<span class="mx-2 text-slate-300 dark:text-slate-600">|</span>
+<a class="text-red-600 dark:text-red-500 hover:underline" href="#">Delete</a>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20">
+<td class="px-6 py-4 whitespace-nowrap text-slate-900 dark:text-white text-sm font-medium">Client Consultation: The Key to a Great Haircut</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 text-sm">June 18, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-red-100 dark:bg-red-900/50 px-3 py-1 text-xs font-medium text-red-800 dark:text-red-300">Needs Revisions</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary dark:text-blue-400">
+<a class="hover:underline" href="#">Edit</a>
+<span class="mx-2 text-slate-300 dark:text-slate-600">|</span>
+<a class="text-red-600 dark:text-red-500 hover:underline" href="#">Delete</a>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20">
+<td class="px-6 py-4 whitespace-nowrap text-slate-900 dark:text-white text-sm font-medium">My Journey into Barbering</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-500 dark:text-slate-400 text-sm">June 15, 2024</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-700 px-3 py-1 text-xs font-medium text-slate-800 dark:text-slate-300">Draft</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-primary dark:text-blue-400">
+<a class="hover:underline" href="#">Edit</a>
+<span class="mx-2 text-slate-300 dark:text-slate-600">|</span>
+<a class="text-red-600 dark:text-red-500 hover:underline" href="#">Delete</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between mt-6">
+<span class="text-sm text-slate-600 dark:text-slate-400">Showing 1 to 5 of 20 results</span>
+<div class="inline-flex items-center -space-x-px">
+<button class="px-3 py-2 leading-tight text-slate-500 bg-white border border-slate-300 rounded-l-lg hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">Previous</button>
+<button class="px-3 py-2 leading-tight text-blue-600 bg-blue-50 border border-slate-300 hover:bg-blue-100 hover:text-blue-700 dark:border-slate-700 dark:bg-slate-700 dark:text-white">1</button>
+<button class="px-3 py-2 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">2</button>
+<button class="px-3 py-2 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">3</button>
+<button class="px-3 py-2 leading-tight text-slate-500 bg-white border border-slate-300 rounded-r-lg hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

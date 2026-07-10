@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ShopTheBarber Design System */
+:root {
+  /* Primary Colors - Brand Palette */
+  --color-primary: #0B2545;          /* Indigo foncé / Marine */
+  --color-accent: #D08B3D;           /* Cuivre chaud */
+  --color-secondary: #4B5563;        /* Gris ardoise */
+  --color-background: #F7F8FA;       /* Blanc cassé */
+  --color-surface: #FFFFFF;          /* Surface */
+  --color-text: #0B2545;             /* Texte principal */
+  --color-text-secondary: #4B5563;   /* Texte secondaire */
+  --color-success: #1E7A4B;          /* Vert */
+  --color-danger: #D6454A;           /* Rouge */
+  --color-border: #E2E8F0;           /* Bordures */
+  
+  /* Spacing System (8px grid) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  
+  /* Border Radius */
+  --radius-card: 12px;
+  --radius-button: 10px;
+  --radius-avatar-lg: 20px;
+  
+  /* Typography */
+  --font-heading: 'Inter', 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Dark Mode Variables */
+.dark {
+  --color-primary: #D08B3D;
+  --color-background: #0F172A;
+  --color-surface: #1E293B;
+  --color-text: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-border: #334155;
+}
+
+.dark body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+}
+
+/* Dark Mode Specific Styles */
+.dark .bg-white {
+  @apply bg-slate-800;
+}
+
+.dark .bg-\[\#F7F8FA\] {
+  @apply bg-slate-900;
+}
+
+.dark .text-\[\#0B2545\] {
+  @apply text-slate-100;
+}
+
+.dark .text-\[\#4B5563\] {
+  @apply text-slate-400;
+}
+
+.dark .border-slate-200 {
+  @apply border-slate-700;
+}
+
+.dark .bg-slate-50 {
+  @apply bg-slate-800;
+}
+
+.dark .bg-slate-100 {
+  @apply bg-slate-700;
+}
+
+.dark .shadow-lg {
+  @apply shadow-slate-900/50;
+}
+
+@layer components {
+  /* ShopTheBarber Button Styles */
+  .btn-primary {
+    @apply bg-[#0B2545] hover:bg-[#0B2545]/90 text-white font-semibold;
+    @apply px-6 py-3 rounded-[10px] transition-all duration-200;
+  }
+  
+  .btn-accent {
+    @apply bg-[#D08B3D] hover:bg-[#D08B3D]/90 text-white font-semibold;
+    @apply px-6 py-3 rounded-[10px] transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-[#4B5563] text-[#4B5563] bg-transparent;
+    @apply hover:bg-[#4B5563] hover:text-white font-semibold;
+    @apply px-6 py-3 rounded-[10px] transition-all duration-200;
+  }
+  
+  .btn-ghost {
+    @apply text-[#4B5563] hover:text-[#0B2545] bg-transparent;
+    @apply font-medium transition-colors duration-200;
+  }
+  
+  /* ShopTheBarber Card Styles */
+  .card-service {
+    @apply bg-white rounded-[12px] p-4 border border-slate-200;
+    @apply hover:border-[#D08B3D] hover:shadow-lg transition-all duration-200;
+  }
+  
+  .card-provider {
+    @apply bg-white rounded-[12px] overflow-hidden border-2 border-slate-200;
+    @apply hover:border-[#D08B3D] hover:shadow-xl transition-all duration-300;
+  }
+  
+  .card-salon {
+    @apply bg-white rounded-[12px] overflow-hidden shadow-md;
+    @apply hover:shadow-2xl transition-shadow duration-300;
+  }
+  
+  /* Avatar Styles */
+  .avatar-lg {
+    @apply rounded-[20px] w-16 h-16 object-cover;
+  }
+  
+  .avatar-md {
+    @apply rounded-[12px] w-12 h-12 object-cover;
+  }
+  
+  .avatar-sm {
+    @apply rounded-[10px] w-10 h-10 object-cover;
+  }
+  
+  /* Badge/Token Styles */
+  .token-service {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full;
+    @apply text-sm font-medium bg-[#F7F8FA] text-[#4B5563];
+    @apply border border-slate-200 hover:border-[#D08B3D] cursor-pointer;
+    @apply transition-all duration-200;
+  }
+  
+  .token-service.active {
+    @apply bg-[#0B2545] text-white border-[#0B2545];
+  }
+  
+  /* Rating Component */
+  .rating-badge {
+    @apply inline-flex items-center gap-1 px-2 py-1 rounded-md;
+    @apply bg-white/90 text-[#0B2545] font-bold text-sm shadow-sm;
+  }
+  
+  /* Touch Target (44px minimum) */
+  .touch-target {
+    @apply min-w-[44px] min-h-[44px] flex items-center justify-center;
+  }
+  
+  /* Filter Sheet Styles */
+  .filter-sheet {
+    @apply bg-white rounded-t-[16px] shadow-2xl;
+  }
+  
+  /* Time Grid */
+  .time-slot {
+    @apply px-4 py-3 rounded-[10px] text-center font-medium;
+    @apply border-2 border-slate-200 cursor-pointer;
+    @apply hover:border-[#D08B3D] transition-all duration-200;
+    @apply min-h-[44px];
+  }
+  
+  .time-slot.selected {
+    @apply bg-[#0B2545] text-white border-[#0B2545];
+  }
+  
+  .time-slot.unavailable {
+    @apply bg-slate-100 text-slate-400 cursor-not-allowed;
+  }
+}
+
+/* Accessibility - Dynamic Font Scaling Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #000000;
+    --color-accent: #B87333;
+  }
+}
+
+/* RTL Support (Arabic) */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* Mobile Bottom Tab Bar */
+.bottom-nav {
+  @apply fixed bottom-0 left-0 right-0 z-50;
+  @apply bg-white border-t border-slate-200 shadow-lg;
+  @apply flex justify-around items-center;
+  @apply h-16 px-2;
+}
+
+.bottom-nav-item {
+  @apply flex flex-col items-center justify-center;
+  @apply text-[#4B5563] hover:text-[#0B2545];
+  @apply min-w-[44px] min-h-[44px] transition-colors;
+}
+
+.bottom-nav-item.active {
+  @apply text-[#D08B3D];
+}
+
+/* FAB - Floating Action Button */
+.fab {
+  @apply fixed bottom-20 right-4 z-40;
+  @apply w-14 h-14 rounded-full;
+  @apply bg-gradient-to-r from-[#0B2545] to-[#D08B3D];
+  @apply text-white shadow-xl;
+  @apply flex items-center justify-center;
+  @apply hover:scale-110 transition-transform duration-200;
+}
+
+/* Desktop Sidebar */
+@media (min-width: 1024px) {
+  .sidebar-nav {
+    @apply fixed left-0 top-0 bottom-0 w-64;
+    @apply bg-[#0B2545] text-white;
+    @apply flex flex-col py-6;
+  }
+  
+  .sidebar-nav-item {
+    @apply flex items-center gap-3 px-6 py-3;
+    @apply text-white/80 hover:text-white hover:bg-white/10;
+    @apply transition-all duration-200;
+  }
+  
+  .sidebar-nav-item.active {
+    @apply text-white bg-[#D08B3D]/20 border-l-4 border-[#D08B3D];
+  }
+}
+
+/* Compact Header */
+.header-compact {
+  @apply fixed top-0 left-0 right-0 z-50;
+  @apply h-14 bg-white/95 backdrop-blur-md;
+  @apply border-b border-slate-200;
+  @apply flex items-center justify-between px-4;
+}
+
+/* Container Widths */
+.container-mobile {
+  max-width: 420px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 1024px) {
+  .container-desktop {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

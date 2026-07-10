@@ -1,0 +1,111 @@
+# CI runs on master (validation) and main (re-verify after promotion).
+# Development and PRs target master. Only promote master → main after CI passes on master.
+# Production deploys use main only.
+# Optional staging E2E: Actions → Playwright API checks (workflow_dispatch; see AGENTS.md).
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Design lint
+        run: npm run qa:design-lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+  qa-guest-smoke:
+    name: QA guest smoke (production)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Guest journey smoke (read-only)
+        env:
+          E2E_START_SERVERS: '0'
+          E2E_FRONTEND_URL: https://shop-the-barber.vercel.app
+          E2E_API_BASE_URL: ${{ secrets.PRODUCTION_API_URL }}
+          JOURNEY_READONLY: '1'
+          QA_SKIP_AUTH_JOURNEYS: '1'
+        run: npm run test:e2e:journeys:guest
+
+  server:
+    name: Server
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    env:
+      NODE_ENV: test
+      # Neon test-branch connection string. Add as a repo Actions secret.
+      TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Prisma + Neon PostgreSQL (only DB). Generate the client before running tests.
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Verify schema (Neon test branch)
+        run: |
+          if [ -z "$TEST_DATABASE_URL" ]; then
+            echo "::warning::TEST_DATABASE_URL not set — skipping schema verify."
+            exit 0
+          fi
+          export DATABASE_URL="$TEST_DATABASE_URL"
+          npx prisma migrate deploy
+          npm run verify:schema
+
+      # Integration tests run against the isolated Neon test branch (TEST_DATABASE_URL).
+      # If the secret is absent (e.g. fork PRs), skip the DB-backed tests instead of failing.
+      - name: Test (Prisma + Neon)
+        run: |
+          if [ -z "$TEST_DATABASE_URL" ]; then
+            echo "::warning::TEST_DATABASE_URL secret not set - skipping DB-backed server tests."
+            exit 0
+          fi
+          npm run test

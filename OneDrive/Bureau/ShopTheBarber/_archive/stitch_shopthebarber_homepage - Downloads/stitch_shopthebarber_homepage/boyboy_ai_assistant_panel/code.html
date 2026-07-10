@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BoyBoy AI Assistant Panel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#b87333",
+              "background-light": "#f5f5f5",
+              "background-dark": "#1a2a4c",
+              "panel-dark": "#121022", /* A slightly darker variant for the main panel */
+              "slate-grey": "#36454F",
+              "off-white": "#F5F5F5",
+              "indigo-navy": "#1A2A4C",
+              "warm-copper": "#B87333",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-slate-grey/50">
+<div class="relative flex h-auto min-h-screen w-full flex-col dark group/design-root overflow-x-hidden">
+<!-- Main Dashboard Background (for context) -->
+<div class="absolute inset-0 bg-background-light dark:bg-slate-grey/50 p-10">
+<div class="h-full w-full rounded-xl border border-dashed border-slate-grey/40 flex items-center justify-center">
+<p class="text-slate-grey/60 dark:text-off-white/40">Main Dashboard Content Area</p>
+</div>
+</div>
+<!-- Floating Action Button -->
+<div class="fixed bottom-10 right-10 z-20">
+<button class="flex w-16 h-16 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-primary text-white shadow-lg transition-transform hover:scale-110">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</button>
+</div>
+<!-- BoyBoy AI Assistant Panel -->
+<div class="fixed inset-y-0 right-0 z-10 flex w-full max-w-md translate-x-0 transform flex-col bg-background-light dark:bg-indigo-navy shadow-2xl transition-transform duration-300 ease-in-out">
+<div class="flex h-full grow flex-col">
+<!-- Panel Header -->
+<div class="flex flex-col border-b border-slate-grey/20 p-4 pb-0">
+<div class="flex items-center justify-between gap-3">
+<p class="text-slate-grey dark:text-white text-xl font-bold leading-tight">BoyBoy AI Assistant</p>
+<button class="flex h-8 w-8 items-center justify-center rounded-full text-slate-grey/60 dark:text-off-white/60 transition-colors hover:bg-slate-grey/10 dark:hover:bg-off-white/10">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Segmented Buttons / Mode Switcher -->
+<div class="flex py-3">
+<div class="flex h-10 flex-1 items-center justify-center rounded-xl bg-background-light dark:bg-slate-grey/30 p-1">
+<label class="flex h-full grow cursor-pointer items-center justify-center overflow-hidden rounded-lg px-2 text-sm font-medium leading-normal text-slate-grey/70 has-[:checked]:bg-indigo-navy has-[:checked]:text-white dark:text-off-white/60 dark:has-[:checked]:bg-background-dark">
+<span class="truncate">Freelancer</span>
+<input checked="" class="invisible w-0" name="ai-mode" type="radio" value="Freelancer"/>
+</label>
+<label class="flex h-full grow cursor-pointer items-center justify-center overflow-hidden rounded-lg px-2 text-sm font-medium leading-normal text-slate-grey/70 has-[:checked]:bg-indigo-navy has-[:checked]:text-white dark:text-off-white/60 dark:has-[:checked]:bg-background-dark">
+<span class="truncate">Barbershop Manager</span>
+<input class="invisible w-0" name="ai-mode" type="radio" value="Barbershop Manager"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Conversational Chat Area -->
+<div class="flex flex-1 flex-col gap-4 overflow-y-auto p-4">
+<!-- Single AI Message (Welcome) -->
+<div class="flex items-end gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-8 h-8 shrink-0 flex items-center justify-center bg-primary text-white font-bold">B</div>
+<div class="flex flex-1 flex-col items-start gap-1">
+<p class="text-slate-grey/80 dark:text-off-white/60 text-[13px] font-normal leading-normal">BoyBoy AI</p>
+<p class="flex max-w-xs rounded-xl rounded-bl-none bg-slate-grey/10 px-4 py-3 text-base font-normal leading-normal text-slate-grey dark:bg-slate-grey/30 dark:text-white">Hello, I'm BoyBoy. How can I assist you today?</p>
+</div>
+</div>
+<!-- Quick Action Cards for Freelancer Mode -->
+<div class="flex flex-col gap-3">
+<!-- Card 1 -->
+<div class="p-2 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-slate-grey/5 dark:bg-slate-grey/20 @xl:flex-row @xl:items-start p-4">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2">
+<p class="text-slate-grey dark:text-white text-base font-bold leading-tight tracking-[-0.015em]">Suggest Open Slots</p>
+<div class="flex items-center gap-3 justify-between">
+<p class="text-slate-grey/80 dark:text-off-white/70 text-sm font-normal leading-normal">Find optimal times to open up your schedule for new bookings.</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-primary text-white text-sm font-medium leading-normal transition-opacity hover:opacity-90">
+<span class="truncate">Analyze</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-2 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-slate-grey/5 dark:bg-slate-grey/20 @xl:flex-row @xl:items-start p-4">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2">
+<p class="text-slate-grey dark:text-white text-base font-bold leading-tight tracking-[-0.015em]">Draft a Client Follow-up</p>
+<div class="flex items-center gap-3 justify-between">
+<p class="text-slate-grey/80 dark:text-off-white/70 text-sm font-normal leading-normal">Create a personalized message for a recent client.</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-primary text-white text-sm font-medium leading-normal transition-opacity hover:opacity-90">
+<span class="truncate">Draft</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-2 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl bg-slate-grey/5 dark:bg-slate-grey/20 @xl:flex-row @xl:items-start p-4">
+<div class="flex w-full min-w-72 grow flex-col items-stretch justify-center gap-2">
+<p class="text-slate-grey dark:text-white text-base font-bold leading-tight tracking-[-0.015em]">Analyze My Pricing</p>
+<div class="flex items-center gap-3 justify-between">
+<p class="text-slate-grey/80 dark:text-off-white/70 text-sm font-normal leading-normal">Compare your prices with local market rates.</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-primary text-white text-sm font-medium leading-normal transition-opacity hover:opacity-90">
+<span class="truncate">Compare</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Input Field -->
+<div class="flex items-center gap-2 border-t border-slate-grey/20 p-4">
+<input class="h-12 flex-1 rounded-xl border-none bg-slate-grey/10 px-4 text-slate-grey placeholder-slate-grey/60 focus:ring-2 focus:ring-primary dark:bg-slate-grey/30 dark:text-white dark:placeholder-off-white/50" placeholder="Type your message..." type="text"/>
+<button class="flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-xl bg-primary text-white transition-opacity hover:opacity-90">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,70 @@
+import React, { useEffect } from 'react';
+import { sovereign } from '@/api/apiClient';
+import { toast } from 'sonner';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { Bell } from 'lucide-react';
+
+export default function RealTimeNotifications() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  // We need the current user ID to filter notifications
+  // Using a lightweight check or relying on the auth context if available
+  // Here we'll just use sovereign.auth.me() which might be cached
+  const [userId, setUserId] = React.useState(null);
+
+  useEffect(() => {
+    sovereign.auth.me().then(u => setUserId(u?.id)).catch(() => { });
+  }, []);
+
+  useEffect(() => {
+    if (!userId) return;
+
+    const unsubscribe = sovereign.entities.Notification.subscribe((event) => {
+      if (event.type === 'create') {
+        const notification = event.data;
+
+        if (notification.user_id === userId) {
+
+          queryClient.invalidateQueries(['user-notifications']);
+
+          if (notification.type === 'waitlist') {
+            queryClient.invalidateQueries({ queryKey: ['waitlist-my-offers'] });
+            queryClient.invalidateQueries({ queryKey: ['waitlist-my-entries'] });
+          }
+
+          toast(notification.title, {
+            description: notification.content,
+            icon: <Bell className="w-4 h-4 text-primary" />,
+            className: 'font-sans',
+            descriptionClassName: 'text-muted-foreground',
+            action:
+              notification.type === 'waitlist'
+                ? {
+                    label: 'View offer',
+                    onClick: () => navigate('/UserBookings?tab=waitlist'),
+                  }
+                : notification.link
+                  ? {
+                      label: 'View',
+                      onClick: () => navigate(notification.link),
+                    }
+                  : undefined,
+            duration: notification.type === 'waitlist' ? 15000 : 5000,
+          });
+
+          // 3. Optional: Play sound
+          // const audio = new Audio('/notification.mp3');
+          // audio.play().catch(e => console.log("Audio play failed", e));
+        }
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [userId, queryClient, navigate]);
+
+  return null; // This component does not render anything visual itself
+}

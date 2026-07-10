@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Core UI Components - ShopTheBarber</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0B2545", // Dark Indigo/Navy
+                        "accent": "#D08B3D", // Warm Copper
+                        "secondary": "#4B5563", // Slate Grey
+                        "background-light": "#F7F8FA",
+                        "background-dark": "#101014", 
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "heading": ["Montserrat", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem", // 12px
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-secondary">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center py-10 sm:py-16 px-4 sm:px-6 md:px-8">
+<div class="layout-content-container flex flex-col w-full max-w-4xl flex-1">
+<h1 class="text-primary dark:text-white font-heading text-4xl font-bold tracking-tight pb-2 text-center">Core UI Components</h1>
+<p class="text-secondary dark:text-gray-400 text-center mb-12">A professional grooming booking ecosystem for Men &amp; Boys.</p>
+<!-- Buttons Section -->
+<h2 class="text-primary dark:text-white text-2xl font-bold leading-tight tracking-tight font-heading pb-4 pt-5 border-t border-gray-200 dark:border-gray-700">Buttons</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h3 class="text-primary dark:text-gray-200 text-lg font-bold leading-tight tracking-tight font-heading pb-3 pt-4">Primary Button</h3>
+<p class="text-sm text-secondary dark:text-gray-400 mb-4">Used for primary calls-to-action like "Book Now" or "Confirm".</p>
+<div class="flex flex-col space-y-4">
+<div class="flex items-center space-x-4">
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-accent text-white text-[15px] font-semibold font-display tracking-wide transition-colors duration-200 hover:bg-opacity-90 active:bg-opacity-100">
+<span class="truncate">Book Now</span>
+</button>
+<span class="text-sm text-secondary dark:text-gray-400">Default</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-accent bg-opacity-90 text-white text-[15px] font-semibold font-display tracking-wide">
+<span class="truncate">Book Now</span>
+</button>
+<span class="text-sm text-secondary dark:text-gray-400">Hover</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-accent text-white text-[15px] font-semibold font-display tracking-wide transform scale-[0.98]">
+<span class="truncate">Book Now</span>
+</button>
+<span class="text-sm text-secondary dark:text-gray-400">Active</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="flex min-w-[120px] max-w-[480px] cursor-not-allowed items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-accent/50 text-white/70 text-[15px] font-semibold font-display tracking-wide">
+<span class="truncate">Book Now</span>
+</button>
+<span class="text-sm text-secondary dark:text-gray-400">Disabled</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-primary dark:text-gray-200 text-lg font-bold leading-tight tracking-tight font-heading pb-3 pt-4">Secondary (Outline) Button</h3>
+<p class="text-sm text-secondary dark:text-gray-400 mb-4">Used for alternative actions like "View Details" or "Cancel".</p>
+<div class="flex flex-col space-y-4">
+<div class="flex items-center space-x-4">
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-transparent text-primary dark:text-white text-[15px] font-semibold font-display tracking-wide border-2 border-primary transition-colors duration-200 hover:bg-primary/5 dark:hover:bg-primary/20">
+<span class="truncate">View Details</span>
+</button>
+<span class="text-sm text-secondary dark:text-gray-400">Default</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-primary/5 dark:bg-primary/20 text-primary dark:text-white text-[15px] font-semibold font-display tracking-wide border-2 border-primary">
+<span class="truncate">View Details</span>
+</button>
+<span class="text-sm text-secondary dark:text-gray-400">Hover</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-primary/10 dark:bg-primary/30 text-primary dark:text-white text-[15px] font-semibold font-display tracking-wide border-2 border-primary transform scale-[0.98]">
+<span class="truncate">View Details</span>
+</button>
+<span class="text-sm text-secondary dark:text-gray-400">Active</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="flex min-w-[120px] max-w-[480px] cursor-not-allowed items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-transparent text-primary/50 dark:text-white/50 text-[15px] font-semibold font-display tracking-wide border-2 border-primary/50">
+<span class="truncate">View Details</span>
+</button>
+<span class="text-sm text-secondary dark:text-gray-400">Disabled</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Service Card Section -->
+<h2 class="text-primary dark:text-white text-2xl font-bold leading-tight tracking-tight font-heading pb-4 pt-16 border-t border-gray-200 dark:border-gray-700 mt-12">Service Card</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-gray-800/50 rounded-lg p-6 flex items-center space-x-5 shadow-sm border border-gray-200 dark:border-gray-700">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-white text-2xl" data-icon="content_cut"></span>
+</div>
+</div>
+<div>
+<h4 class="text-base font-bold text-primary dark:text-white">Classic Haircut</h4>
+<p class="text-sm text-secondary dark:text-gray-400">45 min • $40</p>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-lg p-6 flex items-center space-x-5 shadow-sm border border-gray-200 dark:border-gray-700">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-white text-2xl" data-icon="auto_fix"></span>
+</div>
+</div>
+<div>
+<h4 class="text-base font-bold text-primary dark:text-white">Beard Trim</h4>
+<p class="text-sm text-secondary dark:text-gray-400">30 min • $25</p>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-lg p-6 flex items-center space-x-5 shadow-sm border border-gray-200 dark:border-gray-700">
+<div class="flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary dark:text-white text-2xl" data-icon="spa"></span>
+</div>
+</div>
+<div>
+<h4 class="text-base font-bold text-primary dark:text-white">Hot Towel Shave</h4>
+<p class="text-sm text-secondary dark:text-gray-400">45 min • $50</p>
+</div>
+</div>
+</div>
+<!-- Provider Card Section -->
+<h2 class="text-primary dark:text-white text-2xl font-bold leading-tight tracking-tight font-heading pb-4 pt-16 border-t border-gray-200 dark:border-gray-700 mt-12">Provider Card</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white dark:bg-gray-800/50 rounded-lg p-6 flex flex-col space-y-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+<div class="flex items-center space-x-4">
+<img class="w-16 h-16 rounded-full object-cover" data-alt="Profile picture of a barber" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA86JjBSJg38gqasbC93oTrVdVcFW-cDXPJHWt-UofFjekRICAFv2aVx_AA9UB_i1-zFTg5RLZ9OdJROG6VdR5HlZjqI9IAmCAgB2pyiurNiwd4RYgQOqVivsgP_y8ar8Onhnh6BLBDtCEAy7zh0OH0kwFT3h9zHyMIPzv_qQ1N7fivb24KNvrEgXuu63Y7KHvzdYyAzzEDLz16P9jM_sDfdr1YEF4rLklYZsxqH-juDh1DrVs49SdUSEkNP8En0q06VIOjYTT25Fs"/>
+<div class="flex-1">
+<h3 class="text-lg font-bold text-primary dark:text-white font-heading">The Dapper Den</h3>
+<div class="flex items-center mt-1">
+<div class="flex text-yellow-500 text-lg">
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+<span class="material-symbols-outlined !text-lg" data-icon="star_half"></span>
+</div>
+<span class="text-sm text-secondary dark:text-gray-400 ml-2 font-semibold">4.5</span>
+</div>
+</div>
+</div>
+<p class="text-secondary dark:text-gray-400 text-base">Modern Fades &amp; Classic Cuts</p>
+<div class="flex items-center text-sm text-secondary dark:text-gray-400">
+<span class="material-symbols-outlined !text-lg mr-2" data-icon="location_on"></span>
+<span>1.2 miles away</span>
+</div>
+<div class="pt-2">
+<button class="w-full flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-accent text-white text-[15px] font-semibold font-display tracking-wide transition-colors duration-200 hover:bg-opacity-90 active:bg-opacity-100">
+<span class="truncate">Book Now</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800/50 rounded-lg p-6 flex flex-col space-y-4 shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+<div class="flex items-center space-x-4">
+<img class="w-16 h-16 rounded-full object-cover" data-alt="Profile picture of another barber" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQBZYlq-0yT6jUWGJt_AvvqCPqSuzduffswc7iWPjfUA0mQuuyNuhgPcqwFUdQ8tRJWbA90WHLEyN4LJ6kq8Z-a8tXnVc9Xr-JuQcYPIwjV25f_2PH8Knc8ITlqioJstkFyo5N207YqJKZdqyd23radJDo7j1Ae8wRxCw2RFxgUEklUtZ4-xcf38X052O62jbjMyDie-8dC1ijYrFABxbtOD6v3625XsxupnIN-fyWbxPjwH-y6GuRrLfutCnctDtphLyHnSGpJyI"/>
+<div class="flex-1">
+<h3 class="text-lg font-bold text-primary dark:text-white font-heading">Gentleman's Edge</h3>
+<div class="flex items-center mt-1">
+<div class="flex text-yellow-500 text-lg">
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+<span class="material-symbols-outlined !text-lg" data-icon="star"></span>
+</div>
+<span class="text-sm text-secondary dark:text-gray-400 ml-2 font-semibold">5.0</span>
+</div>
+</div>
+</div>
+<p class="text-secondary dark:text-gray-400 text-base">Premium Beard &amp; Hair Styling</p>
+<div class="flex items-center text-sm text-secondary dark:text-gray-400">
+<span class="material-symbols-outlined !text-lg mr-2" data-icon="location_on"></span>
+<span>2.5 miles away</span>
+</div>
+<div class="pt-2">
+<button class="w-full flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-6 bg-accent text-white text-[15px] font-semibold font-display tracking-wide transition-colors duration-200 hover:bg-opacity-90 active:bg-opacity-100">
+<span class="truncate">Book Now</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

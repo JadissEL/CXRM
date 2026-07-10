@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team Assignment - ShopTheBarber</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#B87333", // Warm Copper
+              "background-light": "#f6f6f8", // Not used in this dark theme, but defined
+              "background-dark": "#1A2A3A", // Dark Indigo/Navy
+              "slate-grey": "#4A4A4A",
+              "off-white": "#E0E0E0",
+              "light-grey": "#9d9db9",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        font-size: 20px;
+      }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-off-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 sm:px-8 md:px-12 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col w-full max-w-7xl flex-1">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-grey/50 px-4 py-3 mb-6">
+<div class="flex items-center gap-4">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-off-white text-lg font-bold leading-tight tracking-[-0.015em]">ShopTheBarber</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-off-white text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-off-white text-sm font-medium leading-normal" href="#">Bookings</a>
+<a class="text-off-white text-sm font-medium leading-normal" href="#">Clients</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Team</a>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Confirm Booking</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-slate-grey/50 text-off-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0Zvhk7_xcZMvMWMSwA45tm9Mu6V3i69ixPzm7nnqX338uMKM7TW1Ny1QCuJNxskHsxyaUni6cbTdSdjwBBySG6jZANYdUaBl4pTTyq2KwnmiQx7O09yDnud4uXQqqyhkpuaJ1yEl68FEa-Um0oGkFag0DDAjuAPNQXu6UBGYAWde3QxfxEKXy9042iFi574ddIYCee2vKdW8t99uLmAhtiyNTj40w4OklnkY9PSZo9ezAokJzkwnFqAPSXuXTJk6I02ALmNl6ArE");'></div>
+</div>
+</div>
+</header>
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between gap-3 p-4 mb-6">
+<div class="flex min-w-72 flex-col gap-3">
+<p class="text-off-white text-4xl font-black leading-tight tracking-[-0.033em]">Team Assignment</p>
+<p class="text-light-grey text-base font-normal leading-normal">Visualize joint availability when multiple barbers are required for a service.</p>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex flex-col lg:flex-row gap-8 p-4">
+<!-- Left Column: Controls -->
+<div class="w-full lg:w-1/3 flex flex-col gap-8">
+<!-- Barber Selector -->
+<div class="bg-slate-grey/30 rounded-xl p-6">
+<h3 class="text-off-white text-lg font-bold leading-tight tracking-[-0.015em] pb-4">Build Your Team</h3>
+<div class="flex flex-col gap-y-2">
+<label class="flex items-center gap-x-3 py-3 px-3 rounded-lg hover:bg-slate-grey/40 cursor-pointer">
+<input checked="" class="h-5 w-5 rounded border-light-grey/50 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-light-grey/50 focus:outline-none" type="checkbox"/>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Barber Alex Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDja_5XQtIRkHMMPF5x-Zgixx69nB3r7b94gPUYuds4QU_vEUTAG8foS4EFTBhex0GAc3SNTvwF1F91mrJ9U9oU5rpDRJyPgxpqHvU07Ngfy7sHEyt5tHszHIU9U8HnyxAw2cV6k2Dgbj3k_umPSc1uzJgMsU_jf3FrPuT3P_MbznVOY9sApO_mC_Nvns3RyME9ziv-6THxdlxc5bj0FPDHMy424SuDwRVZqWCa-am74y8V6faTv5yQR7APiS-Uz53_HjJOgB-45pA");'></div>
+<p class="text-off-white text-base font-normal leading-normal">Alex Johnson</p>
+</label>
+<label class="flex items-center gap-x-3 py-3 px-3 rounded-lg hover:bg-slate-grey/40 cursor-pointer">
+<input checked="" class="h-5 w-5 rounded border-light-grey/50 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-light-grey/50 focus:outline-none" type="checkbox"/>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Barber Ben Carter" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAucWvy8gbzPajZhRY7gcQJS8do4IGXius1-DNoZ2diNKTPL81nrbYUnBmtO5HfiFv8hwzOLtyvw0wod8KnnSIoa_70cbZHRx_sTLmz-_OVAtXJT0elWR9Pn0L94NjfdDSz2EZbHiK5gCP-o_xS0q-pE2AEbOYi6jSO5qQ66oQdgpVRumxmxjPgW32s2fquOBmSgC8VgDSster6EAMx0O5FtaQnXgNyO1bx93iX8Z9I65s3YVPOaayfwEZooUcOdxc820riWRWzElI");'></div>
+<p class="text-off-white text-base font-normal leading-normal">Ben Carter</p>
+</label>
+<label class="flex items-center gap-x-3 py-3 px-3 rounded-lg hover:bg-slate-grey/40 cursor-pointer">
+<input class="h-5 w-5 rounded border-light-grey/50 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-light-grey/50 focus:outline-none" type="checkbox"/>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Barber Chris Davis" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC36Wt2886Jw2yjuWQ77-SwQvcOBJ5a9niwJ_i11o9HjSQvFJG1Fswy6AinKX6-yRL7DmX7q3OIdboyvSE2EH0turDYhYF5wy-06aU6BO-JSDEioq0lNrK8JP5fgdB9ohe8LrIaNVdV8HwhEOd6ic9AC3rRC-9Z65w19uo9nIw7tfpOVvBy_YFM2yl9L-3Vh88VIQLLaxaNzlEsOSfSMUkPD13cO6EZ-q5uGkrwr4fwPPWWE226_YxNw8zSEjBzj_X-A7fHPSahp-I");'></div>
+<p class="text-off-white text-base font-normal leading-normal">Chris Davis</p>
+</label>
+<label class="flex items-center gap-x-3 py-3 px-3 rounded-lg hover:bg-slate-grey/40 cursor-pointer">
+<input class="h-5 w-5 rounded border-light-grey/50 border-2 bg-transparent text-primary checked:bg-primary checked:border-primary focus:ring-0 focus:ring-offset-0 focus:border-light-grey/50 focus:outline-none" type="checkbox"/>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8" data-alt="Barber David Miller" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqTcsgbtoeyr7MANC_VFGYMaro9P8olv0EstZLLPjuAMu-ksjY5yfYYDSEYzxdTgjY3bdMPWbQgY-o0zZ-PF-lfLi-VnthXQCUgazheBcOkrlrTCFt_DRKtFPWe2cXd7FWE5JJQ3N1i1xSuBI8WtbldtA7DL7OhLzrM7LdzPlU9IVV5JtL_QiKYck76ioqJknZ6W1MOo2BzTEX3ajOJI0iXCXMjMmNkTVezr3g_o1D9q_DWUiGI7roUKGbXk6soklOHdD9IpoWzaA");'></div>
+<p class="text-off-white text-base font-normal leading-normal">David Miller</p>
+</label>
+</div>
+</div>
+<!-- Service Assignment -->
+<div class="bg-slate-grey/30 rounded-xl p-6">
+<h3 class="text-off-white text-lg font-bold leading-tight tracking-[-0.015em] pb-4">Assign Services</h3>
+<div class="flex flex-col gap-4">
+<div class="bg-slate-grey/50 rounded-lg p-4 flex justify-between items-center cursor-grab">
+<div>
+<p class="font-bold text-off-white">Men's Cut</p>
+<p class="text-sm text-light-grey">30 min</p>
+</div>
+<span class="material-symbols-outlined text-light-grey">drag_indicator</span>
+</div>
+<div class="bg-slate-grey/50 rounded-lg p-4 flex justify-between items-center cursor-grab">
+<div>
+<p class="font-bold text-off-white">Kid's Cut</p>
+<p class="text-sm text-light-grey">30 min</p>
+</div>
+<span class="material-symbols-outlined text-light-grey">drag_indicator</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Availability Grid -->
+<div class="w-full lg:w-2/3 bg-slate-grey/30 rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-grey/50">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<h3 class="text-off-white text-lg font-bold">Today, October 26</h3>
+<button class="p-2 rounded-full hover:bg-slate-grey/50">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<button class="flex items-center gap-2 text-sm p-2 rounded-lg hover:bg-slate-grey/50">
+<span class="material-symbols-outlined">calendar_today</span>
+<span>Select Date</span>
+</button>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Header Row -->
+<div class="grid grid-cols-[60px_1fr] gap-4">
+<div class="text-sm text-light-grey"></div>
+<div class="grid grid-cols-5 text-center text-sm text-light-grey font-semibold">
+<span>9am</span>
+<span>10am</span>
+<span>11am</span>
+<span>12pm</span>
+<span>1pm</span>
+</div>
+</div>
+<!-- Barber Rows -->
+<div class="grid grid-cols-[60px_1fr] gap-4 items-center border-b border-slate-grey/50 pb-4">
+<div class="flex flex-col items-center text-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 mb-1" data-alt="Barber Alex Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCDwgBPz9uRtIfKiXlo0rXLS7XMCcR4YVe1-lWfzYxazkqCzcKiJ6mYKi_1h4hZvRLKwz2I8uXw1_FF_DWULnA7CvR_8e72Z_FaM5nuabFZvdRzLE1QTOMalJAyXribNhR8_-jYzgW7v2zd7B_BPpi3H0-VXssjpKUE2JQbYrLhgj4-MtcSo1BajEtXEOQ9MwVoCupI77To7cvlQweX3cjjToCj1wOqyy0ArnX-REUnUcJFSjSYxS2qSpwv9DdJK7jVxAFlhxEa9Yo");'></div>
+<p class="text-xs font-medium">Alex J.</p>
+</div>
+<div class="h-12 bg-slate-grey/20 rounded-lg relative grid grid-cols-5">
+<div class="bg-primary/30 h-full rounded-l-lg"></div>
+<div class="bg-red-500/20 h-full"></div>
+<div class="bg-primary/30 h-full"></div>
+<div class="bg-primary/30 h-full"></div>
+<div class="bg-primary/30 h-full rounded-r-lg"></div>
+</div>
+</div>
+<div class="grid grid-cols-[60px_1fr] gap-4 items-center">
+<div class="flex flex-col items-center text-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 mb-1" data-alt="Barber Ben Carter" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4nDv4AoxrQlYvhOEw8fS4Bef8-qGnF4PFl2hkcZDozI_OQajVF2VPSxpscBjOhPiL2POgLFCdQpkT0AF9zgKB09XBdGgzyd2xHjcl_g2TMy1EnUlajIKR24qdukremZmzOsFETxxzmfQ6LBrOjKyeYmh3-D9CinvbykuuGr5GnYaRLkDyfm3dC7iVefM4jrrihkxVXHJVL5slPhK5w40-fd3dHk7sS3WTE-7ilFPZhOpHfCt7KCRebzJ0r6gziZuDuVlkUs9lYHA");'></div>
+<p class="text-xs font-medium">Ben C.</p>
+</div>
+<div class="h-12 bg-slate-grey/20 rounded-lg relative grid grid-cols-5">
+<div class="bg-primary/30 h-full rounded-l-lg"></div>
+<div class="bg-primary/30 h-full"></div>
+<div class="bg-red-500/20 h-full"></div>
+<div class="bg-red-500/20 h-full"></div>
+<div class="bg-primary/30 h-full rounded-r-lg"></div>
+</div>
+</div>
+<!-- Intersection/Results -->
+<div class="mt-4 pt-4 border-t border-slate-grey/50">
+<p class="text-sm font-bold text-light-grey mb-4">JOINT AVAILABILITY</p>
+<div class="grid grid-cols-[60px_1fr] gap-4 items-center">
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary text-3xl">groups</span>
+</div>
+<div class="h-12 bg-slate-grey/20 rounded-lg relative grid grid-cols-5">
+<!-- Available Slot -->
+<div class="flex items-center justify-center h-full rounded-l-lg bg-primary/20 border-2 border-dashed border-primary/50 hover:bg-primary/40 cursor-pointer">
+<span class="text-xs font-bold text-primary">9:00 AM</span>
+</div>
+<div></div>
+<div></div>
+<div></div>
+<!-- Best Fit Slot -->
+<div class="flex flex-col items-center justify-center h-full rounded-r-lg bg-primary border-2 border-primary hover:opacity-90 cursor-pointer relative">
+<span class="absolute -top-3.5 bg-background-dark px-2 py-0.5 text-xs font-bold text-primary rounded-full border border-primary">Best Fit</span>
+<span class="text-xs font-bold text-background-dark">1:00 PM</span>
+<span class="text-[10px] text-background-dark/80">60 min</span>
+</div>
+</div>
+</div>
+</div>
+<!-- No Overlap Alert -->
+<div class="mt-6">
+<div class="bg-primary/10 border border-primary/30 text-primary text-sm rounded-lg p-4 flex items-start gap-4" role="alert">
+<span class="material-symbols-outlined mt-0.5">info</span>
+<div>
+<span class="font-bold">No joint availability found.</span> Try another day or adjust the team members to find overlapping slots.
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</body></html>
